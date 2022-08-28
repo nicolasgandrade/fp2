@@ -10,6 +10,8 @@ A ideia aqui é que cada um desenvolva independentemente, sem depender da tarefa
 3. Suba a branch para esse repositório (git push).
 4. Abra um pull request para a master e espere ser aprovado.
 
+<b>NUNCA COMMITEM NA MASTER!</b>
+
 ### Padrão de Commits
 Cada commit e branch precisa ter um prefixo que mostre o escopo do commit, vou deixar os prefixos que usaremos abaixo. (TODOS EM MAIUSCULO)
 - `STP` - Setup do projeto.
