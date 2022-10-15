@@ -1,11 +1,10 @@
 
-package Classes;
+package model;
 
-public class QuartosClass {
+public class Quarto {
     private int número;
     private int andar;
     private boolean ocupado;
-    private int categora_id;
 
     public int getNúmero() {
         return número;
@@ -29,13 +28,5 @@ public class QuartosClass {
 
     public void setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
-    }
-
-    public int getCategora_id() {
-        return categora_id;
-    }
-
-    public void setCategora_id(int categora_id) {
-        this.categora_id = categora_id;
     }
 }
