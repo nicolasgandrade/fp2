@@ -9,8 +9,6 @@ public class Usuario {
     private String nomeUsuario;
     private String senha;
     private Cargo cargo;
-
-    
     
     public Usuario(){
     }
@@ -22,8 +20,6 @@ public class Usuario {
         this.senha = senha;
         this.cargo = cargo;
     }
-    
-    
     
     public int getId() {
         return id;
