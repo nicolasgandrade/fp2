@@ -62,8 +62,8 @@ public class Login extends javax.swing.JFrame {
 
         getContentPane().add(panelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 400, 280));
 
-        Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Fundo_icon.png"))); // NOI18N
-        getContentPane().add(Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Fundo_icon.png")));
+        getContentPane().add(Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 680));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
