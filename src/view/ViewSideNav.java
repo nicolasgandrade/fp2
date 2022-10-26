@@ -19,17 +19,17 @@ public class ViewSideNav extends javax.swing.JFrame {
         jpUsuários = new javax.swing.JPanel();
         lblUser = new javax.swing.JLabel();
         btnExitUser = new javax.swing.JButton();
-        tfUser = new javax.swing.JTextField();
+        txtUser = new javax.swing.JTextField();
         lblLupa3 = new javax.swing.JLabel();
         jpHospedes = new javax.swing.JPanel();
         lblHost = new javax.swing.JLabel();
         btnExitHost = new javax.swing.JButton();
-        tfHost = new javax.swing.JTextField();
+        txtHost = new javax.swing.JTextField();
         lblLupa2 = new javax.swing.JLabel();
         jpQuarto = new javax.swing.JPanel();
         lblRoom = new javax.swing.JLabel();
         btnExitRoom = new javax.swing.JButton();
-        tfRoom = new javax.swing.JTextField();
+        txtRoom = new javax.swing.JTextField();
         lblLupa1 = new javax.swing.JLabel();
         jpMenu = new javax.swing.JPanel();
         btnRoom = new javax.swing.JButton();
@@ -91,7 +91,7 @@ public class ViewSideNav extends javax.swing.JFrame {
                 .addGroup(jpUsuáriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUser)
                     .addGroup(jpUsuáriosLayout.createSequentialGroup()
-                        .addComponent(tfUser, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblLupa3)))
                 .addContainerGap(242, Short.MAX_VALUE))
@@ -105,7 +105,7 @@ public class ViewSideNav extends javax.swing.JFrame {
                 .addComponent(lblUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpUsuáriosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLupa3))
                 .addContainerGap(563, Short.MAX_VALUE))
         );
@@ -139,7 +139,7 @@ public class ViewSideNav extends javax.swing.JFrame {
                 .addGroup(jpHospedesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHost)
                     .addGroup(jpHospedesLayout.createSequentialGroup()
-                        .addComponent(tfHost, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtHost, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblLupa2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -153,7 +153,7 @@ public class ViewSideNav extends javax.swing.JFrame {
                 .addComponent(lblHost)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpHospedesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfHost, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHost, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLupa2))
                 .addContainerGap(563, Short.MAX_VALUE))
         );
@@ -187,7 +187,7 @@ public class ViewSideNav extends javax.swing.JFrame {
                 .addGroup(jpQuartoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblRoom)
                     .addGroup(jpQuartoLayout.createSequentialGroup()
-                        .addComponent(tfRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblLupa1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -201,7 +201,7 @@ public class ViewSideNav extends javax.swing.JFrame {
                 .addComponent(lblRoom)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpQuartoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblLupa1))
                 .addContainerGap(563, Short.MAX_VALUE))
         );
@@ -353,8 +353,8 @@ public class ViewSideNav extends javax.swing.JFrame {
     private javax.swing.JLabel lblRoom;
     private javax.swing.JLabel lblUser;
     private javax.swing.JLabel lblWelcome;
-    private javax.swing.JTextField tfHost;
-    private javax.swing.JTextField tfRoom;
-    private javax.swing.JTextField tfUser;
+    private javax.swing.JTextField txtHost;
+    private javax.swing.JTextField txtRoom;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

@@ -95,7 +95,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblUser" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="tfUser" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="txtUser" min="-2" pref="700" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblLupa3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -113,7 +113,7 @@
                   <Component id="lblUser" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tfUser" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="txtUser" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="lblLupa3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="563" max="32767" attributes="0"/>
@@ -141,7 +141,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitUserActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfUser">
+        <Component class="javax.swing.JTextField" name="txtUser">
         </Component>
         <Component class="javax.swing.JLabel" name="lblLupa3">
           <Properties>
@@ -174,7 +174,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblHost" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="tfHost" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="txtHost" min="-2" pref="700" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblLupa2" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -192,7 +192,7 @@
                   <Component id="lblHost" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tfHost" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="txtHost" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="lblLupa2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="563" max="32767" attributes="0"/>
@@ -220,7 +220,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitHostActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfHost">
+        <Component class="javax.swing.JTextField" name="txtHost">
         </Component>
         <Component class="javax.swing.JLabel" name="lblLupa2">
           <Properties>
@@ -253,7 +253,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblRoom" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="tfRoom" min="-2" pref="700" max="-2" attributes="0"/>
+                          <Component id="txtRoom" min="-2" pref="700" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblLupa1" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -271,7 +271,7 @@
                   <Component id="lblRoom" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tfRoom" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="txtRoom" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="lblLupa1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="563" max="32767" attributes="0"/>
@@ -299,7 +299,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExitRoomActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfRoom">
+        <Component class="javax.swing.JTextField" name="txtRoom">
         </Component>
         <Component class="javax.swing.JLabel" name="lblLupa1">
           <Properties>
