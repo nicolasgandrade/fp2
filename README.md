@@ -3,14 +3,14 @@
 ## Git Workflow
 
 ### Desenvolvimento assíncrono
-A ideia aqui é que cada um desenvolva independentemente, sem depender da tarefa do amiguinho. Por isso, sigam o fluxo descrito a seguir para o desenvolvimento.
+A ideia aqui é que cada um desenvolva independentemente, sem depender da tarefa do outro. Por isso, sigam o fluxo descrito a seguir para o desenvolvimento.
 
 1. Crie uma branch nova para fazer a sua alteração na base de código. Cada branch precisa ter um prefixo (os mesmos dos commits, mas em minusculo), seguido de uma barra e uma pequena descrição da sua branch separada por traços (-). Segue o exemplo: `feat/interface-registro-de-quartos`.
 2. Use os padrões de commits para seus commits (descritos mais abaixo).
 3. Suba a branch para esse repositório (git push).
 4. Abra um pull request para a master e espere ser aprovado.
 
-<b>NUNCA COMMITEM NA MASTER!</b>
+<b>Evitem commitar na master.</b>
 
 ### Padrão de Commits
 Cada commit e branch precisa ter um prefixo que mostre o escopo do commit, vou deixar os prefixos que usaremos abaixo. (TODOS EM MAIUSCULO)
@@ -19,7 +19,7 @@ Cada commit e branch precisa ter um prefixo que mostre o escopo do commit, vou d
 - `REFACTOR` - Refatoração de código (melhorias que não alteram funcionalidades).
 - `FIX` - Correção de algum bug.
 - `DB` - Arquivos relacionados ao banco de dados.
-- `DOCS` - Criação de documentação (não sei se precisaremos nesse projeto).
+- `DOCS` - Criação de documentação.
 
 Sendo assim, quando for criar o seu commit siga o padrão:
 `PREFIXO - O que o seu commit faz (usando modo IMPERATIVO)`.
