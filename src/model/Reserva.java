@@ -32,7 +32,7 @@ public class Reserva {
         return quarto;
     }
 
-    public void setNum_quarto(Quarto quarto) {
+    public void setQuarto(Quarto quarto) {
         this.quarto = quarto;
     }
 
@@ -40,7 +40,7 @@ public class Reserva {
         return hospede;
     }
 
-    public void setHospede_id(Hospede hospede) {
+    public void setHospede(Hospede hospede) {
         this.hospede = hospede;
     }
 
