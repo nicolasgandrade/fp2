@@ -27,6 +27,11 @@ public class ViewSideNaveUsuarios extends javax.swing.JFrame {
         btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
         btnUsuarios.setText("Usuários");
         btnUsuarios.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 210, 40));
 
         btnQuarto.setBackground(new java.awt.Color(255, 255, 255));
@@ -99,6 +104,10 @@ public class ViewSideNaveUsuarios extends javax.swing.JFrame {
         ViewSideNaveHospedes hospedes = new ViewSideNaveHospedes();
         hospedes.setVisible(true);
     }//GEN-LAST:event_btnHospedesActionPerformed
+
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+        // Já está na Tela Usuarios
+    }//GEN-LAST:event_btnUsuariosActionPerformed
 
     public static void main(String args[]) {
 

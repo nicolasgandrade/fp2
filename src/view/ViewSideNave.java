@@ -1,8 +1,8 @@
 package view;
 
-public class ViewSideNave2 extends javax.swing.JFrame {
+public class ViewSideNave extends javax.swing.JFrame {
 
-    public ViewSideNave2() {
+    public ViewSideNave() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
     }
@@ -92,7 +92,7 @@ public class ViewSideNave2 extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewSideNave2().setVisible(true);
+                new ViewSideNave().setVisible(true);
             }
         });
     }
