@@ -1,6 +1,8 @@
+import view.Login;
+
 public class Program {
     public static void main(String[] args) {
-        System.out.println("Works!");
+        Login login = new Login();
+        login.setVisible(true);
     }
-
 }
