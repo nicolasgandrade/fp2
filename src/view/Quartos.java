@@ -1,9 +1,14 @@
 package view;
 
+import controller.ControllerQuartos;
+import model.Quarto;
+
 public class Quartos extends javax.swing.JFrame {
+    ControllerQuartos controller;
 
     public Quartos() {
         initComponents();
+        controller = new ControllerQuartos();
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +37,11 @@ public class Quartos extends javax.swing.JFrame {
         lblOcupação.setText("Ocupação do Quarto");
 
         btnCadastro.setText("Cadastro Quartos");
+        btnCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpQuartosLayout = new javax.swing.GroupLayout(jpQuartos);
         jpQuartos.setLayout(jpQuartosLayout);
@@ -87,6 +97,21 @@ public class Quartos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
+        // TODO add your handling code here:
+        Quarto novoQuarto = new Quarto();
+        novoQuarto.setNúmero(Integer.parseInt(txtNumero.getText()));
+        novoQuarto.setAndar(Integer.parseInt(txtAndar.getText()));
+        if (cboOcupado.getSelectedItem().toString().equals("Ocupado")){
+            novoQuarto.setOcupado(true);
+        } else {
+            novoQuarto.setOcupado(false);
+        }
+        
+        this.controller.inserirQuarto(novoQuarto);
+        this.controller.encerrar(novoQuarto);
+    }//GEN-LAST:event_btnCadastroActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
