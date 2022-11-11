@@ -1,8 +1,8 @@
 package view;
 
-public class ViewSideNaveHospedes extends javax.swing.JFrame {
+public class ViewSideNavHospedes extends javax.swing.JFrame {
 
-    public ViewSideNaveHospedes() {
+    public ViewSideNavHospedes() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
     }
@@ -92,7 +92,7 @@ public class ViewSideNaveHospedes extends javax.swing.JFrame {
 
     private void btnQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuartoActionPerformed
         dispose();
-        ViewSideNaveQuarto quarto = new ViewSideNaveQuarto();
+        ViewSideNavQuarto quarto = new ViewSideNavQuarto();
         quarto.setVisible(true);
     }//GEN-LAST:event_btnQuartoActionPerformed
 
@@ -106,7 +106,7 @@ public class ViewSideNaveHospedes extends javax.swing.JFrame {
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
         dispose();
-        ViewSideNaveUsuarios usuarios = new ViewSideNaveUsuarios();
+        ViewSideNavUsuarios usuarios = new ViewSideNavUsuarios();
         usuarios.setVisible(true);
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
@@ -114,7 +114,7 @@ public class ViewSideNaveHospedes extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewSideNaveHospedes().setVisible(true);
+                new ViewSideNavHospedes().setVisible(true);
             }
         });
     }
