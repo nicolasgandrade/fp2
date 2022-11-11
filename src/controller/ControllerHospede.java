@@ -13,10 +13,10 @@ public class ControllerHospede {
     
     public void inserirHospede(Hospede hospede){
         String sql = "INSERT INTO Hospedes(nome, telefone, email, documento) VALUES("
-                + hospede.getNome()+ ","
-                + hospede.getTelefone() + ","
-                + hospede.getEmail()+ ","
-                + hospede.getDocumento() + ");";
+                + "'" + hospede.getNome()+ "','"
+                + hospede.getTelefone() + "','"
+                + hospede.getEmail()+ "','"
+                + hospede.getDocumento() + "');";
         this.conn.insertSQL(sql);  
     }
     
