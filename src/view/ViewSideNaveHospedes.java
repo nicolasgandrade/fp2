@@ -28,6 +28,11 @@ public class ViewSideNaveHospedes extends javax.swing.JFrame {
         btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
         btnUsuarios.setText("Usuários");
         btnUsuarios.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 210, 40));
 
         btnQuarto.setBackground(new java.awt.Color(255, 255, 255));
@@ -49,6 +54,11 @@ public class ViewSideNaveHospedes extends javax.swing.JFrame {
         btnHospedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Hospedes_icon.png"))); // NOI18N
         btnHospedes.setText("Hóspedes");
         btnHospedes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnHospedes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHospedesActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnHospedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 210, 40));
 
         lblHospedes.setFont(new java.awt.Font("Segoe UI", 0, 57)); // NOI18N
@@ -81,12 +91,24 @@ public class ViewSideNaveHospedes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuartoActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        ViewSideNaveQuarto quarto = new ViewSideNaveQuarto();
+        quarto.setVisible(true);
     }//GEN-LAST:event_btnQuartoActionPerformed
 
     private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscaActionPerformed
+
+    private void btnHospedesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospedesActionPerformed
+        // Já esta na tela Hospedes
+    }//GEN-LAST:event_btnHospedesActionPerformed
+
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+        dispose();
+        ViewSideNaveUsuarios usuarios = new ViewSideNaveUsuarios();
+        usuarios.setVisible(true);
+    }//GEN-LAST:event_btnUsuariosActionPerformed
 
     public static void main(String args[]) {
 
