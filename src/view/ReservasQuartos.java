@@ -1,9 +1,14 @@
 package view;
 
+import controller.ControllerReserva;
+import model.Reserva;
+
 public class ReservasQuartos extends javax.swing.JFrame {
+    ControllerReserva controller;
 
     public ReservasQuartos() {
         initComponents();
+        controller = new ControllerReserva();
     }
 
 
@@ -48,6 +53,11 @@ public class ReservasQuartos extends javax.swing.JFrame {
         }
 
         btnCadastro.setText("Cadastro");
+        btnCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -121,6 +131,14 @@ public class ReservasQuartos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
+        // TODO add your handling code here:
+        Reserva novaReserva = new Reserva();
+
+        this.controller.inserirQuarto(novaReserva);
+        this.controller.encerrar(novaReserva);
+    }//GEN-LAST:event_btnCadastroActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
