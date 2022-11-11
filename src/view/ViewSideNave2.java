@@ -18,7 +18,6 @@ public class ViewSideNave2 extends javax.swing.JFrame {
         lblFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblWelcome.setFont(new java.awt.Font("Segoe UI", 0, 57)); // NOI18N
@@ -72,11 +71,13 @@ public class ViewSideNave2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnQuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuartosActionPerformed
+        dispose();
         ViewSideNaveQuarto quarto = new ViewSideNaveQuarto();
         quarto.setVisible(true);
     }//GEN-LAST:event_btnQuartosActionPerformed
 
     private void btnHospedesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospedesActionPerformed
+        dispose();
         ViewSideNaveHospedes hospedes = new ViewSideNaveHospedes();
         hospedes.setVisible(true);
     }//GEN-LAST:event_btnHospedesActionPerformed
