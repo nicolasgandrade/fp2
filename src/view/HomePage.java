@@ -67,56 +67,59 @@ public class HomePage extends javax.swing.JFrame {
         pnlSideNav.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        btnUsuarios.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnUsuarios.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         btnUsuarios.setForeground(new java.awt.Color(0, 51, 153));
         btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
         btnUsuarios.setText("Usuários");
-        btnUsuarios.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnUsuarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnUsuarios.setBorderPainted(false);
         btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUsuariosActionPerformed(evt);
             }
         });
-        pnlSideNav.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, 210, 40));
+        pnlSideNav.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 210, 60));
 
         btnQuartos.setBackground(new java.awt.Color(255, 255, 255));
-        btnQuartos.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnQuartos.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         btnQuartos.setForeground(new java.awt.Color(0, 51, 153));
         btnQuartos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Quartos_icon.png"))); // NOI18N
         btnQuartos.setText("Quarto");
-        btnQuartos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnQuartos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnQuartos.setBorderPainted(false);
         btnQuartos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQuartosActionPerformed(evt);
             }
         });
-        pnlSideNav.add(btnQuartos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 210, 40));
+        pnlSideNav.add(btnQuartos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 210, 60));
 
         btnHospedes.setBackground(new java.awt.Color(255, 255, 255));
-        btnHospedes.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnHospedes.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         btnHospedes.setForeground(new java.awt.Color(0, 51, 153));
         btnHospedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Hospedes_icon.png"))); // NOI18N
         btnHospedes.setText("Hóspedes");
-        btnHospedes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnHospedes.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnHospedes.setBorderPainted(false);
         btnHospedes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHospedesActionPerformed(evt);
             }
         });
-        pnlSideNav.add(btnHospedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 210, 40));
+        pnlSideNav.add(btnHospedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 210, 60));
 
         btnSair.setBackground(new java.awt.Color(255, 255, 255));
         btnSair.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnSair.setForeground(new java.awt.Color(0, 51, 153));
-        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
         btnSair.setText("Sair");
         btnSair.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnSair.setBorderPainted(false);
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSairActionPerformed(evt);
             }
         });
-        pnlSideNav.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 660, 210, 40));
+        pnlSideNav.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 640, 210, 60));
 
         lblSidenavBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/menu_icon.png"))); // NOI18N
         pnlSideNav.add(lblSidenavBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, -1));
