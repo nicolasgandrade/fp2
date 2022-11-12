@@ -45,25 +45,25 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="lblNumero" max="32767" attributes="0"/>
-                      <Component id="lblAndar" max="32767" attributes="0"/>
-                      <Component id="lblOcupação" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="36" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="cboOcupado" pref="0" max="32767" attributes="0"/>
-                      <Component id="txtNumero" alignment="0" pref="96" max="32767" attributes="0"/>
-                      <Component id="txtAndar" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                  <Component id="btnCadastro" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnCadastro" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="lblNumero" max="32767" attributes="0"/>
+                              <Component id="lblAndar" max="32767" attributes="0"/>
+                              <Component id="lblOcupação" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="36" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="cboOcupado" pref="0" max="32767" attributes="0"/>
+                              <Component id="txtNumero" alignment="0" pref="96" max="32767" attributes="0"/>
+                              <Component id="txtAndar" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -85,9 +85,9 @@
                       <Component id="cboOcupado" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblOcupação" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="52" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnCadastro" min="-2" pref="47" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -127,7 +127,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCadastro">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cadastro Quartos"/>
+            <Property name="text" type="java.lang.String" value="NOVO QUARTO"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastroActionPerformed"/>
