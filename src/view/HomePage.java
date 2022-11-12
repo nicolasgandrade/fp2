@@ -62,6 +62,7 @@ public class HomePage extends javax.swing.JFrame {
         lblUsuariosFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         pnlSideNav.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
