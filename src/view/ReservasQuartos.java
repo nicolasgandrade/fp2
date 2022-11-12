@@ -2,6 +2,8 @@ package view;
 
 import controller.ControllerReserva;
 import model.Reserva;
+import model.Quarto;
+import model.Hospede;
 
 public class ReservasQuartos extends javax.swing.JFrame {
     ControllerReserva controller;
@@ -135,10 +137,15 @@ public class ReservasQuartos extends javax.swing.JFrame {
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
         // TODO add your handling code here:
         Reserva novaReserva = new Reserva();
-
+        Quarto novoQuarto = new Quarto();
+        Hospede novoHospede = new Hospede();
         
+        novoQuarto.setNúmero(Integer.parseInt(txtNumeroQuarto.getText()));
+        novoHospede.setId((Integer.parseInt(txtHospede.getText())));
+        novaReserva.setEntrada(Integer.parseInt(txtEntrada.getText()));
+        novaReserva.setSaida(Integer.parseInt(txtSaida.getText()));
         
-        this.controller.inserirReserva(novaReserva, null, null);
+        this.controller.inserirReserva(novaReserva, novoQuarto, novoHospede);
         this.controller.encerrar(novaReserva);
     }//GEN-LAST:event_btnCadastroActionPerformed
 
