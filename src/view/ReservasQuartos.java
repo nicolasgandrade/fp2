@@ -136,7 +136,9 @@ public class ReservasQuartos extends javax.swing.JFrame {
         // TODO add your handling code here:
         Reserva novaReserva = new Reserva();
 
-        this.controller.inserirQuarto(novaReserva);
+        
+        
+        this.controller.inserirReserva(novaReserva, null, null);
         this.controller.encerrar(novaReserva);
     }//GEN-LAST:event_btnCadastroActionPerformed
 
