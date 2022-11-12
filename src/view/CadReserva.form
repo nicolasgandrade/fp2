@@ -38,9 +38,9 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="jPanel2" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -55,7 +55,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title=" Reservas Quartos"/>
+                <TitledBorder title="Nova Reserva"/>
               </Border>
             </Property>
           </Properties>
@@ -63,26 +63,31 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblNumeroQuarto" pref="92" max="32767" attributes="0"/>
-                          <Component id="lblHospede" max="32767" attributes="0"/>
-                          <Component id="lblEntrada" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblSaida" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtHospede" alignment="1" pref="126" max="32767" attributes="0"/>
-                          <Component id="txtEntrada" alignment="1" max="32767" attributes="0"/>
-                          <Component id="txtSaida" max="32767" attributes="0"/>
-                          <Component id="txtNumeroQuarto" alignment="1" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                      <Component id="btnCadastro" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="111" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="btnCadastro" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="lblHospede" max="32767" attributes="0"/>
+                                      <Component id="lblEntrada" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="lblSaida" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="lblNumeroQuarto" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="62" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtHospede" alignment="1" pref="126" max="32767" attributes="0"/>
+                                  <Component id="txtEntrada" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="txtSaida" max="32767" attributes="0"/>
+                                  <Component id="txtNumeroQuarto" alignment="1" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -124,7 +129,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblHospede">
               <Properties>
-                <Property name="text" type="java.lang.String" value="H&#xf3;spede"/>
+                <Property name="text" type="java.lang.String" value="Documento do H&#xf3;spede"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblEntrada">
@@ -157,7 +162,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnCadastro">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastro"/>
+                <Property name="text" type="java.lang.String" value="RESERVAR"/>
               </Properties>
             </Component>
           </SubComponents>
