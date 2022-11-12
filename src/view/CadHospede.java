@@ -1,9 +1,14 @@
 package view;
 
-public class CadHospede extends javax.swing.JFrame {
+import controller.ControllerHospede;
+import model.Hospede;
 
+public class CadHospede extends javax.swing.JFrame {
+    ControllerHospede controller;
+    
     public CadHospede() {
         initComponents();
+        controller = new ControllerHospede();
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +45,11 @@ public class CadHospede extends javax.swing.JFrame {
         }
 
         btnCadastrar.setText("CADASTRAR");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,6 +114,18 @@ public class CadHospede extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        // TODO add your handling code here:
+        Hospede novoHospede = new Hospede();
+        novoHospede.setNome(txtNome.getText());
+        novoHospede.setTelefone(txtTelefone.getText());
+        novoHospede.setEmail(txtEmail.getText());
+        novoHospede.setDocumento(txtDocumento.getText());
+        
+        this.controller.inserirHospede(novoHospede);
+        this.controller.encerrar(novoHospede);
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
 
     public static void main(String args[]) {
