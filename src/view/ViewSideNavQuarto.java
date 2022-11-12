@@ -24,7 +24,7 @@ public class ViewSideNavQuarto extends javax.swing.JFrame {
 
         bntUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         bntUsuarios.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        bntUsuarios.setForeground(new java.awt.Color(0, 51, 204));
+        bntUsuarios.setForeground(new java.awt.Color(0, 51, 153));
         bntUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
         bntUsuarios.setText("Usuários");
         bntUsuarios.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -37,7 +37,7 @@ public class ViewSideNavQuarto extends javax.swing.JFrame {
 
         btnQuarto.setBackground(new java.awt.Color(255, 255, 255));
         btnQuarto.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        btnQuarto.setForeground(new java.awt.Color(0, 51, 204));
+        btnQuarto.setForeground(new java.awt.Color(0, 51, 153));
         btnQuarto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Quartos_icon.png"))); // NOI18N
         btnQuarto.setText("Quarto");
         btnQuarto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -50,7 +50,7 @@ public class ViewSideNavQuarto extends javax.swing.JFrame {
 
         btnHospedes.setBackground(new java.awt.Color(255, 255, 255));
         btnHospedes.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        btnHospedes.setForeground(new java.awt.Color(0, 51, 255));
+        btnHospedes.setForeground(new java.awt.Color(0, 51, 153));
         btnHospedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Hospedes_icon.png"))); // NOI18N
         btnHospedes.setText("Hóspedes");
         btnHospedes.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
