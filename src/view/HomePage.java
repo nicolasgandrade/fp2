@@ -41,25 +41,25 @@ public class HomePage extends javax.swing.JFrame {
         pnlDefault = new javax.swing.JPanel();
         lblBemVindoDesc = new javax.swing.JLabel();
         lblBemVindo = new javax.swing.JLabel();
-        lblDefaultFundo = new javax.swing.JLabel();
+        lblFundoDefault = new javax.swing.JLabel();
         pnlQuartos = new javax.swing.JPanel();
         lblTituloQuartos = new javax.swing.JLabel();
         lblDescQuartos = new javax.swing.JLabel();
         spnBuscaQuarto = new javax.swing.JSpinner();
         btnBuscarQuarto = new javax.swing.JButton();
-        lblQuartosFundo = new javax.swing.JLabel();
+        lblFundoQuartos = new javax.swing.JLabel();
         pnlHospedes = new javax.swing.JPanel();
         lblTituloHospedes = new javax.swing.JLabel();
         lblDescHospedes = new javax.swing.JLabel();
         btnBuscarHospede = new javax.swing.JButton();
         txtDocumentoHospede = new javax.swing.JTextField();
-        lblHospedesFundo = new javax.swing.JLabel();
+        lblFundoHospedes = new javax.swing.JLabel();
         pnlUsuarios = new javax.swing.JPanel();
         lblTituloUsuarios = new javax.swing.JLabel();
         lblDescUsuarios = new javax.swing.JLabel();
         btnBuscarUsuario = new javax.swing.JButton();
         txtUsernameBusca = new javax.swing.JTextField();
-        lblUsuariosFundo = new javax.swing.JLabel();
+        lblFundoUsuarios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -128,7 +128,6 @@ public class HomePage extends javax.swing.JFrame {
 
         pnlContent.setLayout(new java.awt.CardLayout());
 
-        pnlDefault.setBackground(new java.awt.Color(255, 51, 51));
         pnlDefault.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblBemVindoDesc.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
@@ -143,12 +142,11 @@ public class HomePage extends javax.swing.JFrame {
         lblBemVindo.setText("Bem-vindo!");
         pnlDefault.add(lblBemVindo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 880, 70));
 
-        lblDefaultFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/content.png"))); // NOI18N
-        pnlDefault.add(lblDefaultFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblFundoDefault.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/menu_content.png"))); // NOI18N
+        pnlDefault.add(lblFundoDefault, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pnlContent.add(pnlDefault, "pnlDefault");
 
-        pnlQuartos.setBackground(new java.awt.Color(51, 255, 51));
         pnlQuartos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTituloQuartos.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
@@ -172,12 +170,11 @@ public class HomePage extends javax.swing.JFrame {
         });
         pnlQuartos.add(btnBuscarQuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 100, 40));
 
-        lblQuartosFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/content.png"))); // NOI18N
-        pnlQuartos.add(lblQuartosFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblFundoQuartos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/menu_content.png"))); // NOI18N
+        pnlQuartos.add(lblFundoQuartos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pnlContent.add(pnlQuartos, "pnlQuartos");
 
-        pnlHospedes.setBackground(new java.awt.Color(153, 153, 255));
         pnlHospedes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTituloHospedes.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
@@ -201,12 +198,11 @@ public class HomePage extends javax.swing.JFrame {
         txtDocumentoHospede.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento do hóspede"));
         pnlHospedes.add(txtDocumentoHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 270, 70));
 
-        lblHospedesFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/content.png"))); // NOI18N
-        pnlHospedes.add(lblHospedesFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblFundoHospedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/menu_content.png"))); // NOI18N
+        pnlHospedes.add(lblFundoHospedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pnlContent.add(pnlHospedes, "pnlHospedes");
 
-        pnlUsuarios.setBackground(new java.awt.Color(102, 0, 102));
         pnlUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTituloUsuarios.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
@@ -230,8 +226,8 @@ public class HomePage extends javax.swing.JFrame {
         txtUsernameBusca.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome de usuário"));
         pnlUsuarios.add(txtUsernameBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 270, 70));
 
-        lblUsuariosFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/content.png"))); // NOI18N
-        pnlUsuarios.add(lblUsuariosFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblFundoUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/menu_content.png"))); // NOI18N
+        pnlUsuarios.add(lblFundoUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pnlContent.add(pnlUsuarios, "pnlUsuarios");
 
@@ -325,17 +321,17 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblBemVindo;
     private javax.swing.JLabel lblBemVindoDesc;
-    private javax.swing.JLabel lblDefaultFundo;
     private javax.swing.JLabel lblDescHospedes;
     private javax.swing.JLabel lblDescQuartos;
     private javax.swing.JLabel lblDescUsuarios;
-    private javax.swing.JLabel lblHospedesFundo;
-    private javax.swing.JLabel lblQuartosFundo;
+    private javax.swing.JLabel lblFundoDefault;
+    private javax.swing.JLabel lblFundoHospedes;
+    private javax.swing.JLabel lblFundoQuartos;
+    private javax.swing.JLabel lblFundoUsuarios;
     private javax.swing.JLabel lblSidenavBg;
     private javax.swing.JLabel lblTituloHospedes;
     private javax.swing.JLabel lblTituloQuartos;
     private javax.swing.JLabel lblTituloUsuarios;
-    private javax.swing.JLabel lblUsuariosFundo;
     private javax.swing.JPanel pnlContent;
     private javax.swing.JPanel pnlDefault;
     private javax.swing.JPanel pnlHospedes;
