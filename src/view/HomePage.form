@@ -194,11 +194,6 @@
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
           <SubComponents>
             <Container class="javax.swing.JPanel" name="pnlDefault">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="33" green="33" red="ff" type="rgb"/>
-                </Property>
-              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                   <CardConstraints cardName="pnlDefault"/>
@@ -243,10 +238,10 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblDefaultFundo">
+                <Component class="javax.swing.JLabel" name="lblFundoDefault">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/assets/content.png"/>
+                      <Image iconType="3" name="/assets/menu_content.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -258,11 +253,6 @@
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pnlQuartos">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="33" green="ff" red="33" type="rgb"/>
-                </Property>
-              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                   <CardConstraints cardName="pnlQuartos"/>
@@ -332,10 +322,10 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblQuartosFundo">
+                <Component class="javax.swing.JLabel" name="lblFundoQuartos">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/assets/content.png"/>
+                      <Image iconType="3" name="/assets/menu_content.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -347,11 +337,6 @@
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pnlHospedes">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="99" red="99" type="rgb"/>
-                </Property>
-              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                   <CardConstraints cardName="pnlHospedes"/>
@@ -421,10 +406,10 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblHospedesFundo">
+                <Component class="javax.swing.JLabel" name="lblFundoHospedes">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/assets/content.png"/>
+                      <Image iconType="3" name="/assets/menu_content.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
@@ -436,11 +421,6 @@
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="pnlUsuarios">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="0" red="66" type="rgb"/>
-                </Property>
-              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                   <CardConstraints cardName="pnlUsuarios"/>
@@ -510,10 +490,10 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblUsuariosFundo">
+                <Component class="javax.swing.JLabel" name="lblFundoUsuarios">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/assets/content.png"/>
+                      <Image iconType="3" name="/assets/menu_content.png"/>
                     </Property>
                   </Properties>
                   <Constraints>
