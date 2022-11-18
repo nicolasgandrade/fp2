@@ -9,7 +9,7 @@ import model.enums.Cargo;
 
 public class ControllerListarUsuarios {
     MySQL conn = new MySQL();
-    ArrayList<Usuario> lista = new ArrayList<>();
+    ArrayList<Usuario> usuarios = new ArrayList<>();
     
     public ControllerListarUsuarios() {
         this.conn.conectaBanco();
@@ -26,9 +26,9 @@ public class ControllerListarUsuarios {
             usuario.setId(Integer.parseInt(this.conn.getResultSet().getString("id")));
             usuario.setNomeUsuario(this.conn.getResultSet().getString("nome_usuario"));
             usuario.setCargo(this.conn.getResultSet().getString("nome_cargo"));
-            lista.add(usuario);
+            usuarios.add(usuario);
         }
-        return lista;   
+        return usuarios;   
     }
     
     public void closeConn() {
