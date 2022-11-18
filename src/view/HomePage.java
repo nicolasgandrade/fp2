@@ -8,7 +8,6 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.Usuario;
-import utils.MySQL;
 
 public class HomePage extends javax.swing.JFrame {
     CardLayout cardLayout;
@@ -410,14 +409,16 @@ public class HomePage extends javax.swing.JFrame {
         
         try {
             DefaultTableModel table = (DefaultTableModel) TableUsuarios.getModel();
-            table.setNumRows(0);
-            ArrayList<Usuario> lista = this.userController.listarUsuarios(nome);
-            for (int num = 0; num <lista.size(); num++){
+            table.setRowCount(0);
+            this.userController.setUsuarios(new ArrayList<>());
+            this.userController.listarUsuarios(nome);
+            
+            for (int num = 0; num < this.userController.getUsuarios().size(); num++){
                 table.addRow(new Object[]{
-                    lista.get(num).getId(),
-                    "Nome completo",
-                    lista.get(num).getNomeUsuario(),
-                    lista.get(num).getCargo()
+                    this.userController.getUsuarios().get(num).getId(),
+                    this.userController.getUsuarios().get(num).getNome(),
+                    this.userController.getUsuarios().get(num).getNomeUsuario(),
+                    this.userController.getUsuarios().get(num).getCargo()
                 });
             }
         } catch (SQLException erro) {
@@ -428,7 +429,8 @@ public class HomePage extends javax.swing.JFrame {
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         txtUsernameBusca.setText("");
         DefaultTableModel table = (DefaultTableModel) TableUsuarios.getModel();
-        table.setNumRows(0);
+        table.setRowCount(0);
+        this.userController.setUsuarios(new ArrayList<>());
     }//GEN-LAST:event_btnLimparActionPerformed
 
 //    public static void main(String args[]) {

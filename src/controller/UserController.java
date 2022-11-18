@@ -36,11 +36,13 @@ public class UserController {
         Usuario usuario = new Usuario();
         while(this.conn.getResultSet().next()) { 
             usuario.setId(Integer.parseInt(this.conn.getResultSet().getString("id")));
+            usuario.setNome(this.conn.getResultSet().getString("nome"));
             usuario.setNomeUsuario(this.conn.getResultSet().getString("nome_usuario"));
             usuario.setCargo(this.conn.getResultSet().getString("nome_cargo"));
-            usuarios.add(usuario);
+            usuario.setSenha(this.conn.getResultSet().getString("senha"));
+            this.usuarios.add(usuario);
         }
-        return usuarios;   
+        return this.usuarios;
     }
     
     public void closeConn() {
