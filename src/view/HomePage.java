@@ -53,7 +53,7 @@ public class HomePage extends javax.swing.JFrame {
         btnBuscarUsuario = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         txtUsernameBusca = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
+        pnlUsuario = new javax.swing.JPanel();
         lblNovoUsuario = new javax.swing.JLabel();
         lblNomeCompleto = new javax.swing.JLabel();
         txtNomeCompleto = new javax.swing.JTextField();
@@ -263,7 +263,7 @@ public class HomePage extends javax.swing.JFrame {
         txtUsernameBusca.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome de usuário"));
         pnlUsuarios.add(txtUsernameBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 270, 70));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        pnlUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         lblNovoUsuario.setBackground(new java.awt.Color(51, 51, 51));
         lblNovoUsuario.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -290,28 +290,28 @@ public class HomePage extends javax.swing.JFrame {
 
         btnLimparSelecionado.setText("LIMPAR");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlUsuarioLayout = new javax.swing.GroupLayout(pnlUsuario);
+        pnlUsuario.setLayout(pnlUsuarioLayout);
+        pnlUsuarioLayout.setHorizontalGroup(
+            pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNomeCompleto)
                     .addComponent(txtUsername)
                     .addComponent(txtSenha)
                     .addComponent(btnConfirmUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(pnlUsuarioLayout.createSequentialGroup()
                         .addComponent(btnDeletarSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(btnLimparSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlUsuarioLayout.createSequentialGroup()
+                        .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNovoUsuario)
                             .addComponent(lblNomeCompleto)
                             .addComponent(lblUsername)
                             .addComponent(lblCargo)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(pnlUsuarioLayout.createSequentialGroup()
                                 .addComponent(radioAdmin)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(radioFuncionario))
@@ -320,9 +320,9 @@ public class HomePage extends javax.swing.JFrame {
                     .addComponent(jSeparator1))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlUsuarioLayout.setVerticalGroup(
+            pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUsuarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblNovoUsuario)
                 .addGap(18, 18, 18)
@@ -336,7 +336,7 @@ public class HomePage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblCargo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radioAdmin)
                     .addComponent(radioFuncionario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -348,13 +348,13 @@ public class HomePage extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDeletarSelecionado)
                     .addComponent(btnLimparSelecionado))
                 .addContainerGap())
         );
 
-        pnlUsuarios.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 250, 260, 420));
+        pnlUsuarios.add(pnlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 250, 260, 420));
 
         lblFundoUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/menu_content.png"))); // NOI18N
         pnlUsuarios.add(lblFundoUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -474,7 +474,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.ButtonGroup groupCargo;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
@@ -501,6 +500,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JPanel pnlHospedes;
     private javax.swing.JPanel pnlQuartos;
     private javax.swing.JPanel pnlSideNav;
+    private javax.swing.JPanel pnlUsuario;
     private javax.swing.JPanel pnlUsuarios;
     private javax.swing.JRadioButton radioAdmin;
     private javax.swing.JRadioButton radioFuncionario;
