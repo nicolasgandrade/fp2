@@ -20,6 +20,7 @@ public class HomePage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        groupCargo = new javax.swing.ButtonGroup();
         jSplitPane1 = new javax.swing.JSplitPane();
         pnlSideNav = new javax.swing.JPanel();
         btnUsuarios = new javax.swing.JButton();
@@ -52,6 +53,21 @@ public class HomePage extends javax.swing.JFrame {
         btnBuscarUsuario = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         txtUsernameBusca = new javax.swing.JTextField();
+        pnlUsuario = new javax.swing.JPanel();
+        lblNovoUsuario = new javax.swing.JLabel();
+        lblNomeCompleto = new javax.swing.JLabel();
+        txtNomeCompleto = new javax.swing.JTextField();
+        lblUsername = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
+        lblCargo = new javax.swing.JLabel();
+        radioAdmin = new javax.swing.JRadioButton();
+        radioFuncionario = new javax.swing.JRadioButton();
+        lblSenha = new javax.swing.JLabel();
+        txtSenha = new javax.swing.JPasswordField();
+        btnConfirmUsuario = new javax.swing.JButton();
+        btnDeletarSelecionado = new javax.swing.JButton();
+        btnLimparSelecionado = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         lblFundoUsuarios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -203,12 +219,20 @@ public class HomePage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nome", "Cargo"
+                "ID", "Nome", "Nome de Usuário", "Cargo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TableUsuarios);
 
-        pnlUsuarios.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
+        pnlUsuarios.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 580, 420));
 
         lblTituloUsuarios.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
         lblTituloUsuarios.setForeground(new java.awt.Color(51, 51, 51));
@@ -238,6 +262,99 @@ public class HomePage extends javax.swing.JFrame {
 
         txtUsernameBusca.setBorder(javax.swing.BorderFactory.createTitledBorder("Nome de usuário"));
         pnlUsuarios.add(txtUsernameBusca, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 270, 70));
+
+        pnlUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        lblNovoUsuario.setBackground(new java.awt.Color(51, 51, 51));
+        lblNovoUsuario.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblNovoUsuario.setForeground(new java.awt.Color(51, 51, 51));
+        lblNovoUsuario.setText("Usuário");
+
+        lblNomeCompleto.setText("Nome Completo");
+
+        lblUsername.setText("Nome de usuário");
+
+        lblCargo.setText("Cargo");
+
+        groupCargo.add(radioAdmin);
+        radioAdmin.setText("Administrador");
+
+        groupCargo.add(radioFuncionario);
+        radioFuncionario.setText("Funcionário");
+
+        lblSenha.setText("Senha");
+
+        btnConfirmUsuario.setText("CRIAR / EDITAR");
+
+        btnDeletarSelecionado.setText("DELETAR");
+
+        btnLimparSelecionado.setText("LIMPAR");
+
+        javax.swing.GroupLayout pnlUsuarioLayout = new javax.swing.GroupLayout(pnlUsuario);
+        pnlUsuario.setLayout(pnlUsuarioLayout);
+        pnlUsuarioLayout.setHorizontalGroup(
+            pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtNomeCompleto)
+                    .addComponent(txtUsername)
+                    .addComponent(txtSenha)
+                    .addComponent(btnConfirmUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlUsuarioLayout.createSequentialGroup()
+                        .addComponent(btnDeletarSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(btnLimparSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlUsuarioLayout.createSequentialGroup()
+                        .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNovoUsuario)
+                            .addComponent(lblNomeCompleto)
+                            .addComponent(lblUsername)
+                            .addComponent(lblCargo)
+                            .addGroup(pnlUsuarioLayout.createSequentialGroup()
+                                .addComponent(radioAdmin)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radioFuncionario))
+                            .addComponent(lblSenha))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jSeparator1))
+                .addContainerGap())
+        );
+        pnlUsuarioLayout.setVerticalGroup(
+            pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlUsuarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNovoUsuario)
+                .addGap(18, 18, 18)
+                .addComponent(lblNomeCompleto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblUsername)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCargo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radioAdmin)
+                    .addComponent(radioFuncionario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblSenha)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnConfirmUsuario)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDeletarSelecionado)
+                    .addComponent(btnLimparSelecionado))
+                .addContainerGap())
+        );
+
+        pnlUsuarios.add(pnlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 250, 260, 420));
 
         lblFundoUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/menu_content.png"))); // NOI18N
         pnlUsuarios.add(lblFundoUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -295,6 +412,7 @@ public class HomePage extends javax.swing.JFrame {
             for (int num = 0; num <lista.size(); num++){
                 table.addRow(new Object[]{
                     lista.get(num).getId(),
+                    "Nome completo",
                     lista.get(num).getNomeUsuario(),
                     lista.get(num).getCargo()
                 });
@@ -347,15 +465,21 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscarHospede;
     private javax.swing.JButton btnBuscarQuarto;
     private javax.swing.JButton btnBuscarUsuario;
+    private javax.swing.JButton btnConfirmUsuario;
+    private javax.swing.JButton btnDeletarSelecionado;
     private javax.swing.JButton btnHospedes;
     private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnLimparSelecionado;
     private javax.swing.JButton btnQuartos;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnUsuarios;
+    private javax.swing.ButtonGroup groupCargo;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblBemVindo;
     private javax.swing.JLabel lblBemVindoDesc;
+    private javax.swing.JLabel lblCargo;
     private javax.swing.JLabel lblDescHospedes;
     private javax.swing.JLabel lblDescQuartos;
     private javax.swing.JLabel lblDescUsuarios;
@@ -363,18 +487,28 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel lblFundoHospedes;
     private javax.swing.JLabel lblFundoQuartos;
     private javax.swing.JLabel lblFundoUsuarios;
+    private javax.swing.JLabel lblNomeCompleto;
+    private javax.swing.JLabel lblNovoUsuario;
+    private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblSidenavBg;
     private javax.swing.JLabel lblTituloHospedes;
     private javax.swing.JLabel lblTituloQuartos;
     private javax.swing.JLabel lblTituloUsuarios;
+    private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel pnlContent;
     private javax.swing.JPanel pnlDefault;
     private javax.swing.JPanel pnlHospedes;
     private javax.swing.JPanel pnlQuartos;
     private javax.swing.JPanel pnlSideNav;
+    private javax.swing.JPanel pnlUsuario;
     private javax.swing.JPanel pnlUsuarios;
+    private javax.swing.JRadioButton radioAdmin;
+    private javax.swing.JRadioButton radioFuncionario;
     private javax.swing.JSpinner spnBuscaQuarto;
     private javax.swing.JTextField txtDocumentoHospede;
+    private javax.swing.JTextField txtNomeCompleto;
+    private javax.swing.JPasswordField txtSenha;
+    private javax.swing.JTextField txtUsername;
     private javax.swing.JTextField txtUsernameBusca;
     // End of variables declaration//GEN-END:variables
 }
