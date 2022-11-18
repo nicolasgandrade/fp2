@@ -413,12 +413,12 @@ public class HomePage extends javax.swing.JFrame {
             this.userController.setUsuarios(new ArrayList<>());
             this.userController.listarUsuarios(nome);
             
-            for (int num = 0; num < this.userController.getUsuarios().size(); num++){
-                table.addRow(new Object[]{
-                    this.userController.getUsuarios().get(num).getId(),
-                    this.userController.getUsuarios().get(num).getNome(),
-                    this.userController.getUsuarios().get(num).getNomeUsuario(),
-                    this.userController.getUsuarios().get(num).getCargo()
+            for (Usuario usuario: this.userController.getUsuarios()) {
+                table.addRow(new Object[] {
+                    usuario.getId(),
+                    usuario.getNome(),
+                    usuario.getNomeUsuario(),
+                    usuario.getCargo()
                 });
             }
         } catch (SQLException erro) {

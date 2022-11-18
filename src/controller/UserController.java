@@ -33,8 +33,8 @@ public class UserController {
                 + "nome_usuario LIKE '%" + nome + "%'";
         this.conn.executarSQL(sql);
               
-        Usuario usuario = new Usuario();
         while(this.conn.getResultSet().next()) { 
+            Usuario usuario = new Usuario();
             usuario.setId(Integer.parseInt(this.conn.getResultSet().getString("id")));
             usuario.setNome(this.conn.getResultSet().getString("nome"));
             usuario.setNomeUsuario(this.conn.getResultSet().getString("nome_usuario"));
