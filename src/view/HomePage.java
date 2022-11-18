@@ -219,9 +219,17 @@ public class HomePage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Nome", "Cargo"
+                "ID", "Nome", "Nome de Usuário", "Cargo"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(TableUsuarios);
 
         pnlUsuarios.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 580, 420));
@@ -404,6 +412,7 @@ public class HomePage extends javax.swing.JFrame {
             for (int num = 0; num <lista.size(); num++){
                 table.addRow(new Object[]{
                     lista.get(num).getId(),
+                    "Nome completo",
                     lista.get(num).getNomeUsuario(),
                     lista.get(num).getCargo()
                 });
