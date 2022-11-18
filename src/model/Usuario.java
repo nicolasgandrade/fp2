@@ -60,4 +60,10 @@ public class Usuario {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nome=" + nome + ", nomeUsuario=" + nomeUsuario + ", senha=" + senha + ", cargo=" + cargo + '}';
+    }
+    
 }

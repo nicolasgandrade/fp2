@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Usuario;
 
 /**
  *
@@ -146,6 +147,17 @@ public class Login extends javax.swing.JFrame {
             if (!res.isBeforeFirst()) {
                 JOptionPane.showMessageDialog(rootPane, "Usuário e/ou senha inválido(s)");
             } else {
+                Usuario usuario = new Usuario();
+                while (res.next()) {
+                    usuario.setId(Integer.parseInt(res.getString("id")));
+                    usuario.setNome(res.getString("nome"));
+                    usuario.setNomeUsuario(res.getString("nome_usuario"));
+                    usuario.setSenha(res.getString("senha"));
+                    usuario.setCargo(res.getString("nome_cargo"));
+                }
+                
+                this.controller.setCurrentUser(usuario);
+                
                 dispose();
                 this.homePage.setVisible(true);
             }            

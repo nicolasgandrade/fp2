@@ -16,7 +16,10 @@ public class UserController {
     }
     
     public ResultSet autenticar(String username, String password) {
-        String sql = "SELECT * FROM Usuarios WHERE "
+        String sql = "SELECT * FROM Usuarios "
+                + "JOIN Cargos "
+                + "ON Cargos.id = Usuarios.cargo_id "
+                + "WHERE "
                 + "nome_usuario = '" + username + "' AND "
                 + "senha = '" + password + "';";
         this.conn.executarSQL(sql);
@@ -27,7 +30,7 @@ public class UserController {
     public ArrayList listarUsuarios(String nome) throws SQLException{
         String sql = "SELECT * FROM Usuarios JOIN Cargos "
                 + "ON Cargos.id = Usuarios.cargo_id WHERE "
-                + "nome LIKE '%" + nome + "%';";
+                + "nome_usuario LIKE '%" + nome + "%'";
         this.conn.executarSQL(sql);
               
         Usuario usuario = new Usuario();
@@ -43,4 +46,21 @@ public class UserController {
     public void closeConn() {
         this.conn.fechaBanco();
     }
+
+    public Usuario getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(Usuario currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(ArrayList<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+    
 }
