@@ -8,12 +8,12 @@ public class Usuario {
     private String nome;
     private String nomeUsuario;
     private String senha;
-    private Cargo cargo;
+    private String cargo;
     
     public Usuario(){
     }
 
-    public Usuario(int id, String nome, String nomeUsuario, String senha, Cargo cargo) {
+    public Usuario(int id, String nome, String nomeUsuario, String senha, String cargo) {
         this.id = id;
         this.nome = nome;
         this.nomeUsuario = nomeUsuario;
@@ -53,11 +53,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public Cargo getCargo() {
+    public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(Cargo cargo) {
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 }
