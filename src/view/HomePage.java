@@ -5,6 +5,7 @@ import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import model.Usuario;
 import utils.MySQL;
 
@@ -284,12 +285,10 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarHospedeActionPerformed
 
     private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
-        //Listar Usuarios
+        //Procurar os Usuarios
         String nome = txtUsernameBusca.getText();
-        MySQL conn = new MySQL();
-        conn.conectaBanco();
+        ControllerListarUsuarios usuario = new ControllerListarUsuarios();
         try {
-            ControllerListarUsuarios usuario = new ControllerListarUsuarios();
             DefaultTableModel table = (DefaultTableModel) TableUsuarios.getModel();
             table.setNumRows(0);
             ArrayList<Usuario> lista = usuario.ListarUsuarios(nome);
@@ -301,13 +300,12 @@ public class HomePage extends javax.swing.JFrame {
                 });
             }
         } catch (SQLException erro) {
-            System.out.println("ListarUsuario " + erro);
+            JOptionPane.showMessageDialog(null, erro);
         }
-        conn.fechaBanco();
+        usuario.closeConn();
     }//GEN-LAST:event_btnBuscarUsuarioActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-        // Limpar Texto
         txtUsernameBusca.setText("");
         DefaultTableModel table = (DefaultTableModel) TableUsuarios.getModel();
         table.setNumRows(0);
