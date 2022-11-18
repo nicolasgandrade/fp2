@@ -1,6 +1,7 @@
 package view;
 
 import controller.ControllerListarUsuarios;
+import controller.UserController;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -11,9 +12,11 @@ import utils.MySQL;
 
 public class HomePage extends javax.swing.JFrame {
     CardLayout cardLayout;
+    UserController userController;
 
-    public HomePage() {
+    public HomePage(UserController userController) {
         initComponents();
+        this.userController = userController;
         cardLayout = (CardLayout)(pnlContent.getLayout());
     }
     @SuppressWarnings("unchecked")
@@ -404,11 +407,11 @@ public class HomePage extends javax.swing.JFrame {
     private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
         //Procurar os Usuarios
         String nome = txtUsernameBusca.getText();
-        ControllerListarUsuarios usuario = new ControllerListarUsuarios();
+        
         try {
             DefaultTableModel table = (DefaultTableModel) TableUsuarios.getModel();
             table.setNumRows(0);
-            ArrayList<Usuario> lista = usuario.ListarUsuarios(nome);
+            ArrayList<Usuario> lista = this.userController.listarUsuarios(nome);
             for (int num = 0; num <lista.size(); num++){
                 table.addRow(new Object[]{
                     lista.get(num).getId(),
@@ -420,7 +423,6 @@ public class HomePage extends javax.swing.JFrame {
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, erro);
         }
-        usuario.closeConn();
     }//GEN-LAST:event_btnBuscarUsuarioActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -428,37 +430,38 @@ public class HomePage extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel) TableUsuarios.getModel();
         table.setNumRows(0);
     }//GEN-LAST:event_btnLimparActionPerformed
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HomePage().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new HomePage().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableUsuarios;

@@ -32,6 +32,7 @@ public class ControllerListarUsuarios {
     }
     
     public void closeConn() {
+        System.out.println("Fechou");
         this.conn.fechaBanco();
     }
 }
