@@ -5,12 +5,14 @@ import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
+import java.util.Optional;
 import javax.swing.JOptionPane;
 import model.Usuario;
 
 public class HomePage extends javax.swing.JFrame {
     CardLayout cardLayout;
     UserController userController;
+    Optional<Usuario> usuarioSelecionado;
 
     public HomePage(UserController userController) {
         initComponents();
@@ -48,7 +50,7 @@ public class HomePage extends javax.swing.JFrame {
         lblFundoHospedes = new javax.swing.JLabel();
         pnlUsuarios = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TableUsuarios = new javax.swing.JTable();
+        tableUsuarios = new javax.swing.JTable();
         lblTituloUsuarios = new javax.swing.JLabel();
         lblDescUsuarios = new javax.swing.JLabel();
         btnBuscarUsuario = new javax.swing.JButton();
@@ -215,7 +217,7 @@ public class HomePage extends javax.swing.JFrame {
 
         pnlUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -231,7 +233,12 @@ public class HomePage extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(TableUsuarios);
+        tableUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableUsuariosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableUsuarios);
 
         pnlUsuarios.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 580, 420));
 
@@ -278,7 +285,7 @@ public class HomePage extends javax.swing.JFrame {
         lblCargo.setText("Cargo");
 
         groupCargo.add(radioAdmin);
-        radioAdmin.setText("Administrador");
+        radioAdmin.setText("Gerente");
 
         groupCargo.add(radioFuncionario);
         radioFuncionario.setText("Funcionário");
@@ -392,6 +399,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.userController.closeConn();
+        System.out.println("Conexão encerrada.");
         System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
 
@@ -408,7 +416,7 @@ public class HomePage extends javax.swing.JFrame {
         String nome = txtUsernameBusca.getText();
         
         try {
-            DefaultTableModel table = (DefaultTableModel) TableUsuarios.getModel();
+            DefaultTableModel table = (DefaultTableModel) tableUsuarios.getModel();
             table.setRowCount(0);
             this.userController.setUsuarios(new ArrayList<>());
             this.userController.listarUsuarios(nome);
@@ -428,10 +436,31 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         txtUsernameBusca.setText("");
-        DefaultTableModel table = (DefaultTableModel) TableUsuarios.getModel();
+        DefaultTableModel table = (DefaultTableModel) tableUsuarios.getModel();
         table.setRowCount(0);
         this.userController.setUsuarios(new ArrayList<>());
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void tableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuariosMouseClicked
+        DefaultTableModel table = (DefaultTableModel) tableUsuarios.getModel();
+        
+        int id = Integer.parseInt(table.getValueAt(tableUsuarios.getSelectedRow(), 0).toString());
+        
+        ArrayList<Usuario> listaUsuarios = this.userController.getUsuarios();
+        this.usuarioSelecionado = listaUsuarios.stream()
+                .filter(usuario -> usuario.getId() == id)
+                .findFirst();
+        
+        this.txtNomeCompleto.setText(this.usuarioSelecionado.get().getNome());
+        this.txtUsername.setText(this.usuarioSelecionado.get().getNomeUsuario());
+        this.txtSenha.setText(this.usuarioSelecionado.get().getSenha());
+        String cargo = this.usuarioSelecionado.get().getCargo();
+        this.groupCargo.setSelected(
+                cargo.equals("Gerente") 
+                        ? this.radioAdmin.getModel() 
+                        : this.radioFuncionario.getModel(), 
+                true);
+    }//GEN-LAST:event_tableUsuariosMouseClicked
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
@@ -466,7 +495,6 @@ public class HomePage extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TableUsuarios;
     private javax.swing.JButton btnBuscarHospede;
     private javax.swing.JButton btnBuscarQuarto;
     private javax.swing.JButton btnBuscarUsuario;
@@ -510,6 +538,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioAdmin;
     private javax.swing.JRadioButton radioFuncionario;
     private javax.swing.JSpinner spnBuscaQuarto;
+    private javax.swing.JTable tableUsuarios;
     private javax.swing.JTextField txtDocumentoHospede;
     private javax.swing.JTextField txtNomeCompleto;
     private javax.swing.JPasswordField txtSenha;
