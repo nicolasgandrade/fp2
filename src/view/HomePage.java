@@ -23,10 +23,11 @@ public class HomePage extends javax.swing.JFrame {
         groupCargo = new javax.swing.ButtonGroup();
         jSplitPane1 = new javax.swing.JSplitPane();
         pnlSideNav = new javax.swing.JPanel();
-        btnUsuarios = new javax.swing.JButton();
+        btnUsuario = new javax.swing.JButton();
         btnQuartos = new javax.swing.JButton();
         btnHospedes = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
+        btnReservas = new javax.swing.JButton();
         lblSidenavBg = new javax.swing.JLabel();
         pnlContent = new javax.swing.JPanel();
         pnlDefault = new javax.swing.JPanel();
@@ -69,25 +70,34 @@ public class HomePage extends javax.swing.JFrame {
         btnLimparSelecionado = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         lblFundoUsuarios = new javax.swing.JLabel();
+        pnlReserva = new javax.swing.JPanel();
+        lblTituloReservas = new javax.swing.JLabel();
+        lblDescReservas = new javax.swing.JLabel();
+        btnBuscarReservas = new javax.swing.JButton();
+        btnNovaReserva = new javax.swing.JButton();
+        txtReservas = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TableReservas = new javax.swing.JTable();
+        lblFundoReservas = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         pnlSideNav.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnUsuarios.setBackground(new java.awt.Color(255, 255, 255));
-        btnUsuarios.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
-        btnUsuarios.setForeground(new java.awt.Color(0, 51, 153));
-        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
-        btnUsuarios.setText("Usuários");
-        btnUsuarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnUsuarios.setBorderPainted(false);
-        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+        btnUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        btnUsuario.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        btnUsuario.setForeground(new java.awt.Color(0, 51, 153));
+        btnUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
+        btnUsuario.setText("Usuários");
+        btnUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnUsuario.setBorderPainted(false);
+        btnUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuariosActionPerformed(evt);
+                btnUsuarioActionPerformed(evt);
             }
         });
-        pnlSideNav.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 210, 60));
+        pnlSideNav.add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 210, 60));
 
         btnQuartos.setBackground(new java.awt.Color(255, 255, 255));
         btnQuartos.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
@@ -129,6 +139,19 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         pnlSideNav.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 640, 210, 60));
+
+        btnReservas.setBackground(new java.awt.Color(255, 255, 255));
+        btnReservas.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        btnReservas.setForeground(new java.awt.Color(0, 51, 153));
+        btnReservas.setText("Reservas");
+        btnReservas.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnReservas.setBorderPainted(false);
+        btnReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReservasActionPerformed(evt);
+            }
+        });
+        pnlSideNav.add(btnReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 210, 60));
 
         lblSidenavBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/menu_icon.png"))); // NOI18N
         pnlSideNav.add(lblSidenavBg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, -1));
@@ -361,6 +384,54 @@ public class HomePage extends javax.swing.JFrame {
 
         pnlContent.add(pnlUsuarios, "pnlUsuarios");
 
+        pnlReserva.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblTituloReservas.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
+        lblTituloReservas.setForeground(new java.awt.Color(51, 51, 51));
+        lblTituloReservas.setText("Reservas");
+        pnlReserva.add(lblTituloReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+
+        lblDescReservas.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+        lblDescReservas.setForeground(new java.awt.Color(102, 102, 102));
+        lblDescReservas.setText("Controle de reservas cadastrados no sistema");
+        pnlReserva.add(lblDescReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
+
+        btnBuscarReservas.setText("BUSCAR");
+        btnBuscarReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarReservasActionPerformed(evt);
+            }
+        });
+        pnlReserva.add(btnBuscarReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 100, 40));
+
+        btnNovaReserva.setText("Nova Reserva");
+        btnNovaReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovaReservaActionPerformed(evt);
+            }
+        });
+        pnlReserva.add(btnNovaReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 620, 120, 40));
+
+        txtReservas.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento do hóspede"));
+        pnlReserva.add(txtReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 270, 70));
+
+        TableReservas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Quarto", "Hóspede", "Entrada", "Saída"
+            }
+        ));
+        jScrollPane2.setViewportView(TableReservas);
+
+        pnlReserva.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 700, 400));
+
+        lblFundoReservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/menu_content.png"))); // NOI18N
+        pnlReserva.add(lblFundoReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        pnlContent.add(pnlReserva, "pnlReserva");
+
         jSplitPane1.setRightComponent(pnlContent);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -377,9 +448,9 @@ public class HomePage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+    private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
         cardLayout.show(pnlContent, "pnlUsuarios");
-    }//GEN-LAST:event_btnUsuariosActionPerformed
+    }//GEN-LAST:event_btnUsuarioActionPerformed
 
     private void btnQuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuartosActionPerformed
         cardLayout.show(pnlContent, "pnlQuartos");
@@ -428,6 +499,19 @@ public class HomePage extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel) TableUsuarios.getModel();
         table.setNumRows(0);
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasActionPerformed
+          cardLayout.show(pnlContent, "pnlReserva");
+    }//GEN-LAST:event_btnReservasActionPerformed
+
+    private void btnBuscarReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarReservasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarReservasActionPerformed
+
+    private void btnNovaReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaReservaActionPerformed
+        CadReserva CadReserva = new CadReserva();
+        CadReserva.setVisible(true);
+    }//GEN-LAST:event_btnNovaReservaActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -461,20 +545,25 @@ public class HomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TableReservas;
     private javax.swing.JTable TableUsuarios;
     private javax.swing.JButton btnBuscarHospede;
     private javax.swing.JButton btnBuscarQuarto;
+    private javax.swing.JButton btnBuscarReservas;
     private javax.swing.JButton btnBuscarUsuario;
     private javax.swing.JButton btnConfirmUsuario;
     private javax.swing.JButton btnDeletarSelecionado;
     private javax.swing.JButton btnHospedes;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnLimparSelecionado;
+    private javax.swing.JButton btnNovaReserva;
     private javax.swing.JButton btnQuartos;
+    private javax.swing.JButton btnReservas;
     private javax.swing.JButton btnSair;
-    private javax.swing.JButton btnUsuarios;
+    private javax.swing.JButton btnUsuario;
     private javax.swing.ButtonGroup groupCargo;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblBemVindo;
@@ -482,10 +571,12 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel lblCargo;
     private javax.swing.JLabel lblDescHospedes;
     private javax.swing.JLabel lblDescQuartos;
+    private javax.swing.JLabel lblDescReservas;
     private javax.swing.JLabel lblDescUsuarios;
     private javax.swing.JLabel lblFundoDefault;
     private javax.swing.JLabel lblFundoHospedes;
     private javax.swing.JLabel lblFundoQuartos;
+    private javax.swing.JLabel lblFundoReservas;
     private javax.swing.JLabel lblFundoUsuarios;
     private javax.swing.JLabel lblNomeCompleto;
     private javax.swing.JLabel lblNovoUsuario;
@@ -493,12 +584,14 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel lblSidenavBg;
     private javax.swing.JLabel lblTituloHospedes;
     private javax.swing.JLabel lblTituloQuartos;
+    private javax.swing.JLabel lblTituloReservas;
     private javax.swing.JLabel lblTituloUsuarios;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel pnlContent;
     private javax.swing.JPanel pnlDefault;
     private javax.swing.JPanel pnlHospedes;
     private javax.swing.JPanel pnlQuartos;
+    private javax.swing.JPanel pnlReserva;
     private javax.swing.JPanel pnlSideNav;
     private javax.swing.JPanel pnlUsuario;
     private javax.swing.JPanel pnlUsuarios;
@@ -507,6 +600,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JSpinner spnBuscaQuarto;
     private javax.swing.JTextField txtDocumentoHospede;
     private javax.swing.JTextField txtNomeCompleto;
+    private javax.swing.JTextField txtReservas;
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsername;
     private javax.swing.JTextField txtUsernameBusca;
