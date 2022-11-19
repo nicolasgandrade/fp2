@@ -301,6 +301,11 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         btnDeletarSelecionado.setText("DELETAR");
+        btnDeletarSelecionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarSelecionadoActionPerformed(evt);
+            }
+        });
 
         btnLimparSelecionado.setText("LIMPAR");
         btnLimparSelecionado.addActionListener(new java.awt.event.ActionListener() {
@@ -494,6 +499,20 @@ public class HomePage extends javax.swing.JFrame {
             this.editUsuario();
         }
     }//GEN-LAST:event_btnConfirmUsuarioActionPerformed
+
+    private void btnDeletarSelecionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarSelecionadoActionPerformed
+        if (this.usuarioSelecionado == null) {
+            JOptionPane.showMessageDialog(pnlContent, "Escolha o usuário existente para deletar.");
+        } else {
+            int id = this.usuarioSelecionado.get().getId();
+            int res = this.userController.deleteUsuario(id);
+            if (res == 1) {
+                JOptionPane.showMessageDialog(pnlContent, "Usuário deletado com sucesso.");
+            } else {
+                JOptionPane.showMessageDialog(pnlContent, "Houve um erro ao deletar o usuário.");
+            }
+        }
+    }//GEN-LAST:event_btnDeletarSelecionadoActionPerformed
 
     public void toggleCamposSensiveis(boolean isEnabled, boolean isAdmin) {
         this.txtUsername.setEnabled(isEnabled);

@@ -69,6 +69,12 @@ public class UserController {
         return this.conn.updateSQL(sql);
     }
     
+    public int deleteUsuario(int id) {
+        String sql = "DELETE FROM Usuarios WHERE id = " + id;
+        
+        return this.conn.insertSQL(sql);
+    }
+    
     public void closeConn() {
         this.conn.fechaBanco();
     }
