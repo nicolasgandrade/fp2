@@ -14,8 +14,7 @@ public class ControllerListarQuartos {
     }
     
     public ArrayList ListarQuartos(int número) throws SQLException{
-        String sql = "SELECT * FROM Quartos"
-                + "nome LIKE '%" + número + "%';";
+        String sql = "SELECT * FROM Quartos;";
         this.conn.executarSQL(sql);        
 
         Quarto quarto = new Quarto();
