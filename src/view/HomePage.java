@@ -2,6 +2,7 @@ package view;
 
 import controller.UserController;
 import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
@@ -293,10 +294,20 @@ public class HomePage extends javax.swing.JFrame {
         lblSenha.setText("Senha");
 
         btnConfirmUsuario.setText("CRIAR / EDITAR");
+        btnConfirmUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmUsuarioActionPerformed(evt);
+            }
+        });
 
         btnDeletarSelecionado.setText("DELETAR");
 
         btnLimparSelecionado.setText("LIMPAR");
+        btnLimparSelecionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparSelecionadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlUsuarioLayout = new javax.swing.GroupLayout(pnlUsuario);
         pnlUsuario.setLayout(pnlUsuarioLayout);
@@ -470,6 +481,21 @@ public class HomePage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tableUsuariosMouseClicked
 
+    private void btnLimparSelecionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparSelecionadoActionPerformed
+        this.limparFormulario();
+        this.usuarioSelecionado.get().setId(0);
+    }//GEN-LAST:event_btnLimparSelecionadoActionPerformed
+
+    private void btnConfirmUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmUsuarioActionPerformed
+        boolean isValid = this.isFormValid();
+        
+        if (this.usuarioSelecionado.get().getId() == 0 && isValid) {
+            this.createUsuario();
+        } else if (isValid) {
+            this.editUsuario();
+        }
+    }//GEN-LAST:event_btnConfirmUsuarioActionPerformed
+
     public void toggleCamposSensiveis(boolean isEnabled, boolean isAdmin) {
         this.txtUsername.setEnabled(isEnabled);
         this.txtNomeCompleto.setEnabled(isEnabled);
@@ -481,6 +507,33 @@ public class HomePage extends javax.swing.JFrame {
                 this.userController.getCurrentUser().getId() != this.usuarioSelecionado.get().getId());
         this.btnLimparSelecionado.setEnabled(isEnabled);
         this.btnConfirmUsuario.setEnabled(isAdmin || isEnabled);
+    }
+    
+    public void createUsuario() {
+        JOptionPane.showMessageDialog(pnlContent, "Placeholder criação de usuário");
+    }
+    
+    public void editUsuario() {
+        JOptionPane.showMessageDialog(pnlContent, "Placeholder edição de usuário");
+    }
+    
+    public boolean isFormValid() {
+        boolean isEmpty = this.txtUsername.getText().equals("")
+                || this.txtNomeCompleto.getText().equals("")
+                || new String(this.txtSenha.getPassword()).equals("")
+                || this.groupCargo.getSelection() == null;
+        if (isEmpty) {
+            JOptionPane.showMessageDialog(pnlContent, "Complete todos os campos.");
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    public void limparFormulario() {
+        this.txtUsername.setText("");
+        this.txtNomeCompleto.setText("");
+        this.txtSenha.setText("");
     }
     
 //    public static void main(String args[]) {

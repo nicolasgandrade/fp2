@@ -712,6 +712,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="CRIAR / EDITAR"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmUsuarioActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnDeletarSelecionado">
                       <Properties>
@@ -722,6 +725,9 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="LIMPAR"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparSelecionadoActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JSeparator" name="jSeparator1">
                     </Component>
