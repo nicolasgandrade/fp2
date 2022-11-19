@@ -508,6 +508,7 @@ public class HomePage extends javax.swing.JFrame {
             int res = this.userController.deleteUsuario(id);
             if (res == 1) {
                 JOptionPane.showMessageDialog(pnlContent, "Usuário deletado com sucesso.");
+                this.limparFormulario();
             } else {
                 JOptionPane.showMessageDialog(pnlContent, "Houve um erro ao deletar o usuário.");
             }
@@ -568,6 +569,8 @@ public class HomePage extends javax.swing.JFrame {
         this.txtUsername.setText("");
         this.txtNomeCompleto.setText("");
         this.txtSenha.setText("");
+        this.radioAdmin.setSelected(false);
+        this.radioFuncionario.setSelected(false);
     }
     
     public Usuario montarUsuario() {
