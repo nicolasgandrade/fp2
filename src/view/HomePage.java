@@ -23,7 +23,7 @@ public class HomePage extends javax.swing.JFrame {
         groupCargo = new javax.swing.ButtonGroup();
         jSplitPane1 = new javax.swing.JSplitPane();
         pnlSideNav = new javax.swing.JPanel();
-        btnUsuario = new javax.swing.JButton();
+        btnUsuarios = new javax.swing.JButton();
         btnQuartos = new javax.swing.JButton();
         btnHospedes = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
@@ -85,19 +85,19 @@ public class HomePage extends javax.swing.JFrame {
 
         pnlSideNav.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        btnUsuario.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
-        btnUsuario.setForeground(new java.awt.Color(0, 51, 153));
-        btnUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
-        btnUsuario.setText("Usuários");
-        btnUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnUsuario.setBorderPainted(false);
-        btnUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnUsuarios.setBackground(new java.awt.Color(255, 255, 255));
+        btnUsuarios.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        btnUsuarios.setForeground(new java.awt.Color(0, 51, 153));
+        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
+        btnUsuarios.setText("Usuários");
+        btnUsuarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnUsuarios.setBorderPainted(false);
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUsuarioActionPerformed(evt);
+                btnUsuariosActionPerformed(evt);
             }
         });
-        pnlSideNav.add(btnUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 210, 60));
+        pnlSideNav.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 210, 60));
 
         btnQuartos.setBackground(new java.awt.Color(255, 255, 255));
         btnQuartos.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
@@ -448,9 +448,9 @@ public class HomePage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuarioActionPerformed
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
         cardLayout.show(pnlContent, "pnlUsuarios");
-    }//GEN-LAST:event_btnUsuarioActionPerformed
+    }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnQuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuartosActionPerformed
         cardLayout.show(pnlContent, "pnlQuartos");
@@ -560,7 +560,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton btnQuartos;
     private javax.swing.JButton btnReservas;
     private javax.swing.JButton btnSair;
-    private javax.swing.JButton btnUsuario;
+    private javax.swing.JButton btnUsuarios;
     private javax.swing.ButtonGroup groupCargo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
