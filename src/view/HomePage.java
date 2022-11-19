@@ -483,13 +483,12 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnLimparSelecionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparSelecionadoActionPerformed
         this.limparFormulario();
-        this.usuarioSelecionado.get().setId(0);
+        this.usuarioSelecionado = null;
     }//GEN-LAST:event_btnLimparSelecionadoActionPerformed
 
     private void btnConfirmUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmUsuarioActionPerformed
         boolean isValid = this.isFormValid();
-        
-        if (this.usuarioSelecionado.get().getId() == 0 && isValid) {
+        if (this.usuarioSelecionado == null && isValid) {
             this.createUsuario();
         } else if (isValid) {
             this.editUsuario();
@@ -510,11 +509,27 @@ public class HomePage extends javax.swing.JFrame {
     }
     
     public void createUsuario() {
-        JOptionPane.showMessageDialog(pnlContent, "Placeholder criação de usuário");
+        Usuario usuario = this.montarUsuario();
+        int status = this.userController.createUsuario(usuario);
+        
+        if (status == 1) {
+            JOptionPane.showMessageDialog(pnlContent, "Usuário criado com sucesso.");
+        } else {
+            JOptionPane.showMessageDialog(pnlContent, "Houve um problema ao criar o usuário.");
+        }
     }
     
     public void editUsuario() {
-        JOptionPane.showMessageDialog(pnlContent, "Placeholder edição de usuário");
+        Usuario usuario = this.montarUsuario();
+        usuario.setId(this.usuarioSelecionado.get().getId());
+        
+        boolean status = this.userController.updateUsuario(usuario);
+        
+        if (status) {
+            JOptionPane.showMessageDialog(pnlContent, "Usuário atualizado com sucesso.");
+        } else {
+            JOptionPane.showMessageDialog(pnlContent, "Erro ao editar usuário.");
+        }
     }
     
     public boolean isFormValid() {
@@ -524,7 +539,7 @@ public class HomePage extends javax.swing.JFrame {
                 || this.groupCargo.getSelection() == null;
         if (isEmpty) {
             JOptionPane.showMessageDialog(pnlContent, "Complete todos os campos.");
-            return false;
+            return false; 
         } else {
             return true;
         }
@@ -534,6 +549,16 @@ public class HomePage extends javax.swing.JFrame {
         this.txtUsername.setText("");
         this.txtNomeCompleto.setText("");
         this.txtSenha.setText("");
+    }
+    
+    public Usuario montarUsuario() {
+        Usuario usuario = new Usuario(
+                this.txtNomeCompleto.getText(),
+                this.txtUsername.getText(), 
+                new String(this.txtSenha.getPassword()), 
+                this.radioAdmin.isSelected() ? "Gerente" : "Funcionário");
+               
+        return usuario;
     }
     
 //    public static void main(String args[]) {

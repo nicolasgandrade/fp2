@@ -45,6 +45,30 @@ public class UserController {
         return this.usuarios;
     }
     
+    public int createUsuario(Usuario usuario) {
+        int cargoId = usuario.getCargo().equals("Gerente") ? 1 : 2;
+        String sql = "INSERT INTO Usuarios VALUES("
+                + "null, "
+                + "'" + usuario.getNome() + "', "
+                + "'" + usuario.getNomeUsuario() + "', "
+                + "'" + usuario.getSenha() + "', "
+                + cargoId + ");";
+        
+        return this.conn.insertSQL(sql);
+    }
+    
+    public boolean updateUsuario(Usuario usuario) {
+        int cargoId = usuario.getCargo().equals("Gerente") ? 1 : 2;
+        String sql = "UPDATE Usuarios SET "
+                + "nome = '" + usuario.getNome() + "', "
+                + "nome_usuario = '" + usuario.getNomeUsuario() + "', "
+                + "senha = '" + usuario.getSenha() + "', "
+                + "cargo_id = " + cargoId + " "
+                + "WHERE id = " + usuario.getId() + ";";
+        
+        return this.conn.updateSQL(sql);
+    }
+    
     public void closeConn() {
         this.conn.fechaBanco();
     }

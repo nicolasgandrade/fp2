@@ -12,6 +12,13 @@ public class Usuario {
     
     public Usuario(){
     }
+    
+    public Usuario(String nome, String nomeUsuario, String senha, String cargo) {
+        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
+        this.senha = senha;
+        this.cargo = cargo;
+    }
 
     public Usuario(int id, String nome, String nomeUsuario, String senha, String cargo) {
         this.id = id;
