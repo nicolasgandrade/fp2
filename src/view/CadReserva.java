@@ -23,7 +23,7 @@ public class CadReserva extends javax.swing.JFrame {
         txtSaida = new javax.swing.JFormattedTextField();
         btnCadastro = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Nova Reserva"));
 
