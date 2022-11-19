@@ -1,11 +1,13 @@
 package view;
 
+import controller.ControllerListarQuartos;
 import controller.ControllerListarUsuarios;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import model.Quarto;
 import model.Usuario;
 import utils.MySQL;
 
@@ -34,6 +36,8 @@ public class HomePage extends javax.swing.JFrame {
         lblBemVindo = new javax.swing.JLabel();
         lblFundoDefault = new javax.swing.JLabel();
         pnlQuartos = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TableQuartos = new javax.swing.JTable();
         lblTituloQuartos = new javax.swing.JLabel();
         lblDescQuartos = new javax.swing.JLabel();
         spnBuscaQuarto = new javax.swing.JSpinner();
@@ -75,7 +79,6 @@ public class HomePage extends javax.swing.JFrame {
 
         pnlSideNav.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         btnUsuarios.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         btnUsuarios.setForeground(new java.awt.Color(0, 51, 153));
         btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
@@ -89,7 +92,6 @@ public class HomePage extends javax.swing.JFrame {
         });
         pnlSideNav.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 210, 60));
 
-        btnQuartos.setBackground(new java.awt.Color(255, 255, 255));
         btnQuartos.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         btnQuartos.setForeground(new java.awt.Color(0, 51, 153));
         btnQuartos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Quartos_icon.png"))); // NOI18N
@@ -103,7 +105,6 @@ public class HomePage extends javax.swing.JFrame {
         });
         pnlSideNav.add(btnQuartos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 210, 60));
 
-        btnHospedes.setBackground(new java.awt.Color(255, 255, 255));
         btnHospedes.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         btnHospedes.setForeground(new java.awt.Color(0, 51, 153));
         btnHospedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Hospedes_icon.png"))); // NOI18N
@@ -117,7 +118,6 @@ public class HomePage extends javax.swing.JFrame {
         });
         pnlSideNav.add(btnHospedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 210, 60));
 
-        btnSair.setBackground(new java.awt.Color(255, 255, 255));
         btnSair.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnSair.setForeground(new java.awt.Color(0, 51, 153));
         btnSair.setText("Sair");
@@ -157,6 +157,26 @@ public class HomePage extends javax.swing.JFrame {
         pnlContent.add(pnlDefault, "pnlDefault");
 
         pnlQuartos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        TableQuartos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Número", "Andar", "Categoria_id", "Ocupado"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(TableQuartos);
+
+        pnlQuartos.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 580, 420));
 
         lblTituloQuartos.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
         lblTituloQuartos.setForeground(new java.awt.Color(51, 51, 51));
@@ -395,6 +415,23 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnBuscarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarQuartoActionPerformed
         // TODO add your handling code here:
+        int numero = (Integer)spnBuscaQuarto.getValue();
+        ControllerListarQuartos quarto = new ControllerListarQuartos();
+        try {
+            DefaultTableModel table = (DefaultTableModel) TableQuartos.getModel();
+            table.setNumRows(0);
+            ArrayList<Quarto> lista = quarto.ListarQuartos(numero);
+            for (int num = 0; num <lista.size(); num ++){
+                table.addRow(new Object[]{
+                    lista.get(num).getNúmero(),
+                    lista.get(num).getAndar(),
+                    lista.get(num).isOcupado()
+                });
+            }
+        } catch (SQLException erro)  {
+            JOptionPane.showMessageDialog(null, erro);
+        }
+        quarto.closeConn();
     }//GEN-LAST:event_btnBuscarQuartoActionPerformed
 
     private void btnBuscarHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHospedeActionPerformed
@@ -461,6 +498,7 @@ public class HomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TableQuartos;
     private javax.swing.JTable TableUsuarios;
     private javax.swing.JButton btnBuscarHospede;
     private javax.swing.JButton btnBuscarQuarto;
@@ -475,6 +513,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton btnUsuarios;
     private javax.swing.ButtonGroup groupCargo;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblBemVindo;
