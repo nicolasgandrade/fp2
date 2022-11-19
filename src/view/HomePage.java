@@ -1,19 +1,23 @@
 package view;
 
-import controller.ControllerListarUsuarios;
+import controller.UserController;
 import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
+import java.util.Optional;
 import javax.swing.JOptionPane;
 import model.Usuario;
-import utils.MySQL;
 
 public class HomePage extends javax.swing.JFrame {
     CardLayout cardLayout;
+    UserController userController;
+    Optional<Usuario> usuarioSelecionado;
 
-    public HomePage() {
+    public HomePage(UserController userController) {
         initComponents();
+        this.userController = userController;
         cardLayout = (CardLayout)(pnlContent.getLayout());
     }
     @SuppressWarnings("unchecked")
@@ -47,7 +51,7 @@ public class HomePage extends javax.swing.JFrame {
         lblFundoHospedes = new javax.swing.JLabel();
         pnlUsuarios = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TableUsuarios = new javax.swing.JTable();
+        tableUsuarios = new javax.swing.JTable();
         lblTituloUsuarios = new javax.swing.JLabel();
         lblDescUsuarios = new javax.swing.JLabel();
         btnBuscarUsuario = new javax.swing.JButton();
@@ -214,7 +218,7 @@ public class HomePage extends javax.swing.JFrame {
 
         pnlUsuarios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        TableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
+        tableUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -230,7 +234,12 @@ public class HomePage extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(TableUsuarios);
+        tableUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableUsuariosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableUsuarios);
 
         pnlUsuarios.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 580, 420));
 
@@ -277,7 +286,7 @@ public class HomePage extends javax.swing.JFrame {
         lblCargo.setText("Cargo");
 
         groupCargo.add(radioAdmin);
-        radioAdmin.setText("Administrador");
+        radioAdmin.setText("Gerente");
 
         groupCargo.add(radioFuncionario);
         radioFuncionario.setText("Funcionário");
@@ -285,10 +294,25 @@ public class HomePage extends javax.swing.JFrame {
         lblSenha.setText("Senha");
 
         btnConfirmUsuario.setText("CRIAR / EDITAR");
+        btnConfirmUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmUsuarioActionPerformed(evt);
+            }
+        });
 
         btnDeletarSelecionado.setText("DELETAR");
+        btnDeletarSelecionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarSelecionadoActionPerformed(evt);
+            }
+        });
 
         btnLimparSelecionado.setText("LIMPAR");
+        btnLimparSelecionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparSelecionadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlUsuarioLayout = new javax.swing.GroupLayout(pnlUsuario);
         pnlUsuario.setLayout(pnlUsuarioLayout);
@@ -390,6 +414,8 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHospedesActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        this.userController.closeConn();
+        System.out.println("Conexão encerrada.");
         System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
 
@@ -404,64 +430,192 @@ public class HomePage extends javax.swing.JFrame {
     private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
         //Procurar os Usuarios
         String nome = txtUsernameBusca.getText();
-        ControllerListarUsuarios usuario = new ControllerListarUsuarios();
+        
         try {
-            DefaultTableModel table = (DefaultTableModel) TableUsuarios.getModel();
-            table.setNumRows(0);
-            ArrayList<Usuario> lista = usuario.ListarUsuarios(nome);
-            for (int num = 0; num <lista.size(); num++){
-                table.addRow(new Object[]{
-                    lista.get(num).getId(),
-                    "Nome completo",
-                    lista.get(num).getNomeUsuario(),
-                    lista.get(num).getCargo()
+            DefaultTableModel table = (DefaultTableModel) tableUsuarios.getModel();
+            table.setRowCount(0);
+            this.userController.setUsuarios(new ArrayList<>());
+            this.userController.listarUsuarios(nome);
+            
+            for (Usuario usuario: this.userController.getUsuarios()) {
+                table.addRow(new Object[] {
+                    usuario.getId(),
+                    usuario.getNome(),
+                    usuario.getNomeUsuario(),
+                    usuario.getCargo()
                 });
             }
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, erro);
         }
-        usuario.closeConn();
     }//GEN-LAST:event_btnBuscarUsuarioActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         txtUsernameBusca.setText("");
-        DefaultTableModel table = (DefaultTableModel) TableUsuarios.getModel();
-        table.setNumRows(0);
+        DefaultTableModel table = (DefaultTableModel) tableUsuarios.getModel();
+        table.setRowCount(0);
+        this.userController.setUsuarios(new ArrayList<>());
     }//GEN-LAST:event_btnLimparActionPerformed
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HomePage().setVisible(true);
+    private void tableUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuariosMouseClicked
+        DefaultTableModel table = (DefaultTableModel) tableUsuarios.getModel();
+        
+        int id = Integer.parseInt(table.getValueAt(tableUsuarios.getSelectedRow(), 0).toString());
+        
+        ArrayList<Usuario> listaUsuarios = this.userController.getUsuarios();
+        this.usuarioSelecionado = listaUsuarios.stream()
+                .filter(usuario -> usuario.getId() == id)
+                .findFirst();
+        
+        this.txtNomeCompleto.setText(this.usuarioSelecionado.get().getNome());
+        this.txtUsername.setText(this.usuarioSelecionado.get().getNomeUsuario());
+        this.txtSenha.setText(this.usuarioSelecionado.get().getSenha());
+        String cargo = this.usuarioSelecionado.get().getCargo();
+        this.groupCargo.setSelected(
+                cargo.equals("Gerente") 
+                        ? this.radioAdmin.getModel() 
+                        : this.radioFuncionario.getModel(), 
+                true);
+        
+        toggleCamposSensiveis(false, false);
+        Usuario usuarioLogado = this.userController.getCurrentUser();
+        if (usuarioLogado.getCargo().equals("Gerente")) {
+            toggleCamposSensiveis(true, true);           
+        } else if (usuarioLogado.getId() == this.usuarioSelecionado.get().getId()) {
+            toggleCamposSensiveis(true, false); 
+        }
+    }//GEN-LAST:event_tableUsuariosMouseClicked
+
+    private void btnLimparSelecionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparSelecionadoActionPerformed
+        this.limparFormulario();
+        this.usuarioSelecionado = null;
+    }//GEN-LAST:event_btnLimparSelecionadoActionPerformed
+
+    private void btnConfirmUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmUsuarioActionPerformed
+        boolean isValid = this.isFormValid();
+        if (this.usuarioSelecionado == null && isValid) {
+            this.createUsuario();
+        } else if (isValid) {
+            this.editUsuario();
+        }
+    }//GEN-LAST:event_btnConfirmUsuarioActionPerformed
+
+    private void btnDeletarSelecionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarSelecionadoActionPerformed
+        if (this.usuarioSelecionado == null) {
+            JOptionPane.showMessageDialog(pnlContent, "Escolha o usuário existente para deletar.");
+        } else {
+            int id = this.usuarioSelecionado.get().getId();
+            int res = this.userController.deleteUsuario(id);
+            if (res == 1) {
+                JOptionPane.showMessageDialog(pnlContent, "Usuário deletado com sucesso.");
+                this.limparFormulario();
+            } else {
+                JOptionPane.showMessageDialog(pnlContent, "Houve um erro ao deletar o usuário.");
             }
-        });
+        }
+    }//GEN-LAST:event_btnDeletarSelecionadoActionPerformed
+
+    public void toggleCamposSensiveis(boolean isEnabled, boolean isAdmin) {
+        this.txtUsername.setEnabled(isEnabled);
+        this.txtNomeCompleto.setEnabled(isEnabled);
+        this.txtSenha.setEnabled(isEnabled);
+        this.radioAdmin.setEnabled(isAdmin);
+        this.radioFuncionario.setEnabled(isAdmin);
+        this.btnDeletarSelecionado.setEnabled(
+                isAdmin &&
+                this.userController.getCurrentUser().getId() != this.usuarioSelecionado.get().getId());
+        this.btnLimparSelecionado.setEnabled(isEnabled);
+        this.btnConfirmUsuario.setEnabled(isAdmin || isEnabled);
     }
+    
+    public void createUsuario() {
+        Usuario usuario = this.montarUsuario();
+        int status = this.userController.createUsuario(usuario);
+        
+        if (status == 1) {
+            JOptionPane.showMessageDialog(pnlContent, "Usuário criado com sucesso.");
+        } else {
+            JOptionPane.showMessageDialog(pnlContent, "Houve um problema ao criar o usuário.");
+        }
+    }
+    
+    public void editUsuario() {
+        Usuario usuario = this.montarUsuario();
+        usuario.setId(this.usuarioSelecionado.get().getId());
+        
+        boolean status = this.userController.updateUsuario(usuario);
+        
+        if (status) {
+            JOptionPane.showMessageDialog(pnlContent, "Usuário atualizado com sucesso.");
+        } else {
+            JOptionPane.showMessageDialog(pnlContent, "Erro ao editar usuário.");
+        }
+    }
+    
+    public boolean isFormValid() {
+        boolean isEmpty = this.txtUsername.getText().equals("")
+                || this.txtNomeCompleto.getText().equals("")
+                || new String(this.txtSenha.getPassword()).equals("")
+                || this.groupCargo.getSelection() == null;
+        if (isEmpty) {
+            JOptionPane.showMessageDialog(pnlContent, "Complete todos os campos.");
+            return false; 
+        } else {
+            return true;
+        }
+    }
+    
+    public void limparFormulario() {
+        this.txtUsername.setText("");
+        this.txtNomeCompleto.setText("");
+        this.txtSenha.setText("");
+        this.radioAdmin.setSelected(false);
+        this.radioFuncionario.setSelected(false);
+    }
+    
+    public Usuario montarUsuario() {
+        Usuario usuario = new Usuario(
+                this.txtNomeCompleto.getText(),
+                this.txtUsername.getText(), 
+                new String(this.txtSenha.getPassword()), 
+                this.radioAdmin.isSelected() ? "Gerente" : "Funcionário");
+               
+        return usuario;
+    }
+    
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new HomePage().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TableUsuarios;
     private javax.swing.JButton btnBuscarHospede;
     private javax.swing.JButton btnBuscarQuarto;
     private javax.swing.JButton btnBuscarUsuario;
@@ -505,6 +659,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioAdmin;
     private javax.swing.JRadioButton radioFuncionario;
     private javax.swing.JSpinner spnBuscaQuarto;
+    private javax.swing.JTable tableUsuarios;
     private javax.swing.JTextField txtDocumentoHospede;
     private javax.swing.JTextField txtNomeCompleto;
     private javax.swing.JPasswordField txtSenha;
