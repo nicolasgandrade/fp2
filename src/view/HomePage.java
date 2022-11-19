@@ -476,7 +476,13 @@ public class HomePage extends javax.swing.JFrame {
         this.txtSenha.setEnabled(isEnabled);
         this.radioAdmin.setEnabled(isAdmin);
         this.radioFuncionario.setEnabled(isAdmin);
+        this.btnDeletarSelecionado.setEnabled(
+                isAdmin &&
+                this.userController.getCurrentUser().getId() != this.usuarioSelecionado.get().getId());
+        this.btnLimparSelecionado.setEnabled(isEnabled);
+        this.btnConfirmUsuario.setEnabled(isAdmin || isEnabled);
     }
+    
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
