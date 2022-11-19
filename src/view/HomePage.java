@@ -1,6 +1,5 @@
 package view;
 
-import controller.ControllerListarUsuarios;
 import controller.UserController;
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -392,6 +391,7 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHospedesActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        this.userController.closeConn();
         System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
 
