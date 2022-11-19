@@ -460,8 +460,23 @@ public class HomePage extends javax.swing.JFrame {
                         ? this.radioAdmin.getModel() 
                         : this.radioFuncionario.getModel(), 
                 true);
+        
+        toggleCamposSensiveis(false, false);
+        Usuario usuarioLogado = this.userController.getCurrentUser();
+        if (usuarioLogado.getCargo().equals("Gerente")) {
+            toggleCamposSensiveis(true, true);           
+        } else if (usuarioLogado.getId() == this.usuarioSelecionado.get().getId()) {
+            toggleCamposSensiveis(true, false); 
+        }
     }//GEN-LAST:event_tableUsuariosMouseClicked
 
+    public void toggleCamposSensiveis(boolean isEnabled, boolean isAdmin) {
+        this.txtUsername.setEnabled(isEnabled);
+        this.txtNomeCompleto.setEnabled(isEnabled);
+        this.txtSenha.setEnabled(isEnabled);
+        this.radioAdmin.setEnabled(isAdmin);
+        this.radioFuncionario.setEnabled(isAdmin);
+    }
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
