@@ -12,6 +12,13 @@ public class Usuario {
     
     public Usuario(){
     }
+    
+    public Usuario(String nome, String nomeUsuario, String senha, String cargo) {
+        this.nome = nome;
+        this.nomeUsuario = nomeUsuario;
+        this.senha = senha;
+        this.cargo = cargo;
+    }
 
     public Usuario(int id, String nome, String nomeUsuario, String senha, String cargo) {
         this.id = id;
@@ -60,4 +67,10 @@ public class Usuario {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", nome=" + nome + ", nomeUsuario=" + nomeUsuario + ", senha=" + senha + ", cargo=" + cargo + '}';
+    }
+    
 }
