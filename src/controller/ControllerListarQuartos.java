@@ -28,7 +28,7 @@ public class ControllerListarQuartos {
             }
             quartos.add(quarto);
         }
-        return null;
+        return quartos;
     }
     
     public void closeConn(){

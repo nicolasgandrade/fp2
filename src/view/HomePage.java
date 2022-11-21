@@ -421,7 +421,7 @@ public class HomePage extends javax.swing.JFrame {
             DefaultTableModel table = (DefaultTableModel) TableQuartos.getModel();
             table.setNumRows(0);
             ArrayList<Quarto> lista = quarto.ListarQuartos(numero);
-            for (int num = 0; num <lista.size(); num ++){
+            for (int num = 0; num <lista.size(); num++){
                 table.addRow(new Object[]{
                     lista.get(num).getNúmero(),
                     lista.get(num).getAndar(),
