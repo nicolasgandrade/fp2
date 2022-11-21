@@ -3,6 +3,7 @@ package controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Quarto;
+import model.Categoria;
 import utils.MySQL;
 
 public class ControllerListarQuartos {

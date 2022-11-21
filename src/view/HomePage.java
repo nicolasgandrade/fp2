@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import model.Categoria;
 import model.Quarto;
 import model.Usuario;
 import utils.MySQL;
