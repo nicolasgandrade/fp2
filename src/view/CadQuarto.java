@@ -1,14 +1,14 @@
 package view;
 
-import controller.ControllerQuartos;
+import controller.QuartosController;
 import model.Quarto;
 
 public class CadQuarto extends javax.swing.JFrame {
-    ControllerQuartos controller;
+    QuartosController controller;
 
     public CadQuarto() {
         initComponents();
-        controller = new ControllerQuartos();
+        controller = new QuartosController();
     }
 
     @SuppressWarnings("unchecked")

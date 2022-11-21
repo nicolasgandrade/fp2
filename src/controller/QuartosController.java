@@ -4,10 +4,10 @@ import java.sql.SQLException;
 import model.Quarto;
 import utils.MySQL;
 
-public class ControllerQuartos {
+public class QuartosController {
     MySQL conn = new MySQL();
     
-    public ControllerQuartos(){
+    public QuartosController(){
         this.conn.conectaBanco();
     }
     

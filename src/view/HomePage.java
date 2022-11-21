@@ -420,11 +420,12 @@ public class HomePage extends javax.swing.JFrame {
         try {
             DefaultTableModel table = (DefaultTableModel) TableQuartos.getModel();
             table.setNumRows(0);
-            ArrayList<Quarto> lista = quarto.ListarQuartos(numero);
+            ArrayList<Quarto> lista = quarto.listarQuartos(numero);
             for (int num = 0; num <lista.size(); num++){
                 table.addRow(new Object[]{
                     lista.get(num).getNúmero(),
                     lista.get(num).getAndar(),
+                    "Null",
                     lista.get(num).isOcupado()
                 });
             }

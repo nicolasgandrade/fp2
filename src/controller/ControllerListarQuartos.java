@@ -13,22 +13,22 @@ public class ControllerListarQuartos {
         this.conn.conectaBanco();
     }
     
-    public ArrayList ListarQuartos(int número) throws SQLException{
+    public ArrayList listarQuartos(int número) throws SQLException{
         String sql = "SELECT * FROM Quartos;";
         this.conn.executarSQL(sql);        
 
-        Quarto quarto = new Quarto();
         while(this.conn.getResultSet().next()) { 
+            Quarto quarto = new Quarto();
             quarto.setNúmero(Integer.parseInt(this.conn.getResultSet().getString("numero")));
             quarto.setAndar(Integer.parseInt(this.conn.getResultSet().getString("andar")));
-            if (this.conn.getResultSet().toString().equals("ocupado")){
+            if (this.conn.getResultSet().getString("ocupado").equals("ocupado")){
                 quarto.setOcupado(true);
             } else {
                 quarto.setOcupado(false);
             }
             quartos.add(quarto);
         }
-        return quartos;
+        return this.quartos;
     }
     
     public void closeConn(){
