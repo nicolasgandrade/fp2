@@ -449,12 +449,21 @@ public class HomePage extends javax.swing.JFrame {
             table.setNumRows(0);
             ArrayList<Quarto> lista = quarto.listarQuartos(numero);
             for (int num = 0; num <lista.size(); num++){
-                table.addRow(new Object[]{
-                    lista.get(num).getNúmero(),
-                    lista.get(num).getAndar(),
-                    lista.get(num).getCategoria(),
-                    lista.get(num).isOcupado()
-                });
+                if (lista.get(num).isOcupado() == true) {
+                    table.addRow(new Object[]{
+                        lista.get(num).getNúmero(),
+                        lista.get(num).getAndar(),
+                        lista.get(num).getCategoria(),
+                        "Ocupado"
+                    });
+                } else{
+                    table.addRow(new Object[]{
+                        lista.get(num).getNúmero(),
+                        lista.get(num).getAndar(),
+                        lista.get(num).getCategoria(),
+                        "Desocupado"
+                    });
+                }
             }
         } catch (SQLException erro)  {
             JOptionPane.showMessageDialog(null, erro);
