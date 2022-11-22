@@ -23,13 +23,14 @@ public class QuartosController {
     }
     
     public ArrayList listarQuartos(int número) throws SQLException{
-        String sql = "SELECT * FROM Quartos;";
+        String sql = "SELECT * FROM Quartos JOIN Categorias;";
         this.conn.executarSQL(sql);        
 
         while(this.conn.getResultSet().next()) { 
             Quarto quarto = new Quarto();
             quarto.setNúmero(Integer.parseInt(this.conn.getResultSet().getString("numero")));
             quarto.setAndar(Integer.parseInt(this.conn.getResultSet().getString("andar")));
+            quarto.setCategoria(this.conn.getResultSet().getString("nome"));
             if (this.conn.getResultSet().getString("ocupado").equals("ocupado")){
                 quarto.setOcupado(true);
             } else {

@@ -452,7 +452,7 @@ public class HomePage extends javax.swing.JFrame {
                 table.addRow(new Object[]{
                     lista.get(num).getNúmero(),
                     lista.get(num).getAndar(),
-                    "Null",
+                    lista.get(num).getCategoria(),
                     lista.get(num).isOcupado()
                 });
             }
