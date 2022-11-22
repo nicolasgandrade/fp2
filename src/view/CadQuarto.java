@@ -109,7 +109,7 @@ public class CadQuarto extends javax.swing.JFrame {
         }
         
         this.controller.inserirQuarto(novoQuarto);
-        this.controller.encerrar(novoQuarto);
+        this.controller.closeConn();
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     public static void main(String args[]) {

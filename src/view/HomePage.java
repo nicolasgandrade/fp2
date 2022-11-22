@@ -1,7 +1,6 @@
 package view;
 
-import controller.ControllerListarQuartos;
-import controller.ControllerListarUsuarios;
+import controller.QuartosController;
 import controller.UserController;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -444,7 +443,7 @@ public class HomePage extends javax.swing.JFrame {
     private void btnBuscarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarQuartoActionPerformed
         // TODO add your handling code here:
         int numero = (Integer)spnBuscaQuarto.getValue();
-        ControllerListarQuartos quarto = new ControllerListarQuartos();
+        QuartosController quarto = new QuartosController();
         try {
             DefaultTableModel table = (DefaultTableModel) TableQuartos.getModel();
             table.setNumRows(0);

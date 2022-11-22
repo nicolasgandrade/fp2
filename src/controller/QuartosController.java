@@ -1,11 +1,13 @@
 package controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import model.Quarto;
 import utils.MySQL;
 
 public class QuartosController {
     MySQL conn = new MySQL();
+    ArrayList<Quarto> quartos = new ArrayList<>();
     
     public QuartosController(){
         this.conn.conectaBanco();
@@ -20,7 +22,25 @@ public class QuartosController {
         this.conn.insertSQL(sql);
     }
     
-    public void encerrar(Quarto quarto) {
-            this.conn.fechaBanco();
+    public ArrayList listarQuartos(int número) throws SQLException{
+        String sql = "SELECT * FROM Quartos;";
+        this.conn.executarSQL(sql);        
+
+        while(this.conn.getResultSet().next()) { 
+            Quarto quarto = new Quarto();
+            quarto.setNúmero(Integer.parseInt(this.conn.getResultSet().getString("numero")));
+            quarto.setAndar(Integer.parseInt(this.conn.getResultSet().getString("andar")));
+            if (this.conn.getResultSet().getString("ocupado").equals("ocupado")){
+                quarto.setOcupado(true);
+            } else {
+                quarto.setOcupado(false);
+            }
+            quartos.add(quarto);
+        }
+        return this.quartos;
+    }
+    
+    public void closeConn(){
+        this.conn.fechaBanco();
     }
 }
