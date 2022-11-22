@@ -3,8 +3,8 @@ package model;
 public class Reserva {
     
     private int id;
-    private Quarto quarto;
-    private Hospede hospede;
+    private int quarto;
+    private String hospede;
     private int entrada;
     private int saida;
 
@@ -12,7 +12,7 @@ public class Reserva {
     public Reserva(){
     }
     
-    public Reserva(int id,Quarto quarto, Hospede hospede,int entrada, int saida){
+    public Reserva(int id,int quarto, String hospede,int entrada, int saida){
         this.id=id;
         this.quarto=quarto;
         this.hospede=hospede;
@@ -28,19 +28,19 @@ public class Reserva {
         this.id = id;
     }
     
-    public Quarto getQuarto() {
+    public int getQuarto() {
         return quarto;
     }
 
-    public void setNum_quarto(Quarto quarto) {
+    public void setQuarto(int quarto) {
         this.quarto = quarto;
     }
 
-    public Hospede getHospede() {
+    public String getHospede() {
         return hospede;
     }
 
-    public void setHospede_id(Hospede hospede) {
+    public void setHospede(String hospede) {
         this.hospede = hospede;
     }
 
