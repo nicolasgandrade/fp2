@@ -22,7 +22,6 @@ public class ViewSideNavQuarto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bntUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         bntUsuarios.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         bntUsuarios.setForeground(new java.awt.Color(0, 51, 153));
         bntUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
@@ -35,7 +34,6 @@ public class ViewSideNavQuarto extends javax.swing.JFrame {
         });
         getContentPane().add(bntUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 210, 40));
 
-        btnQuarto.setBackground(new java.awt.Color(255, 255, 255));
         btnQuarto.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnQuarto.setForeground(new java.awt.Color(0, 51, 153));
         btnQuarto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Quartos_icon.png"))); // NOI18N
@@ -48,7 +46,6 @@ public class ViewSideNavQuarto extends javax.swing.JFrame {
         });
         getContentPane().add(btnQuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 210, 40));
 
-        btnHospedes.setBackground(new java.awt.Color(255, 255, 255));
         btnHospedes.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnHospedes.setForeground(new java.awt.Color(0, 51, 153));
         btnHospedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Hospedes_icon.png"))); // NOI18N
@@ -62,15 +59,12 @@ public class ViewSideNavQuarto extends javax.swing.JFrame {
         getContentPane().add(btnHospedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 210, 40));
 
         lblQuarto.setFont(new java.awt.Font("Segoe UI", 0, 57)); // NOI18N
-        lblQuarto.setForeground(new java.awt.Color(0, 0, 0));
         lblQuarto.setText("Quarto");
         getContentPane().add(lblQuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 170, 180, 100));
 
-        txtQuarto.setBackground(new java.awt.Color(255, 255, 255));
         txtQuarto.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txtQuarto.setForeground(new java.awt.Color(0, 0, 0));
         txtQuarto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtQuarto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Digite o número do Quarto", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 1, 10), new java.awt.Color(0, 0, 0))); // NOI18N
+        txtQuarto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Digite o número do Quarto", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Arial", 1, 10))); // NOI18N
         getContentPane().add(txtQuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 370, 50));
 
         btnBusca.setBackground(new java.awt.Color(0, 51, 153));

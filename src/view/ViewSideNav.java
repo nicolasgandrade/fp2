@@ -21,11 +21,9 @@ public class ViewSideNav extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblWelcome.setFont(new java.awt.Font("Segoe UI", 0, 57)); // NOI18N
-        lblWelcome.setForeground(new java.awt.Color(0, 0, 0));
         lblWelcome.setText("Bem-vindo!");
         getContentPane().add(lblWelcome, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 170, 300, 100));
 
-        btnUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         btnUsuarios.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnUsuarios.setForeground(new java.awt.Color(0, 51, 153));
         btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
@@ -38,7 +36,6 @@ public class ViewSideNav extends javax.swing.JFrame {
         });
         getContentPane().add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 210, 40));
 
-        btnQuartos.setBackground(new java.awt.Color(255, 255, 255));
         btnQuartos.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnQuartos.setForeground(new java.awt.Color(0, 51, 153));
         btnQuartos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Quartos_icon.png"))); // NOI18N
@@ -51,7 +48,6 @@ public class ViewSideNav extends javax.swing.JFrame {
         });
         getContentPane().add(btnQuartos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 210, 40));
 
-        btnHospedes.setBackground(new java.awt.Color(255, 255, 255));
         btnHospedes.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnHospedes.setForeground(new java.awt.Color(0, 51, 153));
         btnHospedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Hospedes_icon.png"))); // NOI18N

@@ -2,15 +2,16 @@ package view;
 
 import controller.QuartosController;
 import controller.UserController;
+import controller.ControllerListarHospedes;
+
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import java.util.Optional;
 import javax.swing.JOptionPane;
-import model.Categoria;
 import model.Quarto;
+import model.Hospede;
 import model.Usuario;
 
 public class HomePage extends javax.swing.JFrame {
@@ -49,6 +50,8 @@ public class HomePage extends javax.swing.JFrame {
         btnBuscarQuarto = new javax.swing.JButton();
         lblFundoQuartos = new javax.swing.JLabel();
         pnlHospedes = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TableHospedes = new javax.swing.JTable();
         lblTituloHospedes = new javax.swing.JLabel();
         lblDescHospedes = new javax.swing.JLabel();
         btnBuscarHospede = new javax.swing.JButton();
@@ -210,6 +213,27 @@ public class HomePage extends javax.swing.JFrame {
         pnlContent.add(pnlQuartos, "pnlQuartos");
 
         pnlHospedes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        TableHospedes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nome", "Telefone", "Email", "Documento"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TableHospedes.setToolTipText("");
+        jScrollPane2.setViewportView(TableHospedes);
+
+        pnlHospedes.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 860, 420));
 
         lblTituloHospedes.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
         lblTituloHospedes.setForeground(new java.awt.Color(51, 51, 51));
@@ -472,7 +496,25 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarQuartoActionPerformed
 
     private void btnBuscarHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHospedeActionPerformed
-        // TODO add your handling code here:
+          //Procurar os Hospedes
+        String nome = txtDocumentoHospede.getText();
+        ControllerListarHospedes hospede = new ControllerListarHospedes();
+        try {
+            DefaultTableModel table = (DefaultTableModel) TableHospedes.getModel();
+            table.setNumRows(0);
+            ArrayList<Hospede> lista = hospede.ListarHospedes(nome);
+            for (int num = 0; num <lista.size(); num++){
+                table.addRow(new Object[]{
+                    lista.get(num).getId(),
+                    "Nome completo",
+                    lista.get(num).getNome(),
+                    
+                });
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, erro);
+        }
+        hospede.closeConn();
     }//GEN-LAST:event_btnBuscarHospedeActionPerformed
 
     private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
@@ -664,7 +706,11 @@ public class HomePage extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JTable TableQuartos;
+
+    private javax.swing.JTable TableHospedes;
+
     private javax.swing.JTable TableUsuarios;
     private javax.swing.JButton btnBuscarHospede;
     private javax.swing.JButton btnBuscarQuarto;
