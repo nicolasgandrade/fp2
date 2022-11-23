@@ -97,7 +97,7 @@ public class HomePage extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         lblFundoUsuarios = new javax.swing.JLabel();
         pnlReservas = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
         tableReservas = new javax.swing.JTable();
         lblTituloReservas = new javax.swing.JLabel();
         lblDescReservas = new javax.swing.JLabel();
@@ -500,9 +500,9 @@ public class HomePage extends javax.swing.JFrame {
                 tableReservasMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(tableReservas);
+        jScrollPane4.setViewportView(tableReservas);
 
-        pnlReservas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 860, 420));
+        pnlReservas.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 860, 420));
 
         lblTituloReservas.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         lblTituloReservas.setForeground(new java.awt.Color(51, 51, 51));
@@ -996,6 +996,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblBemVindo;
