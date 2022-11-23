@@ -116,7 +116,7 @@ public class CadHospede extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
+        
         Hospede novoHospede = new Hospede();
         novoHospede.setNome(txtNome.getText());
         novoHospede.setTelefone(txtTelefone.getText());
@@ -125,6 +125,7 @@ public class CadHospede extends javax.swing.JFrame {
         
         this.controller.inserirHospede(novoHospede);
         this.controller.encerrar(novoHospede);
+        this.dispose();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
 
