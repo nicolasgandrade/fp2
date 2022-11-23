@@ -2,7 +2,7 @@ package view;
 
 import controller.QuartosController;
 import controller.UserController;
-import controller.ControllerListarHospedes;
+
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
@@ -13,16 +13,19 @@ import javax.swing.JOptionPane;
 import model.Quarto;
 import model.Hospede;
 import model.Usuario;
+import controller.ControllerHospede;
 
 public class HomePage extends javax.swing.JFrame {
     CardLayout cardLayout;
     UserController userController;
     Optional<Usuario> usuarioSelecionado;
+    ControllerHospede hospedesController;
 
     public HomePage(UserController userController) {
         initComponents();
         this.userController = userController;
         cardLayout = (CardLayout)(pnlContent.getLayout());
+        this.hospedesController = new ControllerHospede();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -50,10 +53,11 @@ public class HomePage extends javax.swing.JFrame {
         btnBuscarQuarto = new javax.swing.JButton();
         lblFundoQuartos = new javax.swing.JLabel();
         pnlHospedes = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         TableHospedes = new javax.swing.JTable();
         lblTituloHospedes = new javax.swing.JLabel();
         lblDescHospedes = new javax.swing.JLabel();
+        btnBuscarHospede1 = new javax.swing.JButton();
         btnBuscarHospede = new javax.swing.JButton();
         txtDocumentoHospede = new javax.swing.JTextField();
         lblFundoHospedes = new javax.swing.JLabel();
@@ -231,9 +235,9 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         TableHospedes.setToolTipText("");
-        jScrollPane2.setViewportView(TableHospedes);
+        jScrollPane3.setViewportView(TableHospedes);
 
-        pnlHospedes.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 860, 420));
+        pnlHospedes.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 860, 420));
 
         lblTituloHospedes.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
         lblTituloHospedes.setForeground(new java.awt.Color(51, 51, 51));
@@ -245,13 +249,21 @@ public class HomePage extends javax.swing.JFrame {
         lblDescHospedes.setText("Controle os hóspedes cadastrados no seu sistema.");
         pnlHospedes.add(lblDescHospedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
 
+        btnBuscarHospede1.setText("CADASTRAR");
+        btnBuscarHospede1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarHospede1ActionPerformed(evt);
+            }
+        });
+        pnlHospedes.add(btnBuscarHospede1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 190, 120, 40));
+
         btnBuscarHospede.setText("BUSCAR");
         btnBuscarHospede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarHospedeActionPerformed(evt);
             }
         });
-        pnlHospedes.add(btnBuscarHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 100, 40));
+        pnlHospedes.add(btnBuscarHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 100, 40));
 
         txtDocumentoHospede.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento do hóspede"));
         pnlHospedes.add(txtDocumentoHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 270, 70));
@@ -497,24 +509,25 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnBuscarHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHospedeActionPerformed
           //Procurar os Hospedes
-        String nome = txtDocumentoHospede.getText();
-        ControllerListarHospedes hospede = new ControllerListarHospedes();
+        
+        String documento = txtDocumentoHospede.getText();
         try {
             DefaultTableModel table = (DefaultTableModel) TableHospedes.getModel();
             table.setNumRows(0);
-            ArrayList<Hospede> lista = hospede.ListarHospedes(nome);
+            ArrayList<Hospede> lista = hospedesController.listarHospedes(documento);
             for (int num = 0; num <lista.size(); num++){
                 table.addRow(new Object[]{
                     lista.get(num).getId(),
-                    "Nome completo",
                     lista.get(num).getNome(),
-                    
+                    lista.get(num).getTelefone(),
+                    lista.get(num).getEmail(),
+                    lista.get(num).getDocumento()
                 });
             }
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, erro);
         }
-        hospede.closeConn();
+        
     }//GEN-LAST:event_btnBuscarHospedeActionPerformed
 
     private void btnBuscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarUsuarioActionPerformed
@@ -604,6 +617,11 @@ public class HomePage extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnDeletarSelecionadoActionPerformed
+
+    private void btnBuscarHospede1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHospede1ActionPerformed
+        CadHospede hospede = new CadHospede();
+        hospede.setVisible(true);
+    }//GEN-LAST:event_btnBuscarHospede1ActionPerformed
 
     public void toggleCamposSensiveis(boolean isEnabled, boolean isAdmin) {
         this.txtUsername.setEnabled(isEnabled);
@@ -706,13 +724,10 @@ public class HomePage extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-
-    private javax.swing.JTable TableQuartos;
-
     private javax.swing.JTable TableHospedes;
-
-    private javax.swing.JTable TableUsuarios;
+    private javax.swing.JTable TableQuartos;
     private javax.swing.JButton btnBuscarHospede;
+    private javax.swing.JButton btnBuscarHospede1;
     private javax.swing.JButton btnBuscarQuarto;
     private javax.swing.JButton btnBuscarUsuario;
     private javax.swing.JButton btnConfirmUsuario;
@@ -726,6 +741,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.ButtonGroup groupCargo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblBemVindo;
