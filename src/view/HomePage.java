@@ -1,6 +1,7 @@
 package view;
 
 import controller.QuartosController;
+import controller.ReservaController;
 import controller.UserController;
 
 
@@ -9,8 +10,11 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Quarto;
+import model.Reserva;
 import model.Hospede;
 import model.Usuario;
 import controller.ControllerHospede;
@@ -18,13 +22,19 @@ import controller.ControllerHospede;
 public class HomePage extends javax.swing.JFrame {
     CardLayout cardLayout;
     UserController userController;
+    ReservaController reservaController;
     Optional<Usuario> usuarioSelecionado;
+    CadReserva cadReserva;
+    ArrayList<Reserva> reservasBuscadas;
+    Reserva reservaSelecionada;
     ControllerHospede hospedesController;
 
     public HomePage(UserController userController) {
         initComponents();
         this.userController = userController;
+        this.reservaController = new ReservaController();
         cardLayout = (CardLayout)(pnlContent.getLayout());
+        reservasBuscadas = new ArrayList<>();     
         this.hospedesController = new ControllerHospede();
     }
     @SuppressWarnings("unchecked")
@@ -37,6 +47,7 @@ public class HomePage extends javax.swing.JFrame {
         btnUsuarios = new javax.swing.JButton();
         btnQuartos = new javax.swing.JButton();
         btnHospedes = new javax.swing.JButton();
+        btnReservas = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
         lblSidenavBg = new javax.swing.JLabel();
         pnlContent = new javax.swing.JPanel();
@@ -85,8 +96,20 @@ public class HomePage extends javax.swing.JFrame {
         btnLimparSelecionado = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         lblFundoUsuarios = new javax.swing.JLabel();
+        pnlReservas = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableReservas = new javax.swing.JTable();
+        lblTituloReservas = new javax.swing.JLabel();
+        lblDescReservas = new javax.swing.JLabel();
+        txtDocReserva = new javax.swing.JTextField();
+        btnBuscarReservas = new javax.swing.JButton();
+        btnLimparReserva = new javax.swing.JButton();
+        btnCriarReserva = new javax.swing.JButton();
+        btnAtualizaReserva = new javax.swing.JButton();
+        btnDeletaReserva = new javax.swing.JButton();
+        lblFundoReservas = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         pnlSideNav.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -129,6 +152,20 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         pnlSideNav.add(btnHospedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 210, 60));
+
+        btnReservas.setBackground(new java.awt.Color(255, 255, 255));
+        btnReservas.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        btnReservas.setForeground(new java.awt.Color(0, 51, 153));
+        btnReservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Reservas_icon.jpeg"))); // NOI18N
+        btnReservas.setText("Reservas");
+        btnReservas.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnReservas.setBorderPainted(false);
+        btnReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReservasActionPerformed(evt);
+            }
+        });
+        pnlSideNav.add(btnReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 210, 60));
 
         btnSair.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnSair.setForeground(new java.awt.Color(0, 51, 153));
@@ -376,63 +413,58 @@ public class HomePage extends javax.swing.JFrame {
         pnlUsuarioLayout.setHorizontalGroup(
             pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUsuarioLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNomeCompleto)
-                    .addComponent(txtUsername)
-                    .addComponent(txtSenha)
-                    .addComponent(btnConfirmUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNovoUsuario)
+                    .addComponent(lblNomeCompleto)
+                    .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUsername)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCargo)
+                    .addGroup(pnlUsuarioLayout.createSequentialGroup()
+                        .addComponent(radioAdmin)
+                        .addGap(6, 6, 6)
+                        .addComponent(radioFuncionario))
+                    .addComponent(lblSenha)
+                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConfirmUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlUsuarioLayout.createSequentialGroup()
                         .addComponent(btnDeletarSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(btnLimparSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlUsuarioLayout.createSequentialGroup()
-                        .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNovoUsuario)
-                            .addComponent(lblNomeCompleto)
-                            .addComponent(lblUsername)
-                            .addComponent(lblCargo)
-                            .addGroup(pnlUsuarioLayout.createSequentialGroup()
-                                .addComponent(radioAdmin)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(radioFuncionario))
-                            .addComponent(lblSenha))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jSeparator1))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimparSelecionado, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         pnlUsuarioLayout.setVerticalGroup(
             pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlUsuarioLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(lblNovoUsuario)
                 .addGap(18, 18, 18)
                 .addComponent(lblNomeCompleto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(txtNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(lblUsername)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(lblCargo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(6, 6, 6)
+                .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(radioAdmin)
                     .addComponent(radioFuncionario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(lblSenha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnConfirmUsuario)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(9, 9, 9)
+                .addGroup(pnlUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnDeletarSelecionado)
-                    .addComponent(btnLimparSelecionado))
-                .addContainerGap())
+                    .addComponent(btnLimparSelecionado)))
         );
 
         pnlUsuarios.add(pnlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 250, 260, 420));
@@ -441,6 +473,94 @@ public class HomePage extends javax.swing.JFrame {
         pnlUsuarios.add(lblFundoUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pnlContent.add(pnlUsuarios, "pnlUsuarios");
+
+        pnlReservas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tableReservas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Quarto", "Hóspede", "Entrada", "Saída"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableReservas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableReservasMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tableReservas);
+
+        pnlReservas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 860, 420));
+
+        lblTituloReservas.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
+        lblTituloReservas.setForeground(new java.awt.Color(51, 51, 51));
+        lblTituloReservas.setText("Reservas");
+        pnlReservas.add(lblTituloReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+
+        lblDescReservas.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        lblDescReservas.setForeground(new java.awt.Color(102, 102, 102));
+        lblDescReservas.setText("Gerencie aqui as reservas.");
+        pnlReservas.add(lblDescReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
+
+        txtDocReserva.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento do hóspede"));
+        pnlReservas.add(txtDocReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 270, 70));
+
+        btnBuscarReservas.setText("LISTAR/BUSCAR");
+        btnBuscarReservas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarReservasActionPerformed(evt);
+            }
+        });
+        pnlReservas.add(btnBuscarReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, -1, 40));
+
+        btnLimparReserva.setText("LIMPAR");
+        btnLimparReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparReservaActionPerformed(evt);
+            }
+        });
+        pnlReservas.add(btnLimparReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 100, 40));
+
+        btnCriarReserva.setText("CRIAR");
+        btnCriarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarReservaActionPerformed(evt);
+            }
+        });
+        pnlReservas.add(btnCriarReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 190, 100, 40));
+
+        btnAtualizaReserva.setText("ATUALIZAR");
+        btnAtualizaReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizaReservaActionPerformed(evt);
+            }
+        });
+        pnlReservas.add(btnAtualizaReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 190, 100, 40));
+
+        btnDeletaReserva.setText("DELETAR");
+        btnDeletaReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletaReservaActionPerformed(evt);
+            }
+        });
+        pnlReservas.add(btnDeletaReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 190, 100, 40));
+
+        lblFundoReservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/menu_content.png"))); // NOI18N
+        pnlReservas.add(lblFundoReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        pnlContent.add(pnlReservas, "pnlReservas");
 
         jSplitPane1.setRightComponent(pnlContent);
 
@@ -472,6 +592,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.userController.closeConn();
+        this.reservaController.closeConn();
         System.out.println("Conexão encerrada.");
         System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
@@ -618,6 +739,127 @@ public class HomePage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeletarSelecionadoActionPerformed
 
+    private void btnReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservasActionPerformed
+        cardLayout.show(pnlContent, "pnlReservas");
+    }//GEN-LAST:event_btnReservasActionPerformed
+
+    private void btnCriarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReservaActionPerformed
+        this.cadReserva = new CadReserva();
+        cadReserva.setVisible(true);
+    }//GEN-LAST:event_btnCriarReservaActionPerformed
+
+    private void btnBuscarReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarReservasActionPerformed
+        String documento = txtDocReserva.getText();
+        
+        if (documento.equals("")) {
+            try {
+                DefaultTableModel table = (DefaultTableModel) tableReservas.getModel();
+                table.setRowCount(0);
+                
+                this.reservaController.listarReservas();
+                
+                for(Reserva reserva: this.reservaController.getReservas()){
+                    table.addRow(new Object[]{
+                        reserva.getId(),
+                        reserva.getQuarto(),
+                        reserva.getHospede(),
+                        reserva.getEntrada(),
+                        reserva.getSaida()
+                    });
+                }
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(pnlContent, "Houve um erro na listagem.", "Erro na Listagem", JOptionPane.ERROR_MESSAGE);
+            } 
+        } else {
+            try {
+                DefaultTableModel table = (DefaultTableModel) tableReservas.getModel();
+                table.setRowCount(0);
+                
+                this.reservaController.buscaReserva(documento);
+                
+                for(Reserva reserva: this.reservaController.getReservas()){
+                    table.addRow(new Object[]{
+                        reserva.getId(),
+                        reserva.getQuarto(),
+                        reserva.getHospede(),
+                        reserva.getEntrada(),
+                        reserva.getSaida()
+                    });
+                }
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(pnlContent, "Houve um erro na busca.", "Erro na Busca", JOptionPane.ERROR_MESSAGE);
+            } 
+        }
+    }//GEN-LAST:event_btnBuscarReservasActionPerformed
+
+    private void btnAtualizaReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizaReservaActionPerformed
+        String documento = txtDocReserva.getText();
+        
+        Reserva reserva = this.reservaSelecionada;
+        
+        this.cadReserva = new CadReserva(reserva.getId(),reserva.getQuarto(), documento, reserva.getEntrada(), reserva.getSaida());
+        cadReserva.setVisible(true);
+    }//GEN-LAST:event_btnAtualizaReservaActionPerformed
+
+    private void btnDeletaReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletaReservaActionPerformed
+        int id = reservaSelecionada.getId();
+        try {
+            int status = reservaController.deleteReserva(id);
+            
+            if (status == 1) {
+                JOptionPane.showMessageDialog(null, "Reserva apagada com sucesso!", "Sucesso.", JOptionPane.DEFAULT_OPTION);
+            } else { 
+                JOptionPane.showMessageDialog(null, "Houve um erro ao apagar a reserva.", "Erro ao apagar.", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Houve um erro ao apagar.", "Erro ao apagar.", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeletaReservaActionPerformed
+
+    private void btnLimparReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparReservaActionPerformed
+        limparReserva();
+    }//GEN-LAST:event_btnLimparReservaActionPerformed
+
+    private void tableReservasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableReservasMouseClicked
+//        DefaultTableModel table = (DefaultTableModel) tableUsuarios.getModel();
+//        
+//        int id = Integer.parseInt(table.getValueAt(tableUsuarios.getSelectedRow(), 0).toString());
+//        
+//        ArrayList<Usuario> listaUsuarios = this.userController.getUsuarios();
+//        this.usuarioSelecionado = listaUsuarios.stream()
+//                .filter(usuario -> usuario.getId() == id)
+//                .findFirst();
+//        
+//        this.txtNomeCompleto.setText(this.usuarioSelecionado.get().getNome());
+//        this.txtUsername.setText(this.usuarioSelecionado.get().getNomeUsuario());
+//        this.txtSenha.setText(this.usuarioSelecionado.get().getSenha());
+//        String cargo = this.usuarioSelecionado.get().getCargo();
+//        this.groupCargo.setSelected(
+//                cargo.equals("Gerente") 
+//                        ? this.radioAdmin.getModel() 
+//                        : this.radioFuncionario.getModel(), 
+//                true);
+//        
+//        toggleCamposSensiveis(false, false);
+//        Usuario usuarioLogado = this.userController.getCurrentUser();
+//        if (usuarioLogado.getCargo().equals("Gerente")) {
+//            toggleCamposSensiveis(true, true);           
+//        } else if (usuarioLogado.getId() == this.usuarioSelecionado.get().getId()) {
+//            toggleCamposSensiveis(true, false); 
+//        }
+
+        DefaultTableModel table = (DefaultTableModel) tableReservas.getModel();
+        
+        this.reservaSelecionada = new Reserva();
+        
+        this.reservaSelecionada.setId(Integer.parseInt(table.getValueAt(tableReservas.getSelectedRow(), 0).toString()));
+        this.reservaSelecionada.setQuarto(Integer.parseInt(tableReservas.getValueAt(tableReservas.getSelectedRow(), 1).toString()));
+        this.reservaSelecionada.setHospede(tableReservas.getValueAt(tableReservas.getSelectedRow(), 2).toString());
+        this.reservaSelecionada.setEntrada(tableReservas.getValueAt(tableReservas.getSelectedRow(), 3).toString());
+        this.reservaSelecionada.setSaida(tableReservas.getValueAt(tableReservas.getSelectedRow(), 4).toString());
+    }//GEN-LAST:event_tableReservasMouseClicked
     private void btnBuscarHospede1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHospede1ActionPerformed
         CadHospede hospede = new CadHospede();
         hospede.setVisible(true);
@@ -691,6 +933,12 @@ public class HomePage extends javax.swing.JFrame {
         return usuario;
     }
     
+    public void limparReserva(){
+        txtDocReserva.setText("");
+        DefaultTableModel table = (DefaultTableModel) tableReservas.getModel();
+        table.setRowCount(0);
+    }
+    
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -726,17 +974,22 @@ public class HomePage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableHospedes;
     private javax.swing.JTable TableQuartos;
-    private javax.swing.JTable TableUsuarios;
+    private javax.swing.JButton btnAtualizaReserva;
     private javax.swing.JButton btnBuscarHospede;
     private javax.swing.JButton btnBuscarHospede1;
     private javax.swing.JButton btnBuscarQuarto;
+    private javax.swing.JButton btnBuscarReservas;
     private javax.swing.JButton btnBuscarUsuario;
     private javax.swing.JButton btnConfirmUsuario;
+    private javax.swing.JButton btnCriarReserva;
+    private javax.swing.JButton btnDeletaReserva;
     private javax.swing.JButton btnDeletarSelecionado;
     private javax.swing.JButton btnHospedes;
     private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnLimparReserva;
     private javax.swing.JButton btnLimparSelecionado;
     private javax.swing.JButton btnQuartos;
+    private javax.swing.JButton btnReservas;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnUsuarios;
     private javax.swing.ButtonGroup groupCargo;
@@ -750,10 +1003,12 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel lblCargo;
     private javax.swing.JLabel lblDescHospedes;
     private javax.swing.JLabel lblDescQuartos;
+    private javax.swing.JLabel lblDescReservas;
     private javax.swing.JLabel lblDescUsuarios;
     private javax.swing.JLabel lblFundoDefault;
     private javax.swing.JLabel lblFundoHospedes;
     private javax.swing.JLabel lblFundoQuartos;
+    private javax.swing.JLabel lblFundoReservas;
     private javax.swing.JLabel lblFundoUsuarios;
     private javax.swing.JLabel lblNomeCompleto;
     private javax.swing.JLabel lblNovoUsuario;
@@ -761,19 +1016,23 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel lblSidenavBg;
     private javax.swing.JLabel lblTituloHospedes;
     private javax.swing.JLabel lblTituloQuartos;
+    private javax.swing.JLabel lblTituloReservas;
     private javax.swing.JLabel lblTituloUsuarios;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel pnlContent;
     private javax.swing.JPanel pnlDefault;
     private javax.swing.JPanel pnlHospedes;
     private javax.swing.JPanel pnlQuartos;
+    private javax.swing.JPanel pnlReservas;
     private javax.swing.JPanel pnlSideNav;
     private javax.swing.JPanel pnlUsuario;
     private javax.swing.JPanel pnlUsuarios;
     private javax.swing.JRadioButton radioAdmin;
     private javax.swing.JRadioButton radioFuncionario;
     private javax.swing.JSpinner spnBuscaQuarto;
+    private javax.swing.JTable tableReservas;
     private javax.swing.JTable tableUsuarios;
+    private javax.swing.JTextField txtDocReserva;
     private javax.swing.JTextField txtDocumentoHospede;
     private javax.swing.JTextField txtNomeCompleto;
     private javax.swing.JPasswordField txtSenha;

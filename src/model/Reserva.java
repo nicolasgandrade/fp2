@@ -3,16 +3,16 @@ package model;
 public class Reserva {
     
     private int id;
-    private Quarto quarto;
-    private Hospede hospede;
-    private int entrada;
-    private int saida;
+    private int quarto;
+    private String hospede;
+    private String entrada;
+    private String saida;
 
     
     public Reserva(){
     }
     
-    public Reserva(int id,Quarto quarto, Hospede hospede,int entrada, int saida){
+    public Reserva(int id,int quarto, String hospede, String entrada, String saida){
         this.id=id;
         this.quarto=quarto;
         this.hospede=hospede;
@@ -28,35 +28,42 @@ public class Reserva {
         this.id = id;
     }
     
-    public Quarto getQuarto() {
+    public int getQuarto() {
         return quarto;
     }
 
-    public void setNum_quarto(Quarto quarto) {
+    public void setQuarto(int quarto) {
         this.quarto = quarto;
     }
 
-    public Hospede getHospede() {
+    public String getHospede() {
         return hospede;
     }
 
-    public void setHospede_id(Hospede hospede) {
+    public void setHospede(String hospede) {
         this.hospede = hospede;
     }
 
-    public int getEntrada() {
+    public String getEntrada() {
         return entrada;
     }
 
-    public void setEntrada(int entrada) {
+    public void setEntrada(String entrada) {
         this.entrada = entrada;
     }
 
-    public int getSaida() {
+    public String getSaida() {
         return saida;
     }
 
-    public void setSaida(int saida) {
+    public void setSaida(String saida) {
         this.saida = saida;
     }
+
+    @Override
+    public String toString() {
+        return "Reserva{" + "id=" + id + ", quarto=" + quarto + ", hospede=" + hospede + ", entrada=" + entrada + ", saida=" + saida + '}';
+    }
+    
+    
 }
