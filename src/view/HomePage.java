@@ -23,13 +23,15 @@ public class HomePage extends javax.swing.JFrame {
     ReservaController reservaController;
     Optional<Usuario> usuarioSelecionado;
     CadReserva cadReserva;
-
+    ArrayList<Reserva> reservasBuscadas;
+    Reserva reservaSelecionada;
+    
     public HomePage(UserController userController) {
         initComponents();
         this.userController = userController;
         this.reservaController = new ReservaController();
         cardLayout = (CardLayout)(pnlContent.getLayout());
-        this.cadReserva = new CadReserva();
+        reservasBuscadas = new ArrayList<>();     
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -457,6 +459,11 @@ public class HomePage extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableReservas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableReservasMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tableReservas);
 
         pnlReservas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 860, 420));
@@ -483,6 +490,11 @@ public class HomePage extends javax.swing.JFrame {
         pnlReservas.add(btnBuscarReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, -1, 40));
 
         btnLimparReserva.setText("LIMPAR");
+        btnLimparReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparReservaActionPerformed(evt);
+            }
+        });
         pnlReservas.add(btnLimparReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 100, 40));
 
         btnCriarReserva.setText("CRIAR");
@@ -668,6 +680,7 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnReservasActionPerformed
 
     private void btnCriarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReservaActionPerformed
+        this.cadReserva = new CadReserva();
         cadReserva.setVisible(true);
     }//GEN-LAST:event_btnCriarReservaActionPerformed
 
@@ -699,15 +712,17 @@ public class HomePage extends javax.swing.JFrame {
                 DefaultTableModel table = (DefaultTableModel) tableReservas.getModel();
                 table.setRowCount(0);
                 
-                Reserva reserva = this.reservaController.buscaReserva(documento);
+                this.reservaController.buscaReserva(documento);
                 
-                table.addRow(new Object[]{
+                for(Reserva reserva: this.reservaController.getReservas()){
+                    table.addRow(new Object[]{
                         reserva.getId(),
                         reserva.getQuarto(),
                         reserva.getHospede(),
                         reserva.getEntrada(),
                         reserva.getSaida()
                     });
+                }
                 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(pnlContent, "Houve um erro na busca.", "Erro na Busca", JOptionPane.ERROR_MESSAGE);
@@ -716,12 +731,71 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarReservasActionPerformed
 
     private void btnAtualizaReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizaReservaActionPerformed
+        String documento = txtDocReserva.getText();
         
+        Reserva reserva = this.reservaSelecionada;
+        
+        this.cadReserva = new CadReserva(reserva.getId(),reserva.getQuarto(), documento, reserva.getEntrada(), reserva.getSaida());
+        cadReserva.setVisible(true);
     }//GEN-LAST:event_btnAtualizaReservaActionPerformed
 
     private void btnDeletaReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletaReservaActionPerformed
-        
+        int id = reservaSelecionada.getId();
+        try {
+            int status = reservaController.deleteReserva(id);
+            
+            if (status == 1) {
+                JOptionPane.showMessageDialog(null, "Reserva apagada com sucesso!", "Sucesso.", JOptionPane.DEFAULT_OPTION);
+            } else { 
+                JOptionPane.showMessageDialog(null, "Houve um erro ao apagar a reserva.", "Erro ao apagar.", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Houve um erro ao apagar.", "Erro ao apagar.", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnDeletaReservaActionPerformed
+
+    private void btnLimparReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparReservaActionPerformed
+        limparReserva();
+    }//GEN-LAST:event_btnLimparReservaActionPerformed
+
+    private void tableReservasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableReservasMouseClicked
+//        DefaultTableModel table = (DefaultTableModel) tableUsuarios.getModel();
+//        
+//        int id = Integer.parseInt(table.getValueAt(tableUsuarios.getSelectedRow(), 0).toString());
+//        
+//        ArrayList<Usuario> listaUsuarios = this.userController.getUsuarios();
+//        this.usuarioSelecionado = listaUsuarios.stream()
+//                .filter(usuario -> usuario.getId() == id)
+//                .findFirst();
+//        
+//        this.txtNomeCompleto.setText(this.usuarioSelecionado.get().getNome());
+//        this.txtUsername.setText(this.usuarioSelecionado.get().getNomeUsuario());
+//        this.txtSenha.setText(this.usuarioSelecionado.get().getSenha());
+//        String cargo = this.usuarioSelecionado.get().getCargo();
+//        this.groupCargo.setSelected(
+//                cargo.equals("Gerente") 
+//                        ? this.radioAdmin.getModel() 
+//                        : this.radioFuncionario.getModel(), 
+//                true);
+//        
+//        toggleCamposSensiveis(false, false);
+//        Usuario usuarioLogado = this.userController.getCurrentUser();
+//        if (usuarioLogado.getCargo().equals("Gerente")) {
+//            toggleCamposSensiveis(true, true);           
+//        } else if (usuarioLogado.getId() == this.usuarioSelecionado.get().getId()) {
+//            toggleCamposSensiveis(true, false); 
+//        }
+
+        DefaultTableModel table = (DefaultTableModel) tableReservas.getModel();
+        
+        this.reservaSelecionada = new Reserva();
+        
+        this.reservaSelecionada.setId(Integer.parseInt(table.getValueAt(tableReservas.getSelectedRow(), 0).toString()));
+        this.reservaSelecionada.setQuarto(Integer.parseInt(tableReservas.getValueAt(tableReservas.getSelectedRow(), 1).toString()));
+        this.reservaSelecionada.setHospede(tableReservas.getValueAt(tableReservas.getSelectedRow(), 2).toString());
+        this.reservaSelecionada.setEntrada(tableReservas.getValueAt(tableReservas.getSelectedRow(), 3).toString());
+        this.reservaSelecionada.setSaida(tableReservas.getValueAt(tableReservas.getSelectedRow(), 4).toString());
+    }//GEN-LAST:event_tableReservasMouseClicked
 
     public void toggleCamposSensiveis(boolean isEnabled, boolean isAdmin) {
         this.txtUsername.setEnabled(isEnabled);

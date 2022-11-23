@@ -59,4 +59,11 @@ public class Reserva {
     public void setSaida(String saida) {
         this.saida = saida;
     }
+
+    @Override
+    public String toString() {
+        return "Reserva{" + "id=" + id + ", quarto=" + quarto + ", hospede=" + hospede + ", entrada=" + entrada + ", saida=" + saida + '}';
+    }
+    
+    
 }

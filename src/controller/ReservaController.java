@@ -35,8 +35,8 @@ public class ReservaController {
             reserva.setId(Integer.parseInt(this.conn.getResultSet().getString("id")));
             reserva.setQuarto(Integer.parseInt(this.conn.getResultSet().getString("numero_quarto")));
             reserva.setHospede(this.conn.getResultSet().getString("nome"));
-            reserva.setEntrada(this.conn.getResultSet().getString("email"));
-            reserva.setSaida(this.conn.getResultSet().getString("documento"));
+            reserva.setEntrada(this.conn.getResultSet().getString("entrada"));
+            reserva.setSaida(this.conn.getResultSet().getString("saida"));
             this.reservas.add(reserva);
         }
         return this.reservas;
@@ -54,40 +54,43 @@ public class ReservaController {
         return this.conn.insertSQL(sql);
     }
     
-    public Reserva buscaReserva(String documento) throws SQLException {
+    public ArrayList buscaReserva(String documento) throws SQLException {
         int hospedeId = this.findHospedId(documento);
+        this.reservas = new ArrayList<>();
         
         String sql = "SELECT * FROM Reservas JOIN "
                 + "Hospedes ON Hospedes.id=Reservas.hospede_id "
                 + "WHERE Reservas.hospede_id=" + hospedeId + ";";
         this.conn.executarSQL(sql);
-        
-        Reserva reserva = new Reserva();        
+               
         while(this.conn.getResultSet().next()) {
+            Reserva reserva = new Reserva(); 
             reserva.setId(Integer.parseInt(this.conn.getResultSet().getString("id")));
             reserva.setQuarto(Integer.parseInt(this.conn.getResultSet().getString("numero_quarto")));
             reserva.setHospede(this.conn.getResultSet().getString("nome"));
             reserva.setEntrada(this.conn.getResultSet().getString("entrada"));
             reserva.setSaida(this.conn.getResultSet().getString("saida"));
+            this.reservas.add(reserva);
         }
-        return reserva;
+        return this.reservas;
     }
     
     public boolean updateReserva(String documento, Reserva reserva) throws SQLException {
         int hospedeId = this.findHospedId(documento);
-        
+        System.out.println(reserva.toString());
         String sql = "UPDATE Reservas SET "
-                + "numero_quarto = '" + reserva.getQuarto()+ "',"
+                + "numero_quarto = " + reserva.getQuarto()+ ","
                 + "hospede_id = " + hospedeId+ ","
                 + "entrada = '" + reserva.getEntrada()+ "',"
-                + "saida = '" + reserva.getSaida()+ "';";
+                + "saida = '" + reserva.getSaida()+ "'"
+                + " WHERE id = "+ reserva.getId() + ";";
         return this.conn.updateSQL(sql);
     }
     
-    public boolean deleteServico(String documento) throws SQLException {
-        int hospedeId = this.findHospedId(documento);
+    public int deleteReserva(int id) throws SQLException {
+        String sql = "DELETE FROM Reservas WHERE id=" + id + ";";
         
-        return this.conn.updateSQL("DELETE FROM Reservas WHERE hospede_id=" + hospedeId + ";");                
+        return this.conn.insertSQL(sql);                
     }
     
     public void closeConn(){
