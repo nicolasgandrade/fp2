@@ -7,7 +7,7 @@ import model.Reserva;
 
 public class ReservaController {
     MySQL conn = new MySQL();
-    ArrayList<Reserva> reservas = new ArrayList<>();
+    private ArrayList<Reserva> reservas = new ArrayList<>();
     
     public ReservaController() {
         this.conn.conectaBanco();
@@ -24,9 +24,8 @@ public class ReservaController {
         return hospedeId;
     }
     
-    public ArrayList listarReservas(String documento) throws SQLException{
-        int hospedeId = this.findHospedId(documento);
-        
+    public ArrayList listarReservas() throws SQLException{
+        this.reservas = new ArrayList<>();
         String sql = "SELECT * FROM Reservas JOIN "
                 + "Hospedes ON Hospedes.id=Reservas.hospede_id;";
         this.conn.executarSQL(sql);
@@ -35,9 +34,9 @@ public class ReservaController {
             Reserva reserva = new Reserva();
             reserva.setId(Integer.parseInt(this.conn.getResultSet().getString("id")));
             reserva.setQuarto(Integer.parseInt(this.conn.getResultSet().getString("numero_quarto")));
-            reserva.setHospede(this.conn.getResultSet().getString("hospede_id"));
-            reserva.setEntrada(Integer.parseInt(this.conn.getResultSet().getString("email")));
-            reserva.setSaida(Integer.parseInt(this.conn.getResultSet().getString("documento")));
+            reserva.setHospede(this.conn.getResultSet().getString("nome"));
+            reserva.setEntrada(this.conn.getResultSet().getString("email"));
+            reserva.setSaida(this.conn.getResultSet().getString("documento"));
             this.reservas.add(reserva);
         }
         return this.reservas;
@@ -67,9 +66,9 @@ public class ReservaController {
         while(this.conn.getResultSet().next()) {
             reserva.setId(Integer.parseInt(this.conn.getResultSet().getString("id")));
             reserva.setQuarto(Integer.parseInt(this.conn.getResultSet().getString("numero_quarto")));
-            reserva.setHospede(this.conn.getResultSet().getString("hospede_id"));
-            reserva.setEntrada(Integer.parseInt(this.conn.getResultSet().getString("email")));
-            reserva.setSaida(Integer.parseInt(this.conn.getResultSet().getString("documento")));
+            reserva.setHospede(this.conn.getResultSet().getString("nome"));
+            reserva.setEntrada(this.conn.getResultSet().getString("entrada"));
+            reserva.setSaida(this.conn.getResultSet().getString("saida"));
         }
         return reserva;
     }
@@ -91,10 +90,15 @@ public class ReservaController {
         return this.conn.updateSQL("DELETE FROM Reservas WHERE hospede_id=" + hospedeId + ";");                
     }
     
-    
-    
     public void closeConn(){
         this.conn.fechaBanco();
     }
 
+    public ArrayList<Reserva> getReservas() {
+        return reservas;
+    }
+
+    public void setReservas(ArrayList<Reserva> reservas) {
+        this.reservas = reservas;
+    }
 }

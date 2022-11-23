@@ -9,23 +9,27 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Categoria;
 import model.Quarto;
+import model.Reserva;
 import model.Usuario;
 
 public class HomePage extends javax.swing.JFrame {
     CardLayout cardLayout;
     UserController userController;
-    ReservaController reserva;
+    ReservaController reservaController;
     Optional<Usuario> usuarioSelecionado;
     CadReserva cadReserva;
 
     public HomePage(UserController userController) {
         initComponents();
         this.userController = userController;
+        this.reservaController = new ReservaController();
         cardLayout = (CardLayout)(pnlContent.getLayout());
-        cadReserva = new CadReserva();
+        this.cadReserva = new CadReserva();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -84,7 +88,7 @@ public class HomePage extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         lblFundoUsuarios = new javax.swing.JLabel();
         pnlReservas = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         tableReservas = new javax.swing.JTable();
         lblTituloReservas = new javax.swing.JLabel();
         lblDescReservas = new javax.swing.JLabel();
@@ -154,7 +158,6 @@ public class HomePage extends javax.swing.JFrame {
         });
         pnlSideNav.add(btnReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 210, 60));
 
-        btnSair.setBackground(new java.awt.Color(255, 255, 255));
         btnSair.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnSair.setForeground(new java.awt.Color(0, 51, 153));
         btnSair.setText("Sair");
@@ -454,9 +457,9 @@ public class HomePage extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(tableReservas);
+        jScrollPane3.setViewportView(tableReservas);
 
-        pnlReservas.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 860, 420));
+        pnlReservas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 860, 420));
 
         lblTituloReservas.setFont(new java.awt.Font("Helvetica Neue", 1, 36)); // NOI18N
         lblTituloReservas.setForeground(new java.awt.Color(51, 51, 51));
@@ -471,16 +474,16 @@ public class HomePage extends javax.swing.JFrame {
         txtDocReserva.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento do hóspede"));
         pnlReservas.add(txtDocReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 270, 70));
 
-        btnBuscarReservas.setText("BUSCAR");
+        btnBuscarReservas.setText("LISTAR/BUSCAR");
         btnBuscarReservas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarReservasActionPerformed(evt);
             }
         });
-        pnlReservas.add(btnBuscarReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 100, 40));
+        pnlReservas.add(btnBuscarReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, -1, 40));
 
         btnLimparReserva.setText("LIMPAR");
-        pnlReservas.add(btnLimparReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 100, 40));
+        pnlReservas.add(btnLimparReserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 100, 40));
 
         btnCriarReserva.setText("CRIAR");
         btnCriarReserva.addActionListener(new java.awt.event.ActionListener() {
@@ -541,6 +544,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         this.userController.closeConn();
+        this.reservaController.closeConn();
         System.out.println("Conexão encerrada.");
         System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
@@ -670,22 +674,44 @@ public class HomePage extends javax.swing.JFrame {
     private void btnBuscarReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarReservasActionPerformed
         String documento = txtDocReserva.getText();
         
-        try {
-            DefaultTableModel table = (DefaultTableModel) tableReservas.getModel();
-            table.setRowCount(0);
-            this.userController.setUsuarios(new ArrayList<>());
-            this.userController.listarUsuarios(nome);
-            
-            for (Usuario usuario: this.userController.getUsuarios()) {
-                table.addRow(new Object[] {
-                    usuario.getId(),
-                    usuario.getNome(),
-                    usuario.getNomeUsuario(),
-                    usuario.getCargo()
-                });
-            }
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, erro);
+        if (documento.equals("")) {
+            try {
+                DefaultTableModel table = (DefaultTableModel) tableReservas.getModel();
+                table.setRowCount(0);
+                
+                this.reservaController.listarReservas();
+                
+                for(Reserva reserva: this.reservaController.getReservas()){
+                    table.addRow(new Object[]{
+                        reserva.getId(),
+                        reserva.getQuarto(),
+                        reserva.getHospede(),
+                        reserva.getEntrada(),
+                        reserva.getSaida()
+                    });
+                }
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(pnlContent, "Houve um erro na listagem.", "Erro na Listagem", JOptionPane.ERROR_MESSAGE);
+            } 
+        } else {
+            try {
+                DefaultTableModel table = (DefaultTableModel) tableReservas.getModel();
+                table.setRowCount(0);
+                
+                Reserva reserva = this.reservaController.buscaReserva(documento);
+                
+                table.addRow(new Object[]{
+                        reserva.getId(),
+                        reserva.getQuarto(),
+                        reserva.getHospede(),
+                        reserva.getEntrada(),
+                        reserva.getSaida()
+                    });
+                
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(pnlContent, "Houve um erro na busca.", "Erro na Busca", JOptionPane.ERROR_MESSAGE);
+            } 
         }
     }//GEN-LAST:event_btnBuscarReservasActionPerformed
 
@@ -805,7 +831,6 @@ public class HomePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableQuartos;
-    private javax.swing.JTable TableUsuarios;
     private javax.swing.JButton btnAtualizaReserva;
     private javax.swing.JButton btnBuscarHospede;
     private javax.swing.JButton btnBuscarQuarto;
@@ -826,6 +851,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.ButtonGroup groupCargo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblBemVindo;

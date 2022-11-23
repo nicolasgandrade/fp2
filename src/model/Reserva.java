@@ -5,14 +5,14 @@ public class Reserva {
     private int id;
     private int quarto;
     private String hospede;
-    private int entrada;
-    private int saida;
+    private String entrada;
+    private String saida;
 
     
     public Reserva(){
     }
     
-    public Reserva(int id,int quarto, String hospede,int entrada, int saida){
+    public Reserva(int id,int quarto, String hospede, String entrada, String saida){
         this.id=id;
         this.quarto=quarto;
         this.hospede=hospede;
@@ -44,19 +44,19 @@ public class Reserva {
         this.hospede = hospede;
     }
 
-    public int getEntrada() {
+    public String getEntrada() {
         return entrada;
     }
 
-    public void setEntrada(int entrada) {
+    public void setEntrada(String entrada) {
         this.entrada = entrada;
     }
 
-    public int getSaida() {
+    public String getSaida() {
         return saida;
     }
 
-    public void setSaida(int saida) {
+    public void setSaida(String saida) {
         this.saida = saida;
     }
 }
