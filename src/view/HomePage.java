@@ -597,10 +597,12 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         int numero = (Integer)spnBuscaQuarto.getValue();
         QuartosController quarto = new QuartosController();
+        
         try {
             DefaultTableModel table = (DefaultTableModel) TableQuartos.getModel();
             table.setNumRows(0);
             ArrayList<Quarto> lista = quarto.listarQuartos(numero);
+            
             for (int num = 0; num <lista.size(); num++){
                 if (lista.get(num).isOcupado() == true) {
                     table.addRow(new Object[]{

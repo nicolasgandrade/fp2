@@ -22,10 +22,11 @@ public class QuartosController {
         this.conn.insertSQL(sql);
     }
     
-    public ArrayList listarQuartos(int número) throws SQLException{
+    public ArrayList listarQuartos(int numero) throws SQLException{
         String sql = "SELECT * FROM Quartos "
                 + "JOIN Categorias "
-                + "ON Categorias.id = Quartos.categoria_id;";
+                + "ON Categorias.id = Quartos.categoria_id "
+                + "WHERE numero = " + numero + " ;";
         this.conn.executarSQL(sql);        
 
         while(this.conn.getResultSet().next()) { 
