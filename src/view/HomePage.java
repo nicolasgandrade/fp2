@@ -28,6 +28,7 @@ public class HomePage extends javax.swing.JFrame {
     ArrayList<Reserva> reservasBuscadas;
     Reserva reservaSelecionada;
     ControllerHospede hospedesController;
+    CadQuarto cadQuarto;
 
     public HomePage(UserController userController) {
         initComponents();
@@ -908,6 +909,8 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnCriarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarQuartoActionPerformed
         // TODO add your handling code here:
+        this.cadQuarto = new CadQuarto();
+        cadQuarto.setVisible(true);
     }//GEN-LAST:event_btnCriarQuartoActionPerformed
 
     private void btnAtualizarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarQuartoActionPerformed
