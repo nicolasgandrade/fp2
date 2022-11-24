@@ -62,6 +62,10 @@ public class HomePage extends javax.swing.JFrame {
         lblDescQuartos = new javax.swing.JLabel();
         spnBuscaQuarto = new javax.swing.JSpinner();
         btnBuscarQuarto = new javax.swing.JButton();
+        btnLimparQuarto = new javax.swing.JButton();
+        btnCriarQuarto = new javax.swing.JButton();
+        btnAtualizarQuarto = new javax.swing.JButton();
+        btnDeletarQuarto = new javax.swing.JButton();
         lblFundoQuartos = new javax.swing.JLabel();
         pnlHospedes = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -224,7 +228,7 @@ public class HomePage extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(TableQuartos);
 
-        pnlQuartos.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 580, 420));
+        pnlQuartos.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 860, 420));
 
         lblTituloQuartos.setFont(new java.awt.Font("Liberation Sans", 1, 36)); // NOI18N
         lblTituloQuartos.setForeground(new java.awt.Color(51, 51, 51));
@@ -246,6 +250,38 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         pnlQuartos.add(btnBuscarQuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 100, 40));
+
+        btnLimparQuarto.setText("LIMPAR");
+        btnLimparQuarto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparQuartoActionPerformed(evt);
+            }
+        });
+        pnlQuartos.add(btnLimparQuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 100, 40));
+
+        btnCriarQuarto.setText("CRIAR");
+        btnCriarQuarto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarQuartoActionPerformed(evt);
+            }
+        });
+        pnlQuartos.add(btnCriarQuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 190, 100, 40));
+
+        btnAtualizarQuarto.setText("ATUALIZAR");
+        btnAtualizarQuarto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarQuartoActionPerformed(evt);
+            }
+        });
+        pnlQuartos.add(btnAtualizarQuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 190, 100, 40));
+
+        btnDeletarQuarto.setText("DELETAR");
+        btnDeletarQuarto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarQuartoActionPerformed(evt);
+            }
+        });
+        pnlQuartos.add(btnDeletarQuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 190, 100, 40));
 
         lblFundoQuartos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/menu_content.png"))); // NOI18N
         pnlQuartos.add(lblFundoQuartos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -863,6 +899,25 @@ public class HomePage extends javax.swing.JFrame {
         hospede.setVisible(true);
     }//GEN-LAST:event_btnBuscarHospede1ActionPerformed
 
+    private void btnLimparQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparQuartoActionPerformed
+        // TODO add your handling code here:
+        spnBuscaQuarto.setValue(0);
+        DefaultTableModel table = (DefaultTableModel) TableQuartos.getModel();
+        table.setRowCount(0);
+    }//GEN-LAST:event_btnLimparQuartoActionPerformed
+
+    private void btnCriarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarQuartoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCriarQuartoActionPerformed
+
+    private void btnAtualizarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarQuartoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAtualizarQuartoActionPerformed
+
+    private void btnDeletarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarQuartoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeletarQuartoActionPerformed
+
     public void toggleCamposSensiveis(boolean isEnabled, boolean isAdmin) {
         this.txtUsername.setEnabled(isEnabled);
         this.txtNomeCompleto.setEnabled(isEnabled);
@@ -973,17 +1028,21 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JTable TableHospedes;
     private javax.swing.JTable TableQuartos;
     private javax.swing.JButton btnAtualizaReserva;
+    private javax.swing.JButton btnAtualizarQuarto;
     private javax.swing.JButton btnBuscarHospede;
     private javax.swing.JButton btnBuscarHospede1;
     private javax.swing.JButton btnBuscarQuarto;
     private javax.swing.JButton btnBuscarReservas;
     private javax.swing.JButton btnBuscarUsuario;
     private javax.swing.JButton btnConfirmUsuario;
+    private javax.swing.JButton btnCriarQuarto;
     private javax.swing.JButton btnCriarReserva;
     private javax.swing.JButton btnDeletaReserva;
+    private javax.swing.JButton btnDeletarQuarto;
     private javax.swing.JButton btnDeletarSelecionado;
     private javax.swing.JButton btnHospedes;
     private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnLimparQuarto;
     private javax.swing.JButton btnLimparReserva;
     private javax.swing.JButton btnLimparSelecionado;
     private javax.swing.JButton btnQuartos;
