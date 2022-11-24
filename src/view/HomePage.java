@@ -114,7 +114,6 @@ public class HomePage extends javax.swing.JFrame {
 
         pnlSideNav.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         btnUsuarios.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         btnUsuarios.setForeground(new java.awt.Color(0, 51, 153));
         btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
@@ -128,7 +127,6 @@ public class HomePage extends javax.swing.JFrame {
         });
         pnlSideNav.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 210, 60));
 
-        btnQuartos.setBackground(new java.awt.Color(255, 255, 255));
         btnQuartos.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         btnQuartos.setForeground(new java.awt.Color(0, 51, 153));
         btnQuartos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Quartos_icon.png"))); // NOI18N
@@ -142,7 +140,6 @@ public class HomePage extends javax.swing.JFrame {
         });
         pnlSideNav.add(btnQuartos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 210, 60));
 
-        btnHospedes.setBackground(new java.awt.Color(255, 255, 255));
         btnHospedes.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         btnHospedes.setForeground(new java.awt.Color(0, 51, 153));
         btnHospedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Hospedes_icon.png"))); // NOI18N
@@ -156,7 +153,6 @@ public class HomePage extends javax.swing.JFrame {
         });
         pnlSideNav.add(btnHospedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 210, 60));
 
-        btnReservas.setBackground(new java.awt.Color(255, 255, 255));
         btnReservas.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         btnReservas.setForeground(new java.awt.Color(0, 51, 153));
         btnReservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Reservas_icon.jpeg"))); // NOI18N
@@ -170,7 +166,6 @@ public class HomePage extends javax.swing.JFrame {
         });
         pnlSideNav.add(btnReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 210, 60));
 
-        btnSair.setBackground(new java.awt.Color(255, 255, 255));
         btnSair.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnSair.setForeground(new java.awt.Color(0, 51, 153));
         btnSair.setText("Sair");
@@ -216,7 +211,7 @@ public class HomePage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Número", "Andar", "Categoria_id", "Ocupado"
+                "Número", "Andar", "Categoria", "Ocupado"
             }
         ) {
             boolean[] canEdit = new boolean [] {

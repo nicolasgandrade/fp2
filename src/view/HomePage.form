@@ -55,9 +55,6 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="btnUsuarios">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Liberation Sans" size="24" style="1"/>
                 </Property>
@@ -86,9 +83,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnQuartos">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Liberation Sans" size="24" style="1"/>
                 </Property>
@@ -117,9 +111,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnHospedes">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Liberation Sans" size="24" style="1"/>
                 </Property>
@@ -148,9 +139,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnReservas">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Helvetica Neue" size="24" style="1"/>
                 </Property>
@@ -179,9 +167,6 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnSair">
               <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="24" style="1"/>
                 </Property>
@@ -316,7 +301,7 @@
                           <Table columnCount="4" rowCount="0">
                             <Column editable="false" title="N&#xfa;mero" type="java.lang.Object"/>
                             <Column editable="false" title="Andar" type="java.lang.Object"/>
-                            <Column editable="false" title="Categoria_id" type="java.lang.Object"/>
+                            <Column editable="false" title="Categoria" type="java.lang.Object"/>
                             <Column editable="false" title="Ocupado" type="java.lang.Object"/>
                           </Table>
                         </Property>

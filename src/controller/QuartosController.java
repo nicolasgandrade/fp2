@@ -23,7 +23,9 @@ public class QuartosController {
     }
     
     public ArrayList listarQuartos(int número) throws SQLException{
-        String sql = "SELECT * FROM Quartos JOIN Categorias;";
+        String sql = "SELECT * FROM Quartos "
+                + "JOIN Categorias "
+                + "ON Categorias.id = Quartos.categoria_id;";
         this.conn.executarSQL(sql);        
 
         while(this.conn.getResultSet().next()) { 
