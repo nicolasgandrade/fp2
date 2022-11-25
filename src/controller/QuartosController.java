@@ -44,6 +44,12 @@ public class QuartosController {
         return this.quartos;
     }
     
+    public int deleteQuarto(int n) throws SQLException {
+        String sql = "DELETE FROM Quartos WHERE numero = " + n + " ;";
+        
+        return this.conn.insertSQL(sql);                
+    }
+    
     public void closeConn(){
         this.conn.fechaBanco();
     }

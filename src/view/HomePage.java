@@ -30,6 +30,7 @@ public class HomePage extends javax.swing.JFrame {
     ControllerHospede hospedesController;
     CadQuarto cadQuarto;
     Quarto  quartoSelecionado;
+    QuartosController quartoController;
 
     public HomePage(UserController userController) {
         initComponents();
@@ -38,6 +39,7 @@ public class HomePage extends javax.swing.JFrame {
         cardLayout = (CardLayout)(pnlContent.getLayout());
         reservasBuscadas = new ArrayList<>();     
         this.hospedesController = new ControllerHospede();
+        this.quartoController = new QuartosController();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -926,6 +928,18 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnDeletarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarQuartoActionPerformed
         // TODO add your handling code here:
+        int numero = quartoSelecionado.getNúmero();
+        try {
+            int status = quartoController.deleteQuarto(numero);
+            
+            if (status == 1) {
+                JOptionPane.showMessageDialog(null, "Quarto apagado com sucesso!", "Sucesso.", JOptionPane.DEFAULT_OPTION);
+            } else { 
+                JOptionPane.showMessageDialog(null, "Houve um erro ao apagar o quarto.", "Erro ao apagar.", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Houve um erro ao apagar.", "Erro ao apagar.", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnDeletarQuartoActionPerformed
 
     public void toggleCamposSensiveis(boolean isEnabled, boolean isAdmin) {
