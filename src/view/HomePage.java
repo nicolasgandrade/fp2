@@ -29,6 +29,7 @@ public class HomePage extends javax.swing.JFrame {
     Reserva reservaSelecionada;
     ControllerHospede hospedesController;
     CadQuarto cadQuarto;
+    Quarto  quartoSelecionado;
 
     public HomePage(UserController userController) {
         initComponents();
@@ -915,6 +916,12 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnAtualizarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarQuartoActionPerformed
         // TODO add your handling code here:
+        int numero = (Integer)spnBuscaQuarto.getValue();
+        
+        Quarto quarto = this.quartoSelecionado;
+        
+        this.cadQuarto = new CadQuarto(numero,quarto.getAndar(), quarto.isOcupado(), quarto.getCategoria());
+        cadQuarto.setVisible(true);
     }//GEN-LAST:event_btnAtualizarQuartoActionPerformed
 
     private void btnDeletarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarQuartoActionPerformed
