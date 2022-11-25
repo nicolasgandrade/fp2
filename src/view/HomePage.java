@@ -235,6 +235,11 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         TableHospedes.setToolTipText("");
+        TableHospedes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableHospedesMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(TableHospedes);
 
         pnlHospedes.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 860, 420));
@@ -622,6 +627,10 @@ public class HomePage extends javax.swing.JFrame {
         CadHospede hospede = new CadHospede();
         hospede.setVisible(true);
     }//GEN-LAST:event_btnBuscarHospede1ActionPerformed
+
+    private void TableHospedesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableHospedesMouseClicked
+        
+    }//GEN-LAST:event_TableHospedesMouseClicked
 
     public void toggleCamposSensiveis(boolean isEnabled, boolean isAdmin) {
         this.txtUsername.setEnabled(isEnabled);

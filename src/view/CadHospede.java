@@ -1,10 +1,14 @@
 package view;
 
 import controller.ControllerHospede;
+import java.util.Optional;
+import javax.swing.JOptionPane;
 import model.Hospede;
+
 
 public class CadHospede extends javax.swing.JFrame {
     ControllerHospede controller;
+    Optional<Hospede> HospedeSelecionado;
     
     public CadHospede() {
         initComponents();
@@ -24,7 +28,9 @@ public class CadHospede extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         txtTelefone = new javax.swing.JFormattedTextField();
         txtDocumento = new javax.swing.JFormattedTextField();
+        btnDeletar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
+        btnLimpar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,10 +50,24 @@ public class CadHospede extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        btnCadastrar.setText("CADASTRAR");
+        btnDeletar.setText("DELETAR");
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarActionPerformed(evt);
+            }
+        });
+
+        btnCadastrar.setText("CRIAR/EDITAR");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
+            }
+        });
+
+        btnLimpar.setText("LIMPAR");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
             }
         });
 
@@ -58,7 +78,6 @@ public class CadHospede extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblNome)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -73,9 +92,17 @@ public class CadHospede extends javax.swing.JFrame {
                         .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblDocumento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                        .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                        .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,9 +123,12 @@ public class CadHospede extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDocumento)
                     .addComponent(txtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -115,9 +145,22 @@ public class CadHospede extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
+        if (this.HospedeSelecionado == null) {
+            JOptionPane.showMessageDialog(jPanel1, "Escolha o hóspede existente para deletar.");
+        } else {
+            int id = this.HospedeSelecionado.get().getId();
+            int res = this.controller.deleteHospede(id);
+            if (res == 1) {
+                JOptionPane.showMessageDialog(jPanel1, "Hóspede deletado com sucesso.");
+            } else {
+                JOptionPane.showMessageDialog(jPanel1, "Houve um erro ao deletar o hóspede.");
+            }
+        }
+    }//GEN-LAST:event_btnDeletarActionPerformed
+
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        
-        Hospede novoHospede = new Hospede();
+       Hospede novoHospede = new Hospede();
         novoHospede.setNome(txtNome.getText());
         novoHospede.setTelefone(txtTelefone.getText());
         novoHospede.setEmail(txtEmail.getText());
@@ -127,6 +170,14 @@ public class CadHospede extends javax.swing.JFrame {
         this.controller.encerrar(novoHospede);
         this.dispose();
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        this.txtNome.setText("");
+        this.txtTelefone.setText("");
+        this.txtEmail.setText("");
+        this.txtDocumento.setText("");
+        
+    }//GEN-LAST:event_btnLimparActionPerformed
 
 
     public static void main(String args[]) {
@@ -164,6 +215,8 @@ public class CadHospede extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnDeletar;
+    private javax.swing.JButton btnLimpar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblDocumento;
     private javax.swing.JLabel lblEmail;
