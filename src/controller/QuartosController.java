@@ -13,17 +13,31 @@ public class QuartosController {
         this.conn.conectaBanco();
     }
     
-    public void inserirQuarto(Quarto quarto){
+    public int inserirQuarto(Quarto quarto) throws SQLException{
         int isOcupado = quarto.isOcupado() ? 1 : 0;
+        int categoria_id = 1;
+        if (quarto.getCategoria().equals("Solteiro")){
+            categoria_id = 1;
+        } else if (quarto.getCategoria().equals("Duplo solteiro")){
+            categoria_id = 2;
+        } else if (quarto.getCategoria().equals("Casal")){
+            categoria_id = 3;
+        } else if (quarto.getCategoria().equals("Dormitório")){
+            categoria_id = 4;
+        } 
         String sql = "INSERT INTO Quartos(andar, categoria_id, ocupado) VALUES("
                 + quarto.getAndar()+ ","
-                + "1, "
+                + categoria_id + ","
                 + isOcupado + ");";
-        this.conn.insertSQL(sql);
+        return this.conn.insertSQL(sql);
     }
     
-    public ArrayList listarQuartos(int número) throws SQLException{
-        String sql = "SELECT * FROM Quartos JOIN Categorias;";
+    public ArrayList listarQuartos(int andar) throws SQLException{
+        
+        String sql = "SELECT * FROM Quartos "
+                + "JOIN Categorias "
+                + "ON Categorias.id = Quartos.categoria_id "
+                + "WHERE andar = " + andar + " ;";
         this.conn.executarSQL(sql);        
 
         while(this.conn.getResultSet().next()) { 
@@ -31,7 +45,7 @@ public class QuartosController {
             quarto.setNúmero(Integer.parseInt(this.conn.getResultSet().getString("numero")));
             quarto.setAndar(Integer.parseInt(this.conn.getResultSet().getString("andar")));
             quarto.setCategoria(this.conn.getResultSet().getString("nome"));
-            if (this.conn.getResultSet().getString("ocupado").equals("ocupado")){
+            if (this.conn.getResultSet().getString("ocupado").equals("1")){
                 quarto.setOcupado(true);
             } else {
                 quarto.setOcupado(false);
@@ -39,6 +53,31 @@ public class QuartosController {
             quartos.add(quarto);
         }
         return this.quartos;
+    }
+    
+    public boolean updateQuarto (Quarto quarto) throws SQLException {
+        int categoria_id = 1;
+        if (quarto.getCategoria().equals("Solteiro")){
+            categoria_id = 1;
+        } else if (quarto.getCategoria().equals("Duplo solteiro")){
+            categoria_id = 2;
+        } else if (quarto.getCategoria().equals("Casal")){
+            categoria_id = 3;
+        } else if (quarto.getCategoria().equals("Dormitório")){
+            categoria_id = 4;
+        }
+        String sql = "UPDATE Quartos SET "
+                + "andar = " + quarto.getAndar() + " , "
+                + "categoria_id = " + categoria_id + " , "
+                + "ocupado = " + quarto.isOcupado() 
+                + " WHERE numero = " + quarto.getNúmero() + " ;";
+        return this.conn.updateSQL(sql);
+    }    
+    
+    public int deleteQuarto(int n) throws SQLException {
+        String sql = "DELETE FROM Quartos WHERE numero = " + n + " ;";
+        
+        return this.conn.insertSQL(sql);                
     }
     
     public void closeConn(){
