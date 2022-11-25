@@ -45,7 +45,7 @@ public class QuartosController {
             quarto.setNúmero(Integer.parseInt(this.conn.getResultSet().getString("numero")));
             quarto.setAndar(Integer.parseInt(this.conn.getResultSet().getString("andar")));
             quarto.setCategoria(this.conn.getResultSet().getString("nome"));
-            if (this.conn.getResultSet().getString("ocupado").equals("ocupado")){
+            if (this.conn.getResultSet().getString("ocupado").equals("1")){
                 quarto.setOcupado(true);
             } else {
                 quarto.setOcupado(false);

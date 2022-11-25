@@ -37,7 +37,7 @@ public class CadQuarto extends javax.swing.JFrame {
         lblCategoria = new javax.swing.JLabel();
         cboCategoria = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jpQuartos.setBorder(javax.swing.BorderFactory.createTitledBorder("Quartos"));
 
@@ -110,7 +110,7 @@ public class CadQuarto extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jpQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 185, Short.MAX_VALUE)
         );
 
         pack();

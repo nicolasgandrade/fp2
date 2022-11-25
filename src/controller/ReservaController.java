@@ -2,7 +2,10 @@ package controller;
 
 import utils.MySQL;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import model.Reserva;
 
 public class ReservaController {
@@ -42,7 +45,7 @@ public class ReservaController {
         return this.reservas;
     }
     
-    public int addReserva(String documento, Reserva reserva) throws SQLException {
+    public int addReserva(String documento, Reserva reserva) throws SQLException, ParseException {
         int hospedeId = this.findHospedId(documento);
         
         String sql = "INSERT INTO Reservas VALUES("
@@ -51,7 +54,21 @@ public class ReservaController {
                 + hospedeId + ","
                 + "'" + reserva.getEntrada()+ "',"
                 + "'" + reserva.getSaida()+ "');";
+        
+        Date entrada = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(reserva.getEntrada());
+        Date saida = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").parse(reserva.getSaida());
+        boolean estadoQuarto = false;
+        if ((new Date().after(entrada) || new Date().equals(entrada)) && (new Date().before(saida) || new Date().equals(saida))){
+            estadoQuarto = true;
+        }
+        System.out.println(estadoQuarto);
+        
+        String sqlQuarto = "UPDATE Quartos SET "
+                + "ocupado = " + estadoQuarto + " WHERE "
+                + "numero = " + reserva.getQuarto() + ";";
+        this.conn.updateSQL(sqlQuarto);
         return this.conn.insertSQL(sql);
+        
     }
     
     public ArrayList buscaReserva(String documento) throws SQLException {
