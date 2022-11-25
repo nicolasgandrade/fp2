@@ -735,6 +735,7 @@ public class HomePage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TableHospedes;
     private javax.swing.JTable TableQuartos;
+    private javax.swing.JTable TableUsuarios;
     private javax.swing.JButton btnBuscarHospede;
     private javax.swing.JButton btnBuscarHospede1;
     private javax.swing.JButton btnBuscarQuarto;
