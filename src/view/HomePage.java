@@ -316,6 +316,11 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         TableHospedes.setToolTipText("");
+        TableHospedes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableHospedesMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(TableHospedes);
 
         pnlHospedes.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 860, 420));
@@ -908,6 +913,9 @@ public class HomePage extends javax.swing.JFrame {
         hospede.setVisible(true);
     }//GEN-LAST:event_btnBuscarHospede1ActionPerformed
 
+    private void TableHospedesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableHospedesMouseClicked
+        
+    }//GEN-LAST:event_TableHospedesMouseClicked
     private void btnLimparQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparQuartoActionPerformed
         // TODO add your handling code here:
         spnBuscaQuarto.setValue(0);

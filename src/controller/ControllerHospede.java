@@ -7,6 +7,7 @@ import utils.MySQL;
 
 public class ControllerHospede {
     MySQL conn = new MySQL();
+    Hospede currentHospede = new Hospede();
     ArrayList<Hospede> hospedes = new ArrayList<>();
     
     public ControllerHospede(){
@@ -40,6 +41,24 @@ public class ControllerHospede {
             hospedes.add(hospede);
         }
         return hospedes;   
+    }
+    
+        public boolean updateHospede(Hospede hospede) {
+        
+        String sql = "UPDATE Hospedes SET "
+                + "nome = '" + hospede.getNome() + "', "
+                + "telefone = '" + hospede.getTelefone()+ "', "
+                + "email = '" + hospede.getEmail()+ "', "
+                + "id = " + hospede.getId() + " "
+                + "documento = " + hospede.getDocumento()+ ";";
+        
+        return this.conn.updateSQL(sql);
+    }
+    
+    public int deleteHospede(int id) {
+        String sql = "DELETE FROM Hospedes WHERE id = " + id;
+        
+        return this.conn.insertSQL(sql);
     }
     
     public void encerrar(Hospede hospede) {
