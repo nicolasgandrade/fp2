@@ -230,6 +230,11 @@ public class HomePage extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        TableQuartos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableQuartosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(TableQuartos);
 
         pnlQuartos.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 860, 420));
@@ -941,6 +946,10 @@ public class HomePage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Houve um erro ao apagar.", "Erro ao apagar.", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeletarQuartoActionPerformed
+
+    private void TableQuartosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableQuartosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TableQuartosMouseClicked
 
     public void toggleCamposSensiveis(boolean isEnabled, boolean isAdmin) {
         this.txtUsername.setEnabled(isEnabled);
