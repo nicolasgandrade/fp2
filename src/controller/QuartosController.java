@@ -13,13 +13,13 @@ public class QuartosController {
         this.conn.conectaBanco();
     }
     
-    public void inserirQuarto(Quarto quarto){
+    public int inserirQuarto(Quarto quarto) throws SQLException{
         int isOcupado = quarto.isOcupado() ? 1 : 0;
         String sql = "INSERT INTO Quartos(andar, categoria_id, ocupado) VALUES("
                 + quarto.getAndar()+ ","
                 + "1, "
                 + isOcupado + ");";
-        this.conn.insertSQL(sql);
+        return this.conn.insertSQL(sql);
     }
     
     public ArrayList listarQuartos(int numero) throws SQLException{

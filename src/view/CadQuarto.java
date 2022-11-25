@@ -1,16 +1,31 @@
 package view;
 
 import controller.QuartosController;
+import javax.swing.JOptionPane;
 import model.Quarto;
 
 public class CadQuarto extends javax.swing.JFrame {
     QuartosController controller;
+    QuartosController quartoController;
 
     public CadQuarto() {
         initComponents();
-        controller = new QuartosController();
+        this.controller = new QuartosController();
     }
 
+    public CadQuarto(int numero, int andar, Boolean ocupação, String categoria) {
+        initComponents();
+        txtNumero.setText(String.valueOf(numero));
+        txtAndar.setText(String.valueOf(andar));
+        if (cboOcupado.getSelectedItem().toString().equals("Ocupado")){
+            cboOcupado.setSelectedItem(ocupação);
+        } else if (cboOcupado.getSelectedItem().toString().equals("Desocupado")){
+            cboOcupado.setSelectedItem(ocupação);
+        }        
+        
+        this.quartoController = new QuartosController();
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -23,6 +38,8 @@ public class CadQuarto extends javax.swing.JFrame {
         cboOcupado = new javax.swing.JComboBox<>();
         lblOcupação = new javax.swing.JLabel();
         btnCadastro = new javax.swing.JButton();
+        lblCategoria = new javax.swing.JLabel();
+        cboCategoria = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,6 +60,10 @@ public class CadQuarto extends javax.swing.JFrame {
             }
         });
 
+        lblCategoria.setText("Categoria do Quarto");
+
+        cboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteiro", "Duplo solteiro", "Casal", "Dormitório", " " }));
+
         javax.swing.GroupLayout jpQuartosLayout = new javax.swing.GroupLayout(jpQuartos);
         jpQuartos.setLayout(jpQuartosLayout);
         jpQuartosLayout.setHorizontalGroup(
@@ -51,16 +72,21 @@ public class CadQuarto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpQuartosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jpQuartosLayout.createSequentialGroup()
-                        .addGroup(jpQuartosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblAndar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblOcupação, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addGroup(jpQuartosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpQuartosLayout.createSequentialGroup()
+                        .addGroup(jpQuartosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpQuartosLayout.createSequentialGroup()
+                                .addGroup(jpQuartosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblNumero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblAndar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblOcupação, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 30, Short.MAX_VALUE))
+                            .addComponent(lblCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpQuartosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cboOcupado, 0, 1, Short.MAX_VALUE)
                             .addComponent(txtNumero, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                            .addComponent(txtAndar))))
+                            .addComponent(txtAndar)
+                            .addComponent(cboCategoria, 0, 1, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jpQuartosLayout.setVerticalGroup(
@@ -78,9 +104,13 @@ public class CadQuarto extends javax.swing.JFrame {
                 .addGroup(jpQuartosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboOcupado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblOcupação))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(jpQuartosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCategoria)
+                    .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,8 +137,28 @@ public class CadQuarto extends javax.swing.JFrame {
         } else {
             novoQuarto.setOcupado(false);
         }
+        if (cboCategoria.getSelectedItem().toString().equals("Solteiro")){
+            novoQuarto.setCategoria("Solteiro");
+        } else if (cboCategoria.getSelectedItem().toString().equals("Duplo solteiro")) {
+            novoQuarto.setCategoria("Duplo solteiro");
+        } else if (cboCategoria.getSelectedItem().toString().equals("Casal")) {
+            novoQuarto.setCategoria("Casal");
+        } else if (cboCategoria.getSelectedItem().toString().equals("Dormitório")) {
+            novoQuarto.setCategoria("Dormitório");
+        }
         
-        this.controller.inserirQuarto(novoQuarto);
+        try {
+            int status = this.quartoController.inserirQuarto(novoQuarto);
+                
+            if (status == 1) {
+                JOptionPane.showMessageDialog(null, "Quarto cadastrado com sucesso.", "Sucesso.", JOptionPane.DEFAULT_OPTION);
+            } else {
+                JOptionPane.showMessageDialog(null, "Houve algum problema no cadastro do quarto.", "Erro no cadastro." , JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Houve um erro no cadastro do quarto.", "Erro no cadastro.", JOptionPane.ERROR_MESSAGE);
+        }
+        
         this.controller.closeConn();
     }//GEN-LAST:event_btnCadastroActionPerformed
 
@@ -147,9 +197,11 @@ public class CadQuarto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastro;
+    private javax.swing.JComboBox<String> cboCategoria;
     private javax.swing.JComboBox<String> cboOcupado;
     private javax.swing.JPanel jpQuartos;
     private javax.swing.JLabel lblAndar;
+    private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblNumero;
     private javax.swing.JLabel lblOcupação;
     private javax.swing.JTextField txtAndar;
