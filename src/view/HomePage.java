@@ -249,7 +249,7 @@ public class HomePage extends javax.swing.JFrame {
         lblDescQuartos.setText("Gerencie aqui todos os quartos existentes no estabelecimento.");
         pnlQuartos.add(lblDescQuartos, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
 
-        spnBuscaQuarto.setBorder(javax.swing.BorderFactory.createTitledBorder("Número do Quarto"));
+        spnBuscaQuarto.setBorder(javax.swing.BorderFactory.createTitledBorder("Andar do Quarto"));
         pnlQuartos.add(spnBuscaQuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 270, 70));
 
         btnBuscarQuarto.setText("BUSCAR");
