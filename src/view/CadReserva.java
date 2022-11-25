@@ -1,9 +1,32 @@
 package view;
 
+import model.Reserva;
+import controller.ReservaController;
+import javax.swing.JOptionPane;
+
 public class CadReserva extends javax.swing.JFrame {
 
+    Reserva reserva;
+    Reserva modalReserva;
+    ReservaController reservaController;
+    int id;
+    
     public CadReserva() {
         initComponents();
+        this.reservaController = new ReservaController();
+    }
+    
+    public CadReserva(int id, int numQuarto, String docHospede, String entrada, String saida) {
+        initComponents();
+        this.id = id;
+        txtNumeroQuarto.setText(String.valueOf(numQuarto));
+        txtHospede.setText(docHospede);
+        String entradaData = entrada.substring(8, 10) + "/" + entrada.substring(5, 7) + "/" + entrada.substring(0, 4);
+        txtEntrada.setText(entradaData);
+        String saidaData = saida.substring(8, 10) + "/" + saida.substring(5, 7) + "/" + saida.substring(0, 4);
+        txtSaida.setText(saidaData);
+        
+        this.reservaController = new ReservaController();
     }
 
 
@@ -22,8 +45,9 @@ public class CadReserva extends javax.swing.JFrame {
         txtEntrada = new javax.swing.JFormattedTextField();
         txtSaida = new javax.swing.JFormattedTextField();
         btnCadastro = new javax.swing.JButton();
+        btnAtualizar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Nova Reserva"));
 
@@ -48,6 +72,18 @@ public class CadReserva extends javax.swing.JFrame {
         }
 
         btnCadastro.setText("RESERVAR");
+        btnCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroActionPerformed(evt);
+            }
+        });
+
+        btnAtualizar.setText("ATUALIZAR");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -57,7 +93,9 @@ public class CadReserva extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +131,9 @@ public class CadReserva extends javax.swing.JFrame {
                     .addComponent(lblSaida)
                     .addComponent(txtSaida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCadastro, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(btnAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -122,8 +162,76 @@ public class CadReserva extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
+        reserva = new Reserva();
+        reserva.setQuarto(Integer.parseInt(txtNumeroQuarto.getText()));
+        reserva.setHospede(txtHospede.getText());
+        String entrada = txtEntrada.getText();
+        String entradaFormatada = entrada.substring(6) + "-" + entrada.substring(3, 5) + "-" + entrada.substring(0, 2) + " 15:00:00";
+        reserva.setEntrada(entradaFormatada);
+        String saida = txtSaida.getText();
+        String saidaFormatada = saida.substring(6) + "-" + saida.substring(3, 5) + "-" + saida.substring(0, 2) + " 11:00:00";
+        reserva.setSaida(saidaFormatada);
+            
+        try {
+            int status = this.reservaController.addReserva(reserva.getHospede(), reserva);
+                
+            if (status == 1) {
+                JOptionPane.showMessageDialog(null, "Reserva cadastrada com sucesso.", "Sucesso.", JOptionPane.DEFAULT_OPTION);
+            } else {
+                JOptionPane.showMessageDialog(null, "Houve algum problema no cadastro da reserva.", "Erro no cadastro." , JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Houve um erro no cadastro da reserva.", "Erro no cadastro.", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCadastroActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        
+        reserva = new Reserva();
+        reserva.setId(this.id);
+        reserva.setQuarto(Integer.parseInt(txtNumeroQuarto.getText()));
+        reserva.setHospede(txtHospede.getText());
+        String entrada = txtEntrada.getText();
+        String entradaFormatada = entrada.substring(6) + "-" + entrada.substring(3, 5) + "-" + entrada.substring(0, 2) + " 15:00:00";
+        reserva.setEntrada(entradaFormatada);
+        String saida = txtSaida.getText();
+        String saidaFormatada = saida.substring(6) + "-" + saida.substring(3, 5) + "-" + saida.substring(0, 2) + " 11:00:00";
+        reserva.setSaida(saidaFormatada);
+            
+        try {
+            boolean status = this.reservaController.updateReserva(reserva.getHospede(), reserva);
+                
+            if (status) {
+                JOptionPane.showMessageDialog(null, "Atualização realizada com sucesso.", "Sucesso.", JOptionPane.DEFAULT_OPTION);
+            } else {
+                JOptionPane.showMessageDialog(null, "Houve um erro na hora de atualizar.", "Erro na atualização .", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Houve um erro na atualização.", "Erro na atualização.", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    public Reserva acao(){
+        
+        modalReserva = new Reserva();
+        modalReserva.setId(this.id);
+        modalReserva.setQuarto(Integer.parseInt(txtNumeroQuarto.getText()));
+        modalReserva.setHospede(txtHospede.getText());
+        String entrada = txtEntrada.getText();
+        String entradaFormatada = entrada.substring(6) + "-" + entrada.substring(3, 5) + "-" + entrada.substring(0, 2) + " 15:00:00";
+        modalReserva.setEntrada(entradaFormatada);
+        String saida = txtSaida.getText();
+        String saidaFormatada = saida.substring(6) + "-" + saida.substring(3, 5) + "-" + saida.substring(0, 2) + " 11:00:00";
+        modalReserva.setSaida(saidaFormatada);
+        
+        
+        return modalReserva;
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -158,6 +266,7 @@ public class CadReserva extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastro;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
