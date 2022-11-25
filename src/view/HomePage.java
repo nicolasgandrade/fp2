@@ -949,6 +949,18 @@ public class HomePage extends javax.swing.JFrame {
 
     private void TableQuartosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableQuartosMouseClicked
         // TODO add your handling code here:
+        DefaultTableModel table = (DefaultTableModel) TableQuartos.getModel();
+        
+        this.quartoSelecionado = new Quarto();
+        
+        this.quartoSelecionado.setNúmero(Integer.parseInt(table.getValueAt(TableQuartos.getSelectedRow(), 0).toString()));
+        this.quartoSelecionado.setAndar(Integer.parseInt(TableQuartos.getValueAt(TableQuartos.getSelectedRow(), 1).toString()));
+        this.quartoSelecionado.setCategoria(TableQuartos.getValueAt(TableQuartos.getSelectedRow(), 2).toString());
+        if (TableQuartos.getValueAt(TableQuartos.getSelectedRow(), 3).toString().equals("Ocupado")){
+            this.quartoSelecionado.setOcupado(true);
+        } else {
+            this.quartoSelecionado.setOcupado(false);
+        }
     }//GEN-LAST:event_TableQuartosMouseClicked
 
     public void toggleCamposSensiveis(boolean isEnabled, boolean isAdmin) {
