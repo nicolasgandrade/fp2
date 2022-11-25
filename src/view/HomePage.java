@@ -31,6 +31,7 @@ public class HomePage extends javax.swing.JFrame {
     CadQuarto cadQuarto;
     Quarto  quartoSelecionado;
     QuartosController quartoController;
+    Hospede hospedeSelecionado;
 
     public HomePage(UserController userController) {
         initComponents();
@@ -40,6 +41,7 @@ public class HomePage extends javax.swing.JFrame {
         reservasBuscadas = new ArrayList<>();     
         this.hospedesController = new ControllerHospede();
         this.quartoController = new QuartosController();
+        this.hospedeSelecionado = new Hospede();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -76,9 +78,11 @@ public class HomePage extends javax.swing.JFrame {
         TableHospedes = new javax.swing.JTable();
         lblTituloHospedes = new javax.swing.JLabel();
         lblDescHospedes = new javax.swing.JLabel();
-        btnBuscarHospede1 = new javax.swing.JButton();
+        btnAtualizarHospede = new javax.swing.JButton();
+        btnCadastrarHospede = new javax.swing.JButton();
         btnBuscarHospede = new javax.swing.JButton();
         txtDocumentoHospede = new javax.swing.JTextField();
+        btnDeletarHospede = new javax.swing.JButton();
         lblFundoHospedes = new javax.swing.JLabel();
         pnlUsuarios = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -122,6 +126,7 @@ public class HomePage extends javax.swing.JFrame {
 
         pnlSideNav.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnUsuarios.setBackground(new java.awt.Color(255, 255, 255));
         btnUsuarios.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         btnUsuarios.setForeground(new java.awt.Color(0, 51, 153));
         btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Usuarios_icon.png"))); // NOI18N
@@ -135,10 +140,11 @@ public class HomePage extends javax.swing.JFrame {
         });
         pnlSideNav.add(btnUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 210, 60));
 
+        btnQuartos.setBackground(new java.awt.Color(255, 255, 255));
         btnQuartos.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         btnQuartos.setForeground(new java.awt.Color(0, 51, 153));
         btnQuartos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Quartos_icon.png"))); // NOI18N
-        btnQuartos.setText("Quarto");
+        btnQuartos.setText("Quartos");
         btnQuartos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnQuartos.setBorderPainted(false);
         btnQuartos.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +154,7 @@ public class HomePage extends javax.swing.JFrame {
         });
         pnlSideNav.add(btnQuartos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 210, 60));
 
+        btnHospedes.setBackground(new java.awt.Color(255, 255, 255));
         btnHospedes.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         btnHospedes.setForeground(new java.awt.Color(0, 51, 153));
         btnHospedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Hospedes_icon.png"))); // NOI18N
@@ -161,6 +168,7 @@ public class HomePage extends javax.swing.JFrame {
         });
         pnlSideNav.add(btnHospedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 210, 60));
 
+        btnReservas.setBackground(new java.awt.Color(255, 255, 255));
         btnReservas.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         btnReservas.setForeground(new java.awt.Color(0, 51, 153));
         btnReservas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/Reservas_icon.jpeg"))); // NOI18N
@@ -174,6 +182,7 @@ public class HomePage extends javax.swing.JFrame {
         });
         pnlSideNav.add(btnReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, 210, 60));
 
+        btnSair.setBackground(new java.awt.Color(255, 255, 255));
         btnSair.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnSair.setForeground(new java.awt.Color(0, 51, 153));
         btnSair.setText("Sair");
@@ -335,13 +344,21 @@ public class HomePage extends javax.swing.JFrame {
         lblDescHospedes.setText("Controle os hóspedes cadastrados no seu sistema.");
         pnlHospedes.add(lblDescHospedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
 
-        btnBuscarHospede1.setText("CADASTRAR");
-        btnBuscarHospede1.addActionListener(new java.awt.event.ActionListener() {
+        btnAtualizarHospede.setText("ATUALIZAR");
+        btnAtualizarHospede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarHospede1ActionPerformed(evt);
+                btnAtualizarHospedeActionPerformed(evt);
             }
         });
-        pnlHospedes.add(btnBuscarHospede1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 190, 120, 40));
+        pnlHospedes.add(btnAtualizarHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 190, 120, 40));
+
+        btnCadastrarHospede.setText("CADASTRAR");
+        btnCadastrarHospede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarHospedeActionPerformed(evt);
+            }
+        });
+        pnlHospedes.add(btnCadastrarHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 120, 40));
 
         btnBuscarHospede.setText("BUSCAR");
         btnBuscarHospede.addActionListener(new java.awt.event.ActionListener() {
@@ -353,6 +370,14 @@ public class HomePage extends javax.swing.JFrame {
 
         txtDocumentoHospede.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento do hóspede"));
         pnlHospedes.add(txtDocumentoHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 270, 70));
+
+        btnDeletarHospede.setText("DELETAR");
+        btnDeletarHospede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarHospedeActionPerformed(evt);
+            }
+        });
+        pnlHospedes.add(btnDeletarHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 190, 110, 40));
 
         lblFundoHospedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/menu_content.png"))); // NOI18N
         pnlHospedes.add(lblFundoHospedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -871,33 +896,6 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparReservaActionPerformed
 
     private void tableReservasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableReservasMouseClicked
-//        DefaultTableModel table = (DefaultTableModel) tableUsuarios.getModel();
-//        
-//        int id = Integer.parseInt(table.getValueAt(tableUsuarios.getSelectedRow(), 0).toString());
-//        
-//        ArrayList<Usuario> listaUsuarios = this.userController.getUsuarios();
-//        this.usuarioSelecionado = listaUsuarios.stream()
-//                .filter(usuario -> usuario.getId() == id)
-//                .findFirst();
-//        
-//        this.txtNomeCompleto.setText(this.usuarioSelecionado.get().getNome());
-//        this.txtUsername.setText(this.usuarioSelecionado.get().getNomeUsuario());
-//        this.txtSenha.setText(this.usuarioSelecionado.get().getSenha());
-//        String cargo = this.usuarioSelecionado.get().getCargo();
-//        this.groupCargo.setSelected(
-//                cargo.equals("Gerente") 
-//                        ? this.radioAdmin.getModel() 
-//                        : this.radioFuncionario.getModel(), 
-//                true);
-//        
-//        toggleCamposSensiveis(false, false);
-//        Usuario usuarioLogado = this.userController.getCurrentUser();
-//        if (usuarioLogado.getCargo().equals("Gerente")) {
-//            toggleCamposSensiveis(true, true);           
-//        } else if (usuarioLogado.getId() == this.usuarioSelecionado.get().getId()) {
-//            toggleCamposSensiveis(true, false); 
-//        }
-
         DefaultTableModel table = (DefaultTableModel) tableReservas.getModel();
         
         this.reservaSelecionada = new Reserva();
@@ -908,13 +906,27 @@ public class HomePage extends javax.swing.JFrame {
         this.reservaSelecionada.setEntrada(tableReservas.getValueAt(tableReservas.getSelectedRow(), 3).toString());
         this.reservaSelecionada.setSaida(tableReservas.getValueAt(tableReservas.getSelectedRow(), 4).toString());
     }//GEN-LAST:event_tableReservasMouseClicked
-    private void btnBuscarHospede1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarHospede1ActionPerformed
+
+    private void btnCadastrarHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarHospedeActionPerformed
         CadHospede hospede = new CadHospede();
         hospede.setVisible(true);
-    }//GEN-LAST:event_btnBuscarHospede1ActionPerformed
+    }//GEN-LAST:event_btnCadastrarHospedeActionPerformed
 
     private void TableHospedesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableHospedesMouseClicked
+        DefaultTableModel table = (DefaultTableModel) TableHospedes.getModel();
         
+        this.hospedeSelecionado = new Hospede();
+        
+        this.hospedeSelecionado.setId(
+                Integer.parseInt(table.getValueAt(TableHospedes.getSelectedRow(), 0).toString()));
+        this.hospedeSelecionado.setDocumento(
+                table.getValueAt(TableHospedes.getSelectedRow(), 4).toString());
+        this.hospedeSelecionado.setNome(
+                table.getValueAt(TableHospedes.getSelectedRow(), 1).toString());
+        this.hospedeSelecionado.setEmail(
+                table.getValueAt(TableHospedes.getSelectedRow(), 3).toString());
+        this.hospedeSelecionado.setTelefone(
+                table.getValueAt(TableHospedes.getSelectedRow(), 2).toString());
     }//GEN-LAST:event_TableHospedesMouseClicked
     private void btnLimparQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparQuartoActionPerformed
         // TODO add your handling code here:
@@ -968,6 +980,22 @@ public class HomePage extends javax.swing.JFrame {
             this.quartoSelecionado.setOcupado(false);
         }
     }//GEN-LAST:event_TableQuartosMouseClicked
+
+    private void btnDeletarHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarHospedeActionPerformed
+        this.hospedesController.deleteHospede(this.hospedeSelecionado.getId());
+        JOptionPane.showMessageDialog(pnlContent, "Hóspede deletado com sucesso");
+    }//GEN-LAST:event_btnDeletarHospedeActionPerformed
+
+    private void btnAtualizarHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarHospedeActionPerformed
+        CadHospede cadHospede = new CadHospede(
+                this.hospedeSelecionado.getId(),
+                this.hospedeSelecionado.getNome(),
+                this.hospedeSelecionado.getTelefone(),
+                this.hospedeSelecionado.getEmail(),
+                this.hospedeSelecionado.getDocumento()
+        );
+        cadHospede.setVisible(true);
+    }//GEN-LAST:event_btnAtualizarHospedeActionPerformed
 
     public void toggleCamposSensiveis(boolean isEnabled, boolean isAdmin) {
         this.txtUsername.setEnabled(isEnabled);
@@ -1079,16 +1107,18 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JTable TableHospedes;
     private javax.swing.JTable TableQuartos;
     private javax.swing.JButton btnAtualizaReserva;
+    private javax.swing.JButton btnAtualizarHospede;
     private javax.swing.JButton btnAtualizarQuarto;
     private javax.swing.JButton btnBuscarHospede;
-    private javax.swing.JButton btnBuscarHospede1;
     private javax.swing.JButton btnBuscarQuarto;
     private javax.swing.JButton btnBuscarReservas;
     private javax.swing.JButton btnBuscarUsuario;
+    private javax.swing.JButton btnCadastrarHospede;
     private javax.swing.JButton btnConfirmUsuario;
     private javax.swing.JButton btnCriarQuarto;
     private javax.swing.JButton btnCriarReserva;
     private javax.swing.JButton btnDeletaReserva;
+    private javax.swing.JButton btnDeletarHospede;
     private javax.swing.JButton btnDeletarQuarto;
     private javax.swing.JButton btnDeletarSelecionado;
     private javax.swing.JButton btnHospedes;

@@ -14,10 +14,10 @@ public class MySQL {
     private Statement statement; //variável de manipulação do SQL
     private ResultSet resultSet;
     
-    private String servidor = "remotemysql.com";
-    private String nomeDoBanco = "r3z1tBMSDh";
-    private String usuario = "r3z1tBMSDh";
-    private String senha = "FYl5rDyoup";
+    private String servidor = "127.0.0.1";
+    private String nomeDoBanco = "hotel";
+    private String usuario = "root";
+    private String senha = "root";
     
     //Construtor    
     public MySQL(){

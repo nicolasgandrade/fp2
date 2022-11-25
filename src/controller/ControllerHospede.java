@@ -43,14 +43,13 @@ public class ControllerHospede {
         return hospedes;   
     }
     
-        public boolean updateHospede(Hospede hospede) {
-        
+    public boolean updateHospede(Hospede hospede) {
         String sql = "UPDATE Hospedes SET "
                 + "nome = '" + hospede.getNome() + "', "
                 + "telefone = '" + hospede.getTelefone()+ "', "
                 + "email = '" + hospede.getEmail()+ "', "
-                + "id = " + hospede.getId() + " "
-                + "documento = " + hospede.getDocumento()+ ";";
+                + "documento = '" + hospede.getDocumento()+ "' "
+                + "WHERE id = " + hospede.getId();
         
         return this.conn.updateSQL(sql);
     }
@@ -64,6 +63,4 @@ public class ControllerHospede {
     public void encerrar(Hospede hospede) {
             this.conn.fechaBanco();
     }
-    
-    
 }
