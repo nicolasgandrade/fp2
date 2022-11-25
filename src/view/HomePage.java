@@ -922,12 +922,10 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCriarQuartoActionPerformed
 
     private void btnAtualizarQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarQuartoActionPerformed
-        // TODO add your handling code here:
-        int numero = (Integer)spnBuscaQuarto.getValue();
-        
+        // TODO add your handling code here:  
         Quarto quarto = this.quartoSelecionado;
         
-        this.cadQuarto = new CadQuarto(numero,quarto.getAndar(), quarto.isOcupado(), quarto.getCategoria());
+        this.cadQuarto = new CadQuarto(quarto.getNúmero(),quarto.getAndar(), quarto.isOcupado(), quarto.getCategoria());
         cadQuarto.setVisible(true);
     }//GEN-LAST:event_btnAtualizarQuartoActionPerformed
 

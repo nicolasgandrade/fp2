@@ -55,6 +55,25 @@ public class QuartosController {
         return this.quartos;
     }
     
+    public boolean updateQuarto (Quarto quarto) throws SQLException {
+        int categoria_id = 1;
+        if (quarto.getCategoria().equals("Solteiro")){
+            categoria_id = 1;
+        } else if (quarto.getCategoria().equals("Duplo solteiro")){
+            categoria_id = 2;
+        } else if (quarto.getCategoria().equals("Casal")){
+            categoria_id = 3;
+        } else if (quarto.getCategoria().equals("Dormitório")){
+            categoria_id = 4;
+        }
+        String sql = "UPDATE Quartos SET "
+                + "andar = " + quarto.getAndar() + " , "
+                + "categoria_id = " + categoria_id + " , "
+                + "ocupado = " + quarto.isOcupado() 
+                + " WHERE numero = " + quarto.getNúmero() + " ;";
+        return this.conn.updateSQL(sql);
+    }    
+    
     public int deleteQuarto(int n) throws SQLException {
         String sql = "DELETE FROM Quartos WHERE numero = " + n + " ;";
         
