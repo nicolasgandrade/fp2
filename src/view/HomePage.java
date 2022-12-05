@@ -83,6 +83,7 @@ public class HomePage extends javax.swing.JFrame {
         btnBuscarHospede = new javax.swing.JButton();
         txtDocumentoHospede = new javax.swing.JTextField();
         btnDeletarHospede = new javax.swing.JButton();
+        btnLimparHospede = new javax.swing.JButton();
         lblFundoHospedes = new javax.swing.JLabel();
         pnlUsuarios = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -350,7 +351,7 @@ public class HomePage extends javax.swing.JFrame {
                 btnAtualizarHospedeActionPerformed(evt);
             }
         });
-        pnlHospedes.add(btnAtualizarHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 190, 120, 40));
+        pnlHospedes.add(btnAtualizarHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 190, 100, 40));
 
         btnCadastrarHospede.setText("CADASTRAR");
         btnCadastrarHospede.addActionListener(new java.awt.event.ActionListener() {
@@ -358,7 +359,7 @@ public class HomePage extends javax.swing.JFrame {
                 btnCadastrarHospedeActionPerformed(evt);
             }
         });
-        pnlHospedes.add(btnCadastrarHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 120, 40));
+        pnlHospedes.add(btnCadastrarHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 190, 110, 40));
 
         btnBuscarHospede.setText("BUSCAR");
         btnBuscarHospede.addActionListener(new java.awt.event.ActionListener() {
@@ -366,7 +367,7 @@ public class HomePage extends javax.swing.JFrame {
                 btnBuscarHospedeActionPerformed(evt);
             }
         });
-        pnlHospedes.add(btnBuscarHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 100, 40));
+        pnlHospedes.add(btnBuscarHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 100, 40));
 
         txtDocumentoHospede.setBorder(javax.swing.BorderFactory.createTitledBorder("Documento do hóspede"));
         pnlHospedes.add(txtDocumentoHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 270, 70));
@@ -377,7 +378,15 @@ public class HomePage extends javax.swing.JFrame {
                 btnDeletarHospedeActionPerformed(evt);
             }
         });
-        pnlHospedes.add(btnDeletarHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 190, 110, 40));
+        pnlHospedes.add(btnDeletarHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 190, 100, 40));
+
+        btnLimparHospede.setText("LIMPAR");
+        btnLimparHospede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparHospedeActionPerformed(evt);
+            }
+        });
+        pnlHospedes.add(btnLimparHospede, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 100, 40));
 
         lblFundoHospedes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/menu_content.png"))); // NOI18N
         pnlHospedes.add(lblFundoHospedes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -997,6 +1006,12 @@ public class HomePage extends javax.swing.JFrame {
         cadHospede.setVisible(true);
     }//GEN-LAST:event_btnAtualizarHospedeActionPerformed
 
+    private void btnLimparHospedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparHospedeActionPerformed
+        txtDocumentoHospede.setText("");
+        DefaultTableModel table = (DefaultTableModel) TableHospedes.getModel();
+        table.setRowCount(0);
+    }//GEN-LAST:event_btnLimparHospedeActionPerformed
+
     public void toggleCamposSensiveis(boolean isEnabled, boolean isAdmin) {
         this.txtUsername.setEnabled(isEnabled);
         this.txtNomeCompleto.setEnabled(isEnabled);
@@ -1123,6 +1138,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton btnDeletarSelecionado;
     private javax.swing.JButton btnHospedes;
     private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnLimparHospede;
     private javax.swing.JButton btnLimparQuarto;
     private javax.swing.JButton btnLimparReserva;
     private javax.swing.JButton btnLimparSelecionado;
