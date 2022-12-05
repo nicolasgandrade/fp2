@@ -14,6 +14,7 @@ public class CadHospede extends javax.swing.JFrame {
     public CadHospede() {
         initComponents();
         controller = new ControllerHospede();
+        novoHospede = new Hospede();
         this.novoHospede.setId(0);
     }
     
@@ -148,6 +149,7 @@ public class CadHospede extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
